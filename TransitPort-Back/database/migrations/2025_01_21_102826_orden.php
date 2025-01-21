@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create(table: 'orden', callback: function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->text(column: 'tipo');
+            $table->text(column: 'zona');
+            $table->integer(column: 'cantidad_contenedores');
+            $table->date(column: 'fecha_carga');
+            $table->date(column: 'fecha_descarga');
+            $table->integer(column: 'id_grua')->unsigned();
+            $table->integer(column: 'id_administrativo')->unsigned();
+            $table->integer('id_buque')->unsigned();
+            $table->integer('id_contenedor')->unsigned();
+            $table->foreign('id_administrativo')->references('id')->on('administrativo')->onDelete('cascade');
+            $table->foreign('id_grua')->references('id')->on('grua')->onDelete('cascade');
+            $table->foreign('id_buque')->references('id_buque')->on('tiene')->onDelete('cascade');
+            $table->foreign('id_contenedor')->references('id_contenedor')->on('tiene')->onDelete('cascade');
+            $table->timestamps();
+          });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        //
+    }
+};
