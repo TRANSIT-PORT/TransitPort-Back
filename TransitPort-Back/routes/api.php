@@ -17,3 +17,15 @@ Route::post('/gestor/guardar', [GestorController::class, 'store']);
 Route::delete('/gestor/borrar/{id}', [GestorController::class, 'destroy']);
 
 Route::get('/gestor/buscar/{id}', [GestorController::class, 'show']);
+
+
+//Ordenes
+Route::get('/orden', [OrdenController::class, 'index']);
+
+Route::put('/orden/actualizar/{id}', [OrdenController::class, 'update']);
+
+Route::post('/orden/guardar', [OrdenController::class, 'store']);
+
+Route::delete('/orden/borrar/{id}', [OrdenController::class, 'destroy']);
+
+Route::get('/orden/buscar/{id}', [OrdenController::class, 'show']);
