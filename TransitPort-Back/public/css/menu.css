@@ -1,0 +1,87 @@
+#menu{
+
+    padding: 0;
+  margin: 0;
+  height: 100%;
+  background: var(--Cinder-800, #133379);
+}
+
+#menu > a{
+
+    color: #F1F5FE;
+    text-decoration: none;
+    font-weight: bolder;
+    display: inline-flex;
+    padding: 15px 33px 15px 52px;
+    justify-content: left;
+    align-items: center;
+    gap: 16px;
+    width: 95%;
+    border-radius: 0px 20px 20px 0px;
+    background: #133379;
+    margin: 0;
+
+  }
+
+  #menu > a:hover{
+
+    color: #F1F5FE;
+    text-decoration: none;
+    font-weight: bolder;
+    display: inline-flex;
+    padding: 15px 33px 15px 52px;
+    justify-content: left;
+    align-items: center;
+    gap: 16px;
+    width: 95%;
+    border-radius: 0px 20px 20px 0px;
+    background: #133379;
+    margin: 0;
+
+  }
+
+#enlace{
+
+    color: #F1F5FE;
+    text-decoration: none;
+    font-weight: bolder;
+    display: inline-flex;
+    padding: 15px 33px 15px 52px;
+    justify-content: left;
+    align-items: center;
+    gap: 16px;
+    width: 95%;
+    border-radius: 0px 20px 20px 0px;
+    background: #133379;
+    margin: 0;
+
+  }
+
+  #perfil > a{
+
+    color: var(--Cinder-50, #F1F5FE);
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+
+  }
+
+  #perfil{
+
+    margin-bottom: 20px;
+    text-align: center;
+
+  }
+
+  #perfil > a > img{
+
+    width: 114px;
+    height: 114px;
+    border-radius: 57px;
+    margin: auto;
+    margin-top: 20px;
+
+
+  }
