@@ -59,6 +59,15 @@ services:
         networks:
             - sail
 
+    phpmyadmin:
+        image: 'phpmyadmin:latest'
+        ports:
+            - 8008:80
+        networks:
+            - sail
+        environment:
+            - PMA_ARBITRARY=1
+
     redis:
         image: 'redis:alpine'
         ports:
