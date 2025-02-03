@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orden;
 use Illuminate\Http\Request;
 
 class OrdenController extends Controller {
@@ -16,14 +17,14 @@ class OrdenController extends Controller {
     {
        $validatedData = $request->validate([
             'tipo' => 'string',
-            'zona' => 'string',
             'cantidad_contenedores' => 'int',
             'fecha_carga' => 'date',
             'fecha_descarga' => 'date',
-            /* 'id_grua' => 'int',
+            'id_grua' => 'int',
             'id_administrativo' => 'int',
             'id_buque' => 'int',
-            'id_contenedor' => 'int', */
+            'id_contenedor' => 'int',
+            'id_zona' => 'int',
         ]);
 
         try {

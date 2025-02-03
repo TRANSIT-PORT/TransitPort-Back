@@ -1,0 +1,44 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Orden;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class OrdenSeeder extends Seeder {    
+    public function run(): void {
+        $ordenes = [
+            [
+                'tipo' => 'carga',
+                'cantidad_contenedores' => '75',
+                'fecha_carga' => '2025-02-05',
+                'fecha_descarga' => '2025-02-11',
+                'id_grua' => '1',
+                'id_administrativo' => '1',
+                'id_buque' => '1',
+                'id_contenedor' => '1',
+                'id_zona' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'tipo' => 'descarga',
+                'cantidad_contenedores' => '125',
+                'fecha_carga' => '2025-02-04',
+                'fecha_descarga' => '2025-02-07',
+                'id_grua' => '1',
+                'id_administrativo' => '1',
+                'id_buque' => '1',
+                'id_contenedor' => '1',
+                'id_zona' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ];
+
+        foreach ($ordenes as $orden) {
+            Orden::create($orden);
+        }        
+    }
+}
