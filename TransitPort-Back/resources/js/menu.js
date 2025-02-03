@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
-import { Router } from '@angular/router';
+import './bootstrap';
 
 function inicio(){}
 
