@@ -1,9 +1,15 @@
+#cuerpo{
+
+    height: 100%;
+
+}
 
 #titulo
 {
 
   padding-left: 60px;
   gap: 1px;
+  margin-top: 15px;
 
 }
 
@@ -28,6 +34,7 @@
 
   flex-wrap: wrap;
   justify-content: center;
+  gap: 12px;
   width: 90%;
   margin: auto;
 
@@ -43,7 +50,7 @@
   line-height: normal;
   margin: 0;
   padding: 0;
-  padding-bottom: 13px;
+  padding-bottom: 10px;
 
 }
 
@@ -66,9 +73,15 @@
 
 #body-perfil > img{
 
-  height: 17%;
-  width: 17%;
+  height: 15%;
+  width: 15%;
   border-radius: 97.5px;
+
+}
+
+#body-perfil{
+
+    padding-top: 30px;
 
 }
 
@@ -76,6 +89,10 @@
   display: flex;
   width: 100%;
   padding: 0;
+  margin-top: 25px;
+  padding-right: 20px;
+
+
 }
 
 #boton-perfil{
