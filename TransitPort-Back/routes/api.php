@@ -10,6 +10,8 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/gestor', [GestorController::class, 'index']);
 
+Route::get('/operador/ordenes', [GestorController::class, 'index']);
+
 Route::put('/gestor/actualizar/{id}', [GestorController::class, 'update']);
 
 Route::post('/gestor/guardar', [GestorController::class, 'store']);
