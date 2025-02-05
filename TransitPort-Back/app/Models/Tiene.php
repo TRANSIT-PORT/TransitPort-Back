@@ -10,7 +10,7 @@ class Tiene extends Model
 {
     protected $table = 'tiene';
     protected $primaryKey = 'id';
-    protected $fillable = ['id_buque', 'id_contenedor'];
+    protected $fillable = ['id_buque', 'id_contenedor', 'ubicacion', 'destino', 'tipo_dstino'];
 
     public function buques()
     {

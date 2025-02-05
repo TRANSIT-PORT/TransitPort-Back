@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create(table: 'buque', callback: function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->text('nombre');
             $table->integer('amarre');
             $table->text(column: 'procedencia');
             $table->text(column: 'destino');

@@ -15,10 +15,11 @@ return new class extends Migration
             $table->increments('id')->unsigned();
             $table->text(column: 'tipo');
             $table->integer(column: 'cantidad_contenedores');
-            $table->date(column: 'fecha_carga');
-            $table->date(column: 'fecha_descarga');
-            $table->integer(column: 'id_grua')->unsigned();
-            $table->integer(column: 'id_administrativo')->unsigned();
+            $table->date('fecha_carga');
+            $table->date('fecha_descarga');
+            $table->enum('estado', ['Por empezar', 'En curso', 'Completada']);
+            $table->integer('id_grua')->unsigned();
+            $table->integer('id_administrativo')->unsigned();
             $table->integer('id_buque')->unsigned();
             $table->integer('id_contenedor')->unsigned();
             $table->integer('id_zona')->unsigned();
@@ -26,7 +27,7 @@ return new class extends Migration
             $table->foreign('id_grua')->references('id')->on('grua')->onDelete('cascade');
             $table->foreign('id_buque')->references('id_buque')->on('tiene')->onDelete('cascade');
             $table->foreign('id_contenedor')->references('id_contenedor')->on('tiene')->onDelete('cascade');
-            $table->foreign('id_zona')->references('id')->on('tiene')->onDelete('cascade');
+            $table->foreign('id_zona')->references('id')->on('zona')->onDelete('cascade');
             $table->timestamps();
           });
     }

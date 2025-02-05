@@ -47,7 +47,7 @@ Route::get('/contenedor/buscar/{id}', [ContenedorController::class, 'show']);
 
 
 //Tiene
-Route::get('/tiene', [TieneController::class, 'index']);
+Route::get('/tiene', [TieneController::class, 'indexBuqueZona']);
 
 Route::put('/tiene/actualizar/{id}', [TieneController::class, 'update']);
 

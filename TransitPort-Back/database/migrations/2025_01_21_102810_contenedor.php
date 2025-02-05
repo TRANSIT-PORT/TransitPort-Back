@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create(table: 'contenedor', callback: function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->enum('estado', ['Por empezar', 'En curso', 'Completada']);
             $table->integer(column: 'id_zona')->unsigned();
             $table->foreign('id_zona')->references('id')->on('zona')->onDelete('cascade');
             $table->timestamps();

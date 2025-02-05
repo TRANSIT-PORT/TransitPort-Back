@@ -7,16 +7,49 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TieneController extends Controller {
-    public function index(Request $request) {
-        // $task = DB::table('tiene')
-        // -> join('zona', 'contenedor.id_zona', '=','zona.id')
-        // -> join('contenedor', 'tiene.id_contenedor', '=','contenedor.id')
-        // -> join('buque', 'tiene.id_buque', '=', 'buque.id')
-        // -> select('id_contenedor', 'zona.ubicacion', 'id_buque', 'contenedor.estado')
-        // -> get();
+    public function indexBuqueZona(Request $request) {
         $task = DB::table('tiene')
-        -> join('contenedor', 'tiene.id_contenedor', '=', 'contenedor.id')
-        -> select('id_contenedor', 'ubicacion', 'destino', 'contenedor.estado')
+        -> join('contenedor', 'tiene.id_contenedor', '=','contenedor.id')
+        -> join('buque', 'tiene.id_buque', '=', 'buque.id')
+        -> join('zona', 'contenedor.id_zona', '=','zona.id')
+        -> select('id_contenedor', 'tiene.ubicacion', 'tiene.destino', 'contenedor.estado')
+        //Subconsultas que pillan el nombre de la Zona y del Buque, para mostrarlo bonito.
+        -> selectSub(function ($query) {
+            $query -> from('zona')
+                -> join('contenedor', 'contenedor.id_zona', '=', 'zona.id')
+                -> whereColumn('contenedor.id', 'tiene.id_contenedor')
+                -> select('zona.ubicacion')
+                -> limit(1);
+        }, 'ubicacion')
+        -> selectSub(function ($query) {
+            $query -> from('buque')
+                -> select('buque.nombre')
+                -> whereColumn('buque.id', 'tiene.id_buque')
+                -> limit(1);
+        }, 'destino')
+        /**
+         * Condiciones para que su trayecto sea Buque -> Zona o viceversa.
+         * Ademas comprobaremos, que en el caso de la ubicacion, si el contenedor ya ha llegado.
+         * Primero comprueba que el estado sea "finalizado", si es asi, entonces el destino sera la ubicacion tambien.
+         */
+        -> selectRaw('CASE
+            WHEN contenedor.estado = "Completada" THEN
+                CASE
+                    WHEN tiene.tipo_destino = "Buque"
+                    THEN buque.nombre
+                    ELSE zona.ubicacion
+                END
+            WHEN tiene.tipo_destino = "Buque"
+            THEN zona.ubicacion
+            ELSE buque.nombre
+            END AS ubicacion
+        ')
+        -> selectRaw('CASE
+            WHEN tiene.tipo_destino = "Buque"
+            THEN buque.nombre
+            ELSE zona.ubicacion
+            END AS destino
+        ')
         -> get();
         return $task;
     }

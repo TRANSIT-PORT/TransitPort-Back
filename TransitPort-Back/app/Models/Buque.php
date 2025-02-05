@@ -9,7 +9,7 @@ class Buque extends Model
 {
     protected $table = 'buque';
     protected $primaryKey = 'id';
-    protected $fillable = ['amarre', 'procedencia', 'destino', 'id_administrativo'];
+    protected $fillable = ['nombre', 'amarre', 'procedencia', 'destino', 'id_administrativo'];
 
     public function administrativos()
     {
