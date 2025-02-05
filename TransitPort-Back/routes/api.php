@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ContenedorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GestorController;
 use App\Http\Controllers\OrdenController;
+use App\Http\Controllers\TieneController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -30,3 +32,27 @@ Route::post('/orden/guardar', [OrdenController::class, 'store']);
 Route::delete('/orden/borrar/{id}', [OrdenController::class, 'destroy']);
 
 Route::get('/orden/buscar/{id}', [OrdenController::class, 'show']);
+
+
+//Contenedores
+Route::get('/contenedor', [ContenedorController::class, 'index']);
+
+Route::put('/contenedor/actualizar/{id}', [ContenedorController::class, 'update']);
+
+Route::post('/contenedor/guardar', [ContenedorController::class, 'store']);
+
+Route::delete('/contenedor/borrar/{id}', [ContenedorController::class, 'destroy']);
+
+Route::get('/contenedor/buscar/{id}', [ContenedorController::class, 'show']);
+
+
+//Tiene
+Route::get('/tiene', [TieneController::class, 'index']);
+
+Route::put('/tiene/actualizar/{id}', [TieneController::class, 'update']);
+
+Route::post('/tiene/guardar', [TieneController::class, 'store']);
+
+Route::delete('/tiene/borrar/{id}', [TieneController::class, 'destroy']);
+
+Route::get('/tiene/buscar/{id}', [TieneController::class, 'show']);

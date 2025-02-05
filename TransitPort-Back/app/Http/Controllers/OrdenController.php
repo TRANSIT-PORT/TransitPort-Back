@@ -13,8 +13,7 @@ class OrdenController extends Controller {
         //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
        $validatedData = $request->validate([
             'tipo' => 'string',
             'cantidad_contenedores' => 'int',
