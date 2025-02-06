@@ -15,8 +15,8 @@ return new class extends Migration
             $table->increments('id')->unsigned();
             $table->text(column: 'tipo');
             $table->integer(column: 'cantidad_contenedores');
-            $table->date('fecha_carga');
-            $table->date('fecha_descarga');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->enum('estado', ['Por empezar', 'En curso', 'Completada']);
             $table->integer('id_grua')->unsigned();
             $table->integer('id_administrativo')->unsigned();

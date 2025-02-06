@@ -12,8 +12,8 @@ class OrdenSeeder extends Seeder {
             [
                 'tipo' => 'carga',
                 'cantidad_contenedores' => '75',
-                'fecha_carga' => '2025-02-05',
-                'fecha_descarga' => '2025-02-11',
+                'fecha_inicio' => '2025-02-05',
+                'fecha_fin' => '2025-02-11',
                 'estado' => 'Por empezar',
                 'id_grua' => '1',
                 'id_administrativo' => '1',
@@ -26,8 +26,8 @@ class OrdenSeeder extends Seeder {
             [
                 'tipo' => 'descarga',
                 'cantidad_contenedores' => '125',
-                'fecha_carga' => '2025-02-04',
-                'fecha_descarga' => '2025-02-07',
+                'fecha_inicio' => '2025-02-04',
+                'fecha_fin' => '2025-02-07',
                 'estado' => 'En curso',
                 'id_grua' => '1',
                 'id_administrativo' => '1',
