@@ -9,15 +9,10 @@ use App\Models\Contenedor;
 class Tiene extends Model
 {
     protected $table = 'tiene';
-    protected $primaryKey = 'id';
     protected $fillable = ['id_buque', 'id_contenedor', 'ubicacion', 'destino', 'tipo_dstino'];
 
-    public function buques()
+    public function tiene()
     {
-        return $this->belongsToMany(Buque::class);
-    }
-    public function contenedores()
-    {
-        return $this->belongsToMany(Contenedor::class);
+        return $this->belongsToMany(Buque::class, Contenedor::class);
     }
 }
