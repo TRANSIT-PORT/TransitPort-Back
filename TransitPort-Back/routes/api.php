@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GestorController;
+use App\Http\Controllers\OrdenesController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -10,7 +11,7 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/gestor', [GestorController::class, 'index']);
 
-Route::get('/operador/ordenes', [GestorController::class, 'index']);
+Route::get('/operador/ordenes', [OrdenesController::class, 'index']);
 
 Route::put('/gestor/actualizar/{id}', [GestorController::class, 'update']);
 

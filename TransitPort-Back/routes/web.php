@@ -6,7 +6,7 @@ use App\Http\Controllers\GestorController;
 use App\Models\Gestor;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('operador/welcome');
 });
 
 Route::get('/operador/ordenes', [DashboardController::class, 'ordenes']);
