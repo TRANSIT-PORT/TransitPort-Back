@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('id_contenedor');
             $table->integer('ubicacion');
             $table->integer('destino');
-            $table->enum('tipo_destino', ['Buque', 'Zona']) -> nullable(false);
+            $table->enum('tipo_destino', ['Buque', 'Zona']);
             
             // Definir clave primaria compuesta
             $table->primary(['id_buque', 'id_contenedor']);

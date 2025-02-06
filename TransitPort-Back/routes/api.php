@@ -4,6 +4,7 @@ use App\Http\Controllers\ContenedorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GestorController;
+use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\TieneController;
 
@@ -47,7 +48,7 @@ Route::get('/contenedor/buscar/{id}', [ContenedorController::class, 'show']);
 
 
 //Tiene
-Route::get('/tiene', [TieneController::class, 'indexBuqueZona']);
+Route::get('/tiene', [TieneController::class, 'index']);
 
 Route::put('/tiene/actualizar/{id}', [TieneController::class, 'update']);
 
@@ -56,3 +57,15 @@ Route::post('/tiene/guardar', [TieneController::class, 'store']);
 Route::delete('/tiene/borrar/{id}', [TieneController::class, 'destroy']);
 
 Route::get('/tiene/buscar/{id}', [TieneController::class, 'show']);
+
+
+//Incidencia
+Route::get('/incidencia', [IncidenciaController::class, 'index']);
+
+Route::put('/incidencia/actualizar/{id}', [IncidenciaController::class, 'update']);
+
+Route::post('/incidencia/guardar', [IncidenciaController::class, 'store']);
+
+Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy']);
+
+Route::get('/incidencia/buscar/{id}', [IncidenciaController::class, 'show']);

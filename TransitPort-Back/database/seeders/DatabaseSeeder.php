@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder {
         $this -> call([
             GestorSeeder::class,
             AdministrativoSeeder::class,
+            OperadorSeeder::class,
             GruaSeeder::class,
             PatioSeeder::class,
             ZonaSeeder::class,
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder {
             ContenedorSeeder::class,
             TieneSeeder::class,
             OrdenSeeder::class,
+            IncidenciaSeeder::class,
         ]);
     }    
 }

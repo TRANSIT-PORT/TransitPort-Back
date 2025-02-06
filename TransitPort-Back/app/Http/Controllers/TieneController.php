@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TieneController extends Controller {
-    public function indexBuqueZona(Request $request) {
+    public function index(Request $request) {
         $task = DB::table('tiene')
         -> join('contenedor', 'tiene.id_contenedor', '=','contenedor.id')
         -> join('buque', 'tiene.id_buque', '=', 'buque.id')
