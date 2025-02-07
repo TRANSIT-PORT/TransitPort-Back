@@ -1,14 +1,19 @@
-#menu{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+#menu {
     padding: 0;
-  margin: 0;
-  height: 100%;
-  background: var(--Cinder-800, #133379);
+    margin: 0;
+    height: 100%;
+    background: var(--Cinder-800, #133379);
 }
 
-#menu > a{
-
-    color: #F1F5FE;
+#menu > a {
+    color: #f1f5fe;
     text-decoration: none;
     font-weight: bolder;
     display: inline-flex;
@@ -20,12 +25,10 @@
     border-radius: 0px 20px 20px 0px;
     background: #133379;
     margin: 0;
+}
 
-  }
-
-  #menu > a:hover{
-
-    color: #F1F5FE;
+#menu > a:hover {
+    color: #f1f5fe;
     text-decoration: none;
     font-weight: bolder;
     display: inline-flex;
@@ -37,12 +40,10 @@
     border-radius: 0px 20px 20px 0px;
     background: #133379;
     margin: 0;
+}
 
-  }
-
-#enlace{
-
-    color: #F1F5FE;
+#enlace {
+    color: #f1f5fe;
     text-decoration: none;
     font-weight: bolder;
     display: inline-flex;
@@ -54,34 +55,26 @@
     border-radius: 0px 20px 20px 0px;
     background: #133379;
     margin: 0;
+}
 
-  }
-
-  #perfil > a{
-
-    color: var(--Cinder-50, #F1F5FE);
+#perfil > a {
+    color: var(--Cinder-50, #f1f5fe);
     font-size: 28px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     text-align: center;
+}
 
-  }
-
-  #perfil{
-
+#perfil {
     margin-bottom: 20px;
     text-align: center;
+}
 
-  }
-
-  #perfil > a > img{
-
+#perfil > a > img {
     width: 114px;
     height: 114px;
     border-radius: 57px;
     margin: auto;
     margin-top: 20px;
-
-
-  }
+}

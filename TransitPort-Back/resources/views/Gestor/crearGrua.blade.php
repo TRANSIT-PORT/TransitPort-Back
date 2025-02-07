@@ -14,6 +14,8 @@
     <input type="text" name="marca" id="">
     <input type="text" name="modelo" id="">
 
+    <button class="btn btn-primary">Prueba</button>
+
 </form>
 
 </body>
