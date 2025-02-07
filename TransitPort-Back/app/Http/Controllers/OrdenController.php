@@ -6,8 +6,7 @@ use App\Models\Orden;
 use Illuminate\Http\Request;
 
 class OrdenController extends Controller {
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         $task = Orden::all();
         return $task;
         //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
