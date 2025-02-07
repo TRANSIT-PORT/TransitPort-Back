@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GestorController;
+use App\Http\Controllers\OrdenController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,5 +20,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
+
+Route::get('crearOrden', [OrdenController::class, 'crearOpciones']) -> name('crearOrden');
+Route::post('guardarOrden', [OrdenController::class, 'guardarOrden']) -> name('guardarOrden');
 
 require __DIR__.'/auth.php';

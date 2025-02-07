@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Orden;
+use App\Models\Turno;
+use App\Models\Zona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrdenController extends Controller {
     public function index(Request $request) {
@@ -92,5 +95,26 @@ class OrdenController extends Controller {
             "message" => "Orden con id =" . $task . " ha sido borrado con éxito"
         ], 201);
         //Esta función obtendra el id de la tarea que hayamos seleccionado y la borrará de nuestra BD
+    }
+
+    public function crearOpciones() {
+        $zonas = Zona::all();
+        $amarres = DB::table('buque')
+        -> distinct()
+        -> pluck('amarre');
+        $turnos = Turno::all();
+
+        return view('Administrativo.crearOrden', ['zonas' => $zonas, 'amarres' => $amarres, 'turnos' => $turnos]);
+    }
+
+    public function guardarOrden(Request $request) {
+        $orden = request() -> validate([
+            'tipo' => 'required',
+            'fecha_inicio' => 'required',
+            'id_zona' => 'required',
+            'amarre' => 'required'
+        ]);
+
+        return view('Operador.welcome');
     }
 }

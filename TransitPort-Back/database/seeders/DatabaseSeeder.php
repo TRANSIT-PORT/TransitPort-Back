@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder {
             TieneSeeder::class,
             OrdenSeeder::class,
             IncidenciaSeeder::class,
+            TurnoSeeder::class,
         ]);
     }    
 }

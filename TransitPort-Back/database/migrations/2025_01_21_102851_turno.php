@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create(table: 'turno', callback: function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->date(column: 'fecha_inicio');
-            $table->date(column: 'fecha_fin');
+            $table->timestamp('fecha_inicio') -> nullable();
+            $table->timestamp('fecha_fin') -> nullable();
             $table->integer(column: 'id_orden')->unsigned();
             $table->integer(column: 'id_operador')->unsigned();
             $table->foreign('id_orden')->references('id')->on('orden')->onDelete('cascade');
