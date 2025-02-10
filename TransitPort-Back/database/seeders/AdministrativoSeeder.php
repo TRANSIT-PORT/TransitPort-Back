@@ -10,6 +10,7 @@ class AdministrativoSeeder extends Seeder {
     public function run(): void {
         $administrativos = [
             [
+                'id' => '3',
                 'nombre' => 'Maria Jesus Alvarez',
                 'usuario' => 'mjalvarez',
                 'password' => '1234',
@@ -19,6 +20,7 @@ class AdministrativoSeeder extends Seeder {
                 'updated_at' => now(),
             ],
             [
+                'id' => '4',
                 'nombre' => 'Lucas Potter',
                 'usuario' => 'lpotter',
                 'password' => '1111',

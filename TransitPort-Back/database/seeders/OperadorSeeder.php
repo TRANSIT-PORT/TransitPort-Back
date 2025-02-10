@@ -10,6 +10,7 @@ class OperadorSeeder extends Seeder {
     public function run(): void {
         $operadores = [
             [
+                'id' => '5',
                 'nombre' => 'Juan Sanchez',
                 'usuario' => 'jsanchez',
                 'password' => '1000',
@@ -22,6 +23,7 @@ class OperadorSeeder extends Seeder {
                 'updated_at' => now(),
             ],
             [
+                'id' => '6',
                 'nombre' => 'Alberto Navarro',
                 'usuario' => 'anavarro',
                 'password' => '2000',

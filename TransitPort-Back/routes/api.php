@@ -1,16 +1,21 @@
 <?php
 
+use App\Http\Controllers\AdministrativoController;
 use App\Http\Controllers\ContenedorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GestorController;
 use App\Http\Controllers\IncidenciaController;
+use App\Http\Controllers\OperadorController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\TieneController;
+use App\Http\Controllers\UsuarioController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+Route::get('/usuario', [UsuarioController::class, 'index']);
 
 Route::get('/gestor', [GestorController::class, 'index']);
 
@@ -21,6 +26,12 @@ Route::post('/gestor/guardar', [GestorController::class, 'store']);
 Route::delete('/gestor/borrar/{id}', [GestorController::class, 'destroy']);
 
 Route::get('/gestor/buscar/{id}', [GestorController::class, 'show']);
+
+//Administrativo
+Route::get('/administrativo', [AdministrativoController::class, 'index']);
+
+//Operador
+Route::get('/operador', [OperadorController::class, 'index']);
 
 
 //Ordenes

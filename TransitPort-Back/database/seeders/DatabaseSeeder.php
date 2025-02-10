@@ -9,6 +9,7 @@ use Database\Seeders\OrdenSeeder;
 class DatabaseSeeder extends Seeder {
     public function run(): void {
         $this -> call([
+            UsuarioSeeder::class,
             GestorSeeder::class,
             AdministrativoSeeder::class,
             OperadorSeeder::class,

@@ -10,16 +10,20 @@ class GestorSeeder extends Seeder {
     public function run(): void {
         $gestores = [
             [
+                'id' => '1',
                 'nombre' => 'German Palomares',
                 'usuario' => 'gpalomares',
                 'password' => '1111',
+                'cargo' => 'gestor',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => '2',
                 'nombre' => 'Bartolome Mendez Zuroaga',
                 'usuario' => 'bmendez',
                 'password' => '2222',
+                'cargo' => 'gestor',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

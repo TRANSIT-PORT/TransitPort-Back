@@ -111,8 +111,8 @@ class OrdenController extends Controller {
         $orden = request() -> validate([
             'tipo' => 'required',
             'fecha_inicio' => 'required',
-            'id_zona' => 'required',
-            'amarre' => 'required'
+            'id_zona' => 'required | exists: zona, id',
+            'amarre' => 'required | exists: buque, amarres'
         ]);
 
         return view('Operador.welcome');
