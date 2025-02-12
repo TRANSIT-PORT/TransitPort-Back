@@ -1,0 +1,216 @@
+@font-face {
+    font-family: Monoton;
+    src: url("/assets/Monoton/Monoton-Regular.ttf") format("truetype");
+}
+
+/* #bloqueInicio {
+    background-image: url("/assets/Login/FondoLogIn.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+#contenidoLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.icono-ojo {
+    cursor: pointer;
+    position: absolute;
+    margin-top: 120px;
+    margin-left: 410px;
+    width: 33px;
+    height: 30px;
+}
+
+.bloqueLogo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-top: -80px;
+}
+
+#welcome,
+#welcome2 {
+    margin-left: 100px;
+    margin-top: 4px;
+}
+
+#welcome2 {
+    margin-top: -6px;
+    font-size: 22px;
+}
+
+.botonLogin {
+    border-radius: 9px;
+    border: 1px solid var(--Cinder-200, #c0d2f7);
+    color: var(--Cinder-200, #c0d2f7);
+
+    padding: 17px;
+    padding-left: 35px;
+    padding-right: 35px;
+    font-size: 18px;
+    color: var(--Cinder-50, #f1f5fe);
+    background-color: var(--Cinder-950, #040813);
+    margin-left: -290px;
+    font-weight: bolder;
+}
+
+.form-check {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-check-input {
+    width: 30px;
+    height: 31px;
+    margin-right: 10px;
+    background: none;
+    border-width: 3px;
+    border-color: #ccc;
+    border-style: solid;
+    border-radius: 4px;
+    transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    appearance: none;
+    cursor: pointer;
+}
+
+.form-check-input:checked::before {
+    content: "✓";
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.recordarUser {
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+p > span.transit {
+    color: #c0d2f7;
+    font-family: Monoton;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2.88px;
+    margin-left: -40px;
+}
+
+p > span.guion {
+    color: var(--Cinder-950, #040813);
+    font-family: Monoton;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2.88px;
+}
+
+p > span.port {
+    color: var(--Cinder-100, #e3e9fb);
+    font-family: Monoton;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2.88px;
+}
+
+#logo {
+    width: 91.832px;
+    height: 102.869px;
+    float: left;
+}
+
+#bloqueLogin {
+    width: 676px;
+    height: 810px;
+    flex-shrink: 0;
+    padding: 22px 36px 22px 38px;
+    background: var(--Cinder-900, #152d65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+#imagenInicio {
+    width: 586px;
+    height: 817px;
+    flex-shrink: 0;
+}
+
+#imagenIni {
+    width: 100%;
+    height: 100%;
+}
+
+p {
+    width: 498px;
+    color: var(--Cinder-50, #f1f5fe);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 37px;
+}
+
+.recordarUser {
+    width: 202px;
+    height: 32px;
+    color: var(--Cinder-50, #f1f5fe);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.recordarForm {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    margin-left: 230px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: -2px;
+}
+
+hr {
+    height: 3px;
+    background-color: #f1f5fe;
+    border: none;
+    width: 85%;
+    margin: 40px auto;
+    margin-top: 20px;
+    margin-left: 94px;
+}

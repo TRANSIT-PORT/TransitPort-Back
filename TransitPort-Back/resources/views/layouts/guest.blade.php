@@ -16,17 +16,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/css/login.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased text-gray-900">
-        <div class="flex flex-col items-center min-h-screen pt-6 bg-gray-100 sm:justify-center sm:pt-0">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 text-gray-500 fill-current" />
-                </a>
-            </div>
-
-            <div class="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
+        <div class="flex items-center justify-center">
+            <div class="w-full max-w-[100%] ">
                 {{ $slot }}
             </div>
         </div>

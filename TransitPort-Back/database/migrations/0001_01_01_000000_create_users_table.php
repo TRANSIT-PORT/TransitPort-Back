@@ -15,10 +15,11 @@ return new class extends Migration
             $table->increments('id') -> unsigned();
             $table->string('nombre');
             $table->string('usuario')->unique();
+            $table->string('email')->unique();
             $table->string('password');
             $table->enum('cargo', ['gestor', 'administrativo', 'operador']);
             $table->rememberToken();
-            
+
             $table->timestamps();
         });
 

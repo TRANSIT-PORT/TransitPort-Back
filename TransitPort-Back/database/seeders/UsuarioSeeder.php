@@ -12,6 +12,7 @@ class UsuarioSeeder extends Seeder {
             [
                 'nombre' => 'German Palomares',
                 'usuario' => 'gpalomares',
+                'email' => 'gpalomares@gmail.com',
                 'password' => '1111',
                 'cargo' => 'gestor',
                 'created_at' => now(),
@@ -20,6 +21,7 @@ class UsuarioSeeder extends Seeder {
             [
                 'nombre' => 'Bartolome Mendez Zuroaga',
                 'usuario' => 'bmendez',
+                'email' => 'bmendez@gmail.com',
                 'password' => '2222',
                 'cargo' => 'gestor',
                 'created_at' => now(),
@@ -28,6 +30,7 @@ class UsuarioSeeder extends Seeder {
             [
                 'nombre' => 'Maria Jesus Alvarez',
                 'usuario' => 'mjalvarez',
+                'email' => 'mjalvarez@gmail.com',
                 'password' => '1234',
                 'cargo' => 'administrativo',
                 'created_at' => now(),
@@ -36,6 +39,7 @@ class UsuarioSeeder extends Seeder {
             [
                 'nombre' => 'Lucas Potter',
                 'usuario' => 'lpotter',
+                'email' => 'lpotter@gmail.com',
                 'password' => '1111',
                 'cargo' => 'administrativo',
                 'created_at' => now(),
@@ -44,6 +48,7 @@ class UsuarioSeeder extends Seeder {
             [
                 'nombre' => 'Juan Sanchez',
                 'usuario' => 'jsanchez',
+                'email' => 'jsanchez@gmail.com',
                 'password' => '1000',
                 'cargo' => 'operador',
                 'created_at' => now(),
@@ -52,6 +57,7 @@ class UsuarioSeeder extends Seeder {
             [
                 'nombre' => 'Alberto Navarro',
                 'usuario' => 'anavarro',
+                'email' => 'anavarro@gmail.com',
                 'password' => '2000',
                 'cargo' => 'operador',
                 'created_at' => now(),
