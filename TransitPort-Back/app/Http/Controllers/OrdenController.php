@@ -117,4 +117,41 @@ class OrdenController extends Controller {
 
         return view('Operador.welcome');
     }
+
+    public function verAuditoria(Request $request) {
+        $orden = DB::table('orden')
+        -> join('grua', 'orden.id_grua', '=', 'grua.id')
+        -> join('buque', 'orden.id_buque', '=', 'buque.id')
+        -> join('turno', 'orden.id', '=', 'turno.id_orden')
+        -> join('operador', 'turno.id_operador', '=', 'operador.id')
+        -> select('orden.id', 'grua.nombre as id_grua', 'orden.tipo', 'buque.nombre as id_buque')
+
+        //Subconsulta Operador.
+        -> selectSub(function ($query) {
+            $query -> from('turno')
+                -> select('operador.nombre')
+                -> whereColumn('turno.id_orden', 'orden.id')
+                -> limit(1);
+        }, 'tipo')
+        -> where('orden.id',1)
+        -> get();
+
+        return $orden;
+    }
+
+    public function verOrden() {
+        $task = DB::table('orden')
+        -> select('*')
+        //Subconsulta Operador.
+        -> selectSub(function ($query) {
+            $query -> from('turno')
+                -> select('turno.fecha_inicio')
+                -> whereColumn('turno.id_orden', 'orden.id')
+                -> limit(1);
+        }, 'turno')
+        -> where('id', 1)
+        -> get();
+
+        return $task;
+    }
 }
