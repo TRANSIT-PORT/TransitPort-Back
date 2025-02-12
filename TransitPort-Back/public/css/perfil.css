@@ -1,9 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-@import "bootstrap/dist/css/bootstrap.min.css";
-@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+#cuerpo{
+
+    height: 100%;
+
+}
+
+#titulo
+{
+
+  padding-left: 60px;
+  gap: 1px;
+  margin-top: 15px;
+}
 
 #titulo {
     padding-left: 60px;
@@ -24,6 +32,29 @@
     padding: 0;
 }
 
+#info-perfil{
+
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 90%;
+  margin: auto;
+
+}
+
+
+#input-perfil > label{
+
+  color: var(--Cinder-950, #040813);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 10px;
+
+}
 #info-perfil {
     flex-wrap: wrap;
     justify-content: center;
@@ -53,13 +84,35 @@
     padding: 10px;
 }
 
+#body-perfil > img{
+
+  height: 15%;
+  width: 15%;
+  border-radius: 97.5px;
+
+}
 #body-perfil > img {
     height: 17%;
     width: 17%;
     border-radius: 97.5px;
+
+}
+
+#body-perfil{
+
+    padding-top: 30px;
+
 }
 
 #boton-container {
+  display: flex;
+  width: 100%;
+  padding: 0;
+  margin-top: 25px;
+  padding-right: 20px;
+
+
+
     display: flex;
     width: 100%;
     padding: 0;

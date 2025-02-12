@@ -12,15 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create(table: 'STS', callback: function (Blueprint $table) {
-            $table->increments('id_grua')->unsigned();
-            $table->text('nombre');
-            $table->text('modelo');
-            $table->text('marca');
-            $table->text('estado');
-            $table->enum('tipo', ['STS']);
-            $table->integer('id_gestor')->unsigned();
-            $table->foreign('id_grua')->references('id')->on('grua')->onDelete('cascade');
-            $table->foreign('id_gestor')->references('id')->on('gestor')->onDelete('cascade');
+            $table->id();
+            $table->float(column: 'capacidad_carga');
+            $table->foreignId('id_grua')->constrained('grua')->onDelete('cascade');
             $table->timestamps();
           });
     }

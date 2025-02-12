@@ -12,22 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tiene', function (Blueprint $table) {
-            $table->unsignedInteger('id_buque');
-            $table->unsignedInteger('id_contenedor');
-            $table->integer('ubicacion');
-            $table->integer('destino');
-            $table->enum('tipo_destino', ['Buque', 'Zona']);
-            
+
+            $table->string('ubicacion');
+            $table->string('destino');
+            $table->string('tipo_destino');
+            $table->foreignId('id_buque')->constrained('buque')->onDelete('cascade');
+            $table->foreignId('id_contenedor')->constrained('contenedor')->onDelete('cascade');
             // Definir clave primaria compuesta
             $table->primary(['id_buque', 'id_contenedor']);
-            
+
             // Definir claves foráneas
-            $table->foreign('id_buque')->references('id')->on('buque')->onDelete('cascade');
-            $table->foreign('id_contenedor')->references('id')->on('contenedor')->onDelete('cascade');
-            
+
+
             $table->timestamps();
         });
-        
+
     }
 
     /**

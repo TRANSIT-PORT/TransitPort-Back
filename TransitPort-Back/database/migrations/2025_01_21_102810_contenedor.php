@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create(table: 'contenedor', callback: function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->enum('estado', ['Por empezar', 'En curso', 'Completada']);
-            $table->integer(column: 'id_zona')->unsigned();
-            $table->foreign('id_zona')->references('id')->on('zona')->onDelete('cascade');
+            $table->foreignId('id_zona')->constrained('zona');
             $table->timestamps();
           });
     }

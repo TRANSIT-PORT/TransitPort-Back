@@ -9,8 +9,8 @@
 <body>
 
     <div class="d-flex flex-row">
-        @include('menu')
-        @include('ordenes')
+        @include('Operador/menu')
+        @include('Operador/ordenes')
     </div>
 
 </body>

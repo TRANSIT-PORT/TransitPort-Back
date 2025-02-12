@@ -6,7 +6,7 @@ use App\Http\Controllers\OrdenController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('Operador.welcome');
+    return view('operador/welcome');
 });
 
 Route::get('/dashboard', function () {
