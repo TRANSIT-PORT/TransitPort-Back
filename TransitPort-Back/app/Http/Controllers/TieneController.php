@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class TieneController extends Controller {
     public function index(Request $request) {
         $task = DB::table('tiene')
+        //Join (tabla, id_tabla de la Select, =, id_tabla Original).
         -> join('contenedor', 'tiene.id_contenedor', '=','contenedor.id')
         -> join('buque', 'tiene.id_buque', '=', 'buque.id')
         -> join('zona', 'contenedor.id_zona', '=','zona.id')

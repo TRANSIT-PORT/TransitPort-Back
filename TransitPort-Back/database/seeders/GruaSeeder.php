@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Grua;
+use App\Models\SC;
+use App\Models\STS;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -10,16 +12,22 @@ class GruaSeeder extends Seeder {
     public function run(): void {
         $gruas = [
             [
-                'capacidad_carga' => '5000',
+                'nombre' => 'Atlas',
+                'modelo' => 'SENNEBOGEN',
+                'marca' => '9300E',
                 'estado' => 'activo',
+                'tipo' => 'SC',
                 'id_gestor' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'capacidad_carga' => '5000',
+                'nombre' => 'Titan',
+                'modelo' => 'Liebherr',
+                'marca' => 'LHM600',
                 'estado' => 'activo',
-                'id_gestor' => '2',
+                'tipo' => 'STS',
+                'id_gestor' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
@@ -27,6 +35,11 @@ class GruaSeeder extends Seeder {
 
         foreach ($gruas as $grua) {
             Grua::create($grua);
+            if ($grua['tipo'] === 'SC') {
+                SC::create($grua);
+            } else if ($grua['tipo'] === 'STS') {
+                STS::create($grua);
+            }
         }
     }
 }
