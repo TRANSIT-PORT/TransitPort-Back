@@ -12,16 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create(table: 'incidencia', callback: function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->integer(column: 'codigo_tipo');
             $table->text(column: 'tipo');
             $table->text(column: 'observacion');
-            $table->integer(column: 'id_orden')->unsigned();
-            $table->integer(column: 'id_administrativo')->unsigned();
-            $table->integer(column: 'id_operador')->unsigned();
-            $table->foreign('id_administrativo')->references('id')->on('administrativo')->onDelete('cascade');
-            $table->foreign('id_orden')->references('id')->on('orden')->onDelete('cascade');
-            $table->foreign('id_operador')->references('id')->on('operador')->onDelete('cascade');
+            $table->foreignId('id_administrativo')->constrained('administrativo')->onDelete('cascade');
+            $table->foreignId('id_orden')->constrained('orden')->onDelete('cascade');
+            $table->foreignId('id_operador')->constrained('operador')->onDelete('cascade');
             $table->timestamps();
           });
     }

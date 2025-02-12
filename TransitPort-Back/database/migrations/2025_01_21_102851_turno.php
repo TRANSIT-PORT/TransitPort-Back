@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create(table: 'turno', callback: function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->timestamp('fecha_inicio') -> nullable();
             $table->timestamp('fecha_fin') -> nullable();
-            $table->integer(column: 'id_orden')->unsigned();
-            $table->integer(column: 'id_operador')->unsigned();
-            $table->foreign('id_orden')->references('id')->on('orden')->onDelete('cascade');
-            $table->foreign('id_operador')->references('id')->on('operador')->onDelete('cascade');
+            $table->foreignId('id_orden')->constrained('orden')->onDelete('cascade');
+            $table->foreignId('id_operador')->constrained('operador')->onDelete('cascade');
             $table->timestamps();
           });
     }

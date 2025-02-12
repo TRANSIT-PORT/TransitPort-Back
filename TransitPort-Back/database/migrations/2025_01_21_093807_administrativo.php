@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('administrativo', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->text('nombre');
             $table->text(column: 'usuario');
             $table->text(column: 'password');
             $table->enum('cargo', ['administrativo']);
-            $table->integer(column: 'id_gestor')->unsigned();
+            //$table->integer(column: 'id_gestor')->unsigned();
             $table -> foreign('id') -> references('id') -> on('users') -> onDelete('cascade');
-            $table->foreign('id_gestor')->references('id')->on('gestor')->onDelete('cascade');
+            $table->foreignId('id_gestor')->constrained('gestor');
             $table->timestamps();
           });
     }

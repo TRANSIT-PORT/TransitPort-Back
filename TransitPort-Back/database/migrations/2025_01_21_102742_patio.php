@@ -12,13 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('patio', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->float('x');
             $table->float('y');
             $table->float('z');
             $table->integer(column: 'capacidad');
-            $table->integer(column: 'id_gestor')->unsigned();
-            $table->foreign('id_gestor')->references('id')->on('gestor')->onDelete('cascade');
+            $table->foreignId('id_gestor')->constrained('gestor');
             $table->timestamps();
           });
     }

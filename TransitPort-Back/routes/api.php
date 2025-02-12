@@ -36,7 +36,6 @@ Route::get('/administrativo', [AdministrativoController::class, 'index']);
 //Operador
 Route::get('/operador', [OperadorController::class, 'index']);
 
-
 //Ordenes
 Route::get('/orden', [OrdenController::class, 'index']);
 

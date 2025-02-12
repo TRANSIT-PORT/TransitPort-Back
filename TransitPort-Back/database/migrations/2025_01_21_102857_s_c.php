@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create(table: 'SC', callback: function (Blueprint $table) {
-            $table->increments('id_grua')->unsigned();
+            $table->id();
             $table->float(column: 'capacidad_carga');
-            $table->foreign('id_grua')->references('id')->on('grua')->onDelete('cascade');
+            $table->foreignId('id_grua')->constrained('grua')->onDelete('cascade');
             $table->timestamps();
           });
     }

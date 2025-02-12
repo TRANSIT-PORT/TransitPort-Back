@@ -12,15 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('zona', callback: function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->text('ubicacion');
             $table->integer(column: 'capacidad');
-            $table->integer(column: 'id_gestor')->unsigned();
-            $table->integer(column: 'id_patio')->unsigned();
-            $table->integer(column: 'id_grua')->unsigned();
-            $table->foreign('id_gestor')->references('id')->on('gestor')->onDelete('cascade');
-            $table->foreign('id_patio')->references('id')->on('patio')->onDelete('cascade');
-            $table->foreign('id_grua')->references('id')->on('grua')->onDelete('cascade');
+            $table->foreignId('id_gestor')->constrained('gestor');
+            $table->foreignId('id_patio')->constrained('patio');
+            $table->foreignId('id_grua')->constrained('grua');
             $table->timestamps();
           });
     }
