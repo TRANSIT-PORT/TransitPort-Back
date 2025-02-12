@@ -7,8 +7,7 @@ use App\Models\Gestor;
 use App\Models\Patio;
 use App\Models\Grua;
 
-class Zona extends Model
-{
+class Zona extends Model {
     protected $table = 'zona';
     protected $primaryKey = 'id';
     protected $fillable = ['ubicacion', 'capacidad', 'id_gestor', 'id_patio', 'id_grua'];

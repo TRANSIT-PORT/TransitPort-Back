@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tiene', function (Blueprint $table) {
-            $table->unsignedInteger('id_buque');
-            $table->unsignedInteger('id_contenedor');
+            $table->unsignedBigInteger('id_buque');
+            $table->unsignedBigInteger('id_contenedor');
 
             // Definir clave primaria compuesta
             $table->primary(['id_buque', 'id_contenedor']);

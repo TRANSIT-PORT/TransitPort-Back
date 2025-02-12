@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create(table: 'pertenece', callback: function (Blueprint $table) {
             $table->integer('id_grua')->unsigned();
             $table->integer('id_zona')->unsigned();
-            $table->date(column: 'fecha');
-            $table->time(column: 'hora');
+            $table->date('fecha');
+            $table->time('hora');
             $table->foreign('id_grua')->references('id_grua')->on('SC')->onDelete('cascade');
             $table->foreign('id_zona')->references('id')->on('zona')->onDelete('cascade');
             $table->timestamps();

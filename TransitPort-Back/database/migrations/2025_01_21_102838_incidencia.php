@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create(table: 'incidencia', callback: function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer(column: 'codigo_tipo');
+            $table->text(column: 'tipo');
             $table->text(column: 'observacion');
             $table->integer(column: 'id_orden')->unsigned();
             $table->integer(column: 'id_administrativo')->unsigned();
