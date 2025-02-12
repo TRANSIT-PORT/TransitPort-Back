@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create(table: 'STS', callback: function (Blueprint $table) {
             $table->increments('id_grua')->unsigned();
             $table->float(column: 'capacidad_carga');
-            $table->text(column: 'estado');
-            $table->integer(column: 'zona');
             $table->foreign('id_grua')->references('id')->on('grua')->onDelete('cascade');
             $table->timestamps();
           });

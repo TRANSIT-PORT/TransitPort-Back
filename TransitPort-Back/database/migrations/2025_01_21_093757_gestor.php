@@ -16,6 +16,8 @@ return new class extends Migration
             $table->text('nombre');
             $table->text(column: 'usuario');
             $table->text(column: 'password');
+            $table->enum('cargo', ['gestor']);
+            $table -> foreign('id') -> references('id') -> on('users') -> onDelete('cascade');
             $table->timestamps();
           });
     }

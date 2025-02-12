@@ -9,7 +9,7 @@ class Contenedor extends Model
 {
     protected $table = 'contenedor';
     protected $primaryKey = 'id';
-    protected $fillable = ['id_zona'];
+    protected $fillable = ['estado', 'id_zona'];
 
     public function zonas()
     {
