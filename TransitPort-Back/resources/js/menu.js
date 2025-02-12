@@ -1,50 +1,50 @@
-import './bootstrap';
+// import './bootstrap';
 
-function inicio(){}
+// function inicio(){}
 
-menuVisible: boolean = false;
+// menuVisible: boolean = false;
 
-  constructor(private router: Router){
+//   constructor(private router: Router){
 
-  }
+//   }
 
-  mostrarMenu(): void{
+//   mostrarMenu(): void{
 
-    this.menuVisible = !this.menuVisible;
+//     this.menuVisible = !this.menuVisible;
 
-    if(this.menuVisible){
-      let boton = document.getElementById('botonMostrarMenu');
-      boton?.setAttribute('hidden', 'true');
+//     if(this.menuVisible){
+//       let boton = document.getElementById('botonMostrarMenu');
+//       boton?.setAttribute('hidden', 'true');
 
-      let enlaceOrdenes = document.getElementById('ordenes');
-      let enlaceNotificaciones = document.getElementById('notificaciones');
+//       let enlaceOrdenes = document.getElementById('ordenes');
+//       let enlaceNotificaciones = document.getElementById('notificaciones');
 
-      switch(this.router.url){
+//       switch(this.router.url){
 
-        case '/operador/ordenes':
+//         case '/operador/ordenes':
 
-          enlaceOrdenes?.classList.add('actual');
+//           enlaceOrdenes?.classList.add('actual');
 
-          enlaceNotificaciones?.classList.remove('actual');
+//           enlaceNotificaciones?.classList.remove('actual');
 
-          break;
+//           break;
 
-        case '/operador/notificaciones':
+//         case '/operador/notificaciones':
 
-          enlaceNotificaciones?.classList.add('actual');
+//           enlaceNotificaciones?.classList.add('actual');
 
-          enlaceOrdenes?.classList.remove('actual');
+//           enlaceOrdenes?.classList.remove('actual');
 
-          break;
+//           break;
 
-      }
+//       }
 
-    } else{
+//     } else{
 
-      let boton = document.getElementById('botonMostrarMenu');
-      boton?.removeAttribute('hidden');
+//       let boton = document.getElementById('botonMostrarMenu');
+//       boton?.removeAttribute('hidden');
 
-    }
+//     }
 
 
-  }
+//   }
