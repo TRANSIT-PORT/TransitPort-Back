@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
 
-Route::get('crearOrden', [OrdenController::class, 'crearOpciones']) -> name('crearOrden');
-Route::post('guardarOrden', [OrdenController::class, 'guardarOrden']) -> name('guardarOrden');
+Route::get('/crearOrden', [OrdenController::class, 'crearOpciones']) -> name('crearOrden');
+Route::post('/guardarOrden', [OrdenController::class, 'guardarOrden']) -> name('guardarOrden');
 
 require __DIR__.'/auth.php';

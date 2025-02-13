@@ -21,12 +21,10 @@ return new class extends Migration
             $table->integer('id_grua')->unsigned();
             $table->integer('id_administrativo')->unsigned();
             $table->integer('id_buque')->unsigned();
-            $table->integer('id_contenedor')->unsigned();
             $table->integer('id_zona')->unsigned();
             $table->foreign('id_administrativo')->references('id')->on('administrativo')->onDelete('cascade');
             $table->foreign('id_grua')->references('id')->on('grua')->onDelete('cascade');
             $table->foreign('id_buque')->references('id_buque')->on('tiene')->onDelete('cascade');
-            $table->foreign('id_contenedor')->references('id_contenedor')->on('tiene')->onDelete('cascade');
             $table->foreign('id_zona')->references('id')->on('zona')->onDelete('cascade');
             $table->timestamps();
           });
