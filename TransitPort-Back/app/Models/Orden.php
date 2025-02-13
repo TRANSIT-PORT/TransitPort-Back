@@ -32,4 +32,8 @@ class Orden extends Model
     {
         return $this->belongsTo(Buque::class, 'id_buque');
     }
+    public function tiene()
+    {
+        return $this->hasOne(Tiene::class, 'id_buque');
+    }
 }

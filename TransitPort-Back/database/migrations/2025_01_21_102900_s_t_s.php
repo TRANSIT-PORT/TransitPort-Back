@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create(table: 'STS', callback: function (Blueprint $table) {
             $table->id();
+            $table->text('nombre');
+            $table->text('modelo');
+            $table->text('marca');
+            $table->text('estado');
+            $table->enum('tipo', ['SC', 'STS']);
             $table->float(column: 'capacidad_carga');
-            $table->foreignId('id_grua')->constrained('grua')->onDelete('cascade');
+            $table->foreignId('id_gestor')->onDelete('cascade');
+            $table->foreignId('id_grua')->nullable()->constrained('grua')->onDelete('cascade');
             $table->timestamps();
           });
     }
