@@ -9,7 +9,7 @@ class OrdenesController extends Controller
 {
     public function index(Request $request)
     {
-        $task = Orden::all();
+        $task = Orden::with('buque')->get();
         return $task;
     }
 }

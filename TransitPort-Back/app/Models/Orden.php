@@ -28,4 +28,8 @@ class Orden extends Model
     {
         return $this->belongsToMany(Grua::class);
     }
+    public function buque()
+    {
+        return $this->belongsTo(Buque::class, 'id_buque');
+    }
 }
