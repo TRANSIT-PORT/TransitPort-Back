@@ -101,6 +101,9 @@ Route::delete('/orden/borrar/{id}', [OrdenController::class, 'destroy']);
 
 Route::get('/orden/buscar/{id}', [OrdenController::class, 'show']);
 
+Route::get('/auditoriaArriba', [OrdenController::class, 'verAuditoria']);
+Route::get('/auditoriaAbajo', [OrdenController::class, 'verOrden']);
+
 
 //Contenedores
 Route::get('/contenedor', [ContenedorController::class, 'index']);
