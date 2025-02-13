@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('gestor', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->text('nombre');
             $table->text(column: 'usuario');
             $table->text(column: 'password');
             $table->enum('cargo', ['gestor']);
-            $table -> foreign('id') -> references('id') -> on('users') -> onDelete('cascade');
+            $table -> foreign('id') -> references('id') -> on('users');
             $table->timestamps();
           });
     }

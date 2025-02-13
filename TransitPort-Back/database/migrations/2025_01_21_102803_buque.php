@@ -12,13 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create(table: 'buque', callback: function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->text('nombre');
             $table->integer('amarre');
             $table->text(column: 'procedencia');
             $table->text(column: 'destino');
-            $table->integer(column: 'id_administrativo')->unsigned();
-            $table->foreign('id_administrativo')->references('id')->on('administrativo')->onDelete('cascade');
+            $table->foreignId('id_administrativo')->constrained('administrativo');
             $table->timestamps();
           });
     }

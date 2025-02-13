@@ -14,8 +14,6 @@ class DatabaseSeeder extends Seeder {
             AdministrativoSeeder::class,
             OperadorSeeder::class,
             GruaSeeder::class,
-            ScSeeder::class,
-            StsSeeder::class,
             UtilizaSeeder::class,
             PatioSeeder::class,
             ZonaSeeder::class,

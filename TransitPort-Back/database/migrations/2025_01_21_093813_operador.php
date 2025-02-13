@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('operador', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->text('nombre');
             $table->text(column: 'usuario');
             $table->text(column: 'password');
@@ -20,9 +20,8 @@ return new class extends Migration
             $table->text(column: 'tipo');
             $table->time(column: 'fin_horario');
             $table->time(column: 'inicio_horario');
-            $table->integer(column: 'id_gestor')->unsigned();
             $table -> foreign('id') -> references('id') -> on('users') -> onDelete('cascade');
-            $table->foreign('id_gestor')->references('id')->on('gestor')->onDelete('cascade');
+            $table->foreignId('id_gestor')->constrained('gestor');
             $table->timestamps();
           });
     }
