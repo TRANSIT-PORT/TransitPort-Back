@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div id="bloqueInicio" class="d-flex align-items-center justify-content-center vh-100" style="background-image: url('/assets/Login/FondoLogIn.jpeg');background-size: cover;background-repeat: no-repeat;">
+    <div id="bloqueInicio" class="d-flex align-items-center justify-content-center vh-100" >
         <div class="d-flex">
 
             <div id="bloqueLogin" class="p-4 d-flex flex-column align-items-center justify-content-center">
@@ -14,20 +14,17 @@
                         </p>
                     </div>
 
-                    <p class="welcome">Inicia sesión para acceder a tu cuenta</p>
-                    <p class="welcome2">¡Bienvenido!</p>
+                    <p id="welcome">Inicia sesión para acceder a tu cuenta</p>
+                    <p id="welcome2">¡Bienvenido!</p>
                     <hr class="">
 
                     <form method="POST" action="{{ route('login') }}" class="w-100 d-flex flex-column align-items-center">
                         @csrf
 
                         <input class="form-control" type="email" name="email" placeholder="E-mail" required>
-                        <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm text-red-500" />
 
-                        <input id="password" class="form-control" type="password" name="password" required>
+                        <input id="password" class="form-control" type="password" name="password" placeholder="Contraseña" required>
                         <img id="verContrasenya" class="icono-ojo" src="{{ asset('assets/Login/eye.svg') }}" onclick="ocultarContrasenya()" alt="Mostrar contraseña">
-
-                        <x-input-error :messages="$errors->get('password')" class="mt-2 text-sm text-red-500" />
 
                         <div class="form-check d-flex align-items-center recordarForm">
                             <input id="recordar" type="checkbox" class="form-check-input me-2 recordarCheck" name="remember">
