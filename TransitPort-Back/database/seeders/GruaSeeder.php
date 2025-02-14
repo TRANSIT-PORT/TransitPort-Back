@@ -18,6 +18,7 @@ class GruaSeeder extends Seeder {
                 'estado' => 'activo',
                 'tipo' => 'SC',
                 'id_gestor' => '1',
+                'capacidad_carga' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -28,6 +29,7 @@ class GruaSeeder extends Seeder {
                 'estado' => 'activo',
                 'tipo' => 'STS',
                 'id_gestor' => '1',
+                'capacidad_carga' => '1000',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

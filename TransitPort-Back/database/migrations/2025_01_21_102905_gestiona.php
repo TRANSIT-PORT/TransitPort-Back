@@ -12,12 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create(table: 'gestiona', callback: function (Blueprint $table) {
-            $table->integer('id_grua')->unsigned();
-            $table->integer('id_contenedor')->unsigned();
             $table->date(column: 'fecha');
             $table->time(column: 'hora');
-            $table->foreign('id_grua')->references('id')->on('grua')->onDelete('cascade');
-            $table->foreign('id_contenedor')->references('id')->on('contenedor')->onDelete('cascade');
+            $table->foreignId('id_grua')->constrained('grua')->onDelete('cascade');
+            $table->foreignId('id_contenedor')->constrained('contenedor')->onDelete('cascade');
             $table->timestamps();
           });
     }

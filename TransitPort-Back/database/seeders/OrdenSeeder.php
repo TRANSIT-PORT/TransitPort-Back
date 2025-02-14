@@ -6,7 +6,7 @@ use App\Models\Orden;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class OrdenSeeder extends Seeder {    
+class OrdenSeeder extends Seeder {
     public function run(): void {
         $ordenes = [
             [
@@ -39,6 +39,6 @@ class OrdenSeeder extends Seeder {
 
         foreach ($ordenes as $orden) {
             Orden::create($orden);
-        }        
+        }
     }
 }

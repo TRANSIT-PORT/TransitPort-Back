@@ -15,7 +15,7 @@ class DashboardController extends Controller
 
     public function ordenes(){
 
-        return view('principal');
+        return view('/Operador/principal');
 
     }
 
