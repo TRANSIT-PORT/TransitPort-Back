@@ -133,7 +133,7 @@
                 <h2 class="num">1</h2>
                 <h2>Categoría</h2>
                 <p>Tipo de acción</p>
-                <select name="tipo" form="carform">
+                <select name="tipo">
                     <option value="carga">Carga</option>
                     <option value="descarga">Descarga</option>
                 </select>
@@ -150,10 +150,10 @@
                         <p>No hay zonas actualmente</p>
                     @endforelse
                 </select>
-                <p>Amarre</p>
-                <select name="amarre">
-                    @forelse ($amarres as $amarre)
-                        <option value="{{$amarre}}">{{$amarre}}</option>
+                <p>Buque</p>
+                <select name="id_buque">
+                    @forelse ($buques as $buque)
+                        <option value="{{$buque -> id}}">{{$buque -> nombre}}</option>
                     @empty
                         <p>No hay amarres actualmente</p>
                     @endforelse

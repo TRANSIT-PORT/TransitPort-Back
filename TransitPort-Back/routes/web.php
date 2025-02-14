@@ -23,7 +23,7 @@ Route::get('crearUsuario', [GestorController::class, 'crearUsuario'])->name('cre
 Route::post('guardarUsuario', [GestorController::class, 'store'])->name('guardarUsuario');
 
 
-Route::get('crearOrden', [OrdenController::class, 'crearOpciones']) -> name('crearOrden');
-Route::post('guardarOrden', [OrdenController::class, 'guardarOrden']) -> name('guardarOrden');
+Route::get('/crearOrden', [OrdenController::class, 'crearOpciones']) -> name('crearOrden');
+Route::post('/guardarOrden', [OrdenController::class, 'guardarOrden']) -> name('guardarOrden');
 
 require __DIR__.'/auth.php';

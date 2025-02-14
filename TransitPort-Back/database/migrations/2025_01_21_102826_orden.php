@@ -18,11 +18,14 @@ return new class extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->enum('estado', ['Por empezar', 'En curso', 'Completada']);
-            $table->foreignId('id_administrativo')->constrained('administrativo')->onDelete('cascade');
-            $table->foreignId('id_grua')->constrained('grua')->onDelete('cascade');
-            $table->foreignId('id_buque')->constrained('buque')->onDelete('cascade');
-            $table->foreignId('id_contenedor')->constrained('contenedor')->onDelete('cascade');
-            $table->foreignId('id_zona')->constrained('zona')->onDelete('cascade');
+            $table->integer('id_grua')->unsigned();
+            $table->integer('id_administrativo')->unsigned();
+            $table->integer('id_buque')->unsigned();
+            $table->integer('id_zona')->unsigned();
+            $table->foreign('id_administrativo')->references('id')->on('administrativo')->onDelete('cascade');
+            $table->foreign('id_grua')->references('id')->on('grua')->onDelete('cascade');
+            $table->foreign('id_buque')->references('id_buque')->on('tiene')->onDelete('cascade');
+            $table->foreign('id_zona')->references('id')->on('zona')->onDelete('cascade');
             $table->timestamps();
           });
     }
