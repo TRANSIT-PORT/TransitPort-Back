@@ -16,7 +16,7 @@ class GestorController extends Controller {
     public function store(Request $request)
 {
     $validatedData = $request->validate([
-        'nombre' => 'required|string|max:255',
+        'name' => 'required|string|max:255',
         'usuario' => 'required|string|max:255|unique:users,usuario',
         'email' => 'required|email|unique:users,email',
         'password' => 'required|string|min:6',

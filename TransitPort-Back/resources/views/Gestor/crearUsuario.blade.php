@@ -172,7 +172,7 @@
             <div class="div1">
                 <h2 class="num">1</h2>
                 <h2>Datos</h2>
-                <label for="nombre">Nombre</label>
+                <label for="nombre">Nombre y apellidos</label>
                 <input type="text" id="nombre" name="nombre">
                 <label for="usuario">Usuario</label>
                 <input type="text" id="usuario" name="usuario">
@@ -185,8 +185,6 @@
 
             <div class="div4">
 
-                <label for="apellidos">Apellidos</label>
-                <input type="text" id="Apellidos" name="apellidos">
                 <label for="telf">Número de teléfono</label>
                 <input type="tel" id="telf" name="telf">
                 <label for="postal">Código Postal</label>
