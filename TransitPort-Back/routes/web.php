@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GestorController;
 use App\Http\Controllers\OrdenController;
+use App\Http\Controllers\TurnoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,5 +26,10 @@ Route::post('guardarUsuario', [GestorController::class, 'store'])->name('guardar
 
 Route::get('/crearOrden', [OrdenController::class, 'crearOpciones']) -> name('crearOrden');
 Route::post('/guardarOrden', [OrdenController::class, 'guardarOrden']) -> name('guardarOrden');
+
+Route::view('/crearTurno', 'Administrativo.crearTurno') -> name('crearTurno');
+Route::post('/guardarTurno', [TurnoController::class, 'guardarTurno']) -> name('guardarTurno');
+
+Route::view('/calendario', 'Administrativo.calendario') -> name('calendario');
 
 require __DIR__.'/auth.php';
