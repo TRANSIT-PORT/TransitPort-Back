@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text(column: 'usuario');
             $table->text(column: 'password');
             $table->enum('cargo', ['administrativo']);
+            $table->string('estado');
             //$table->integer(column: 'id_gestor')->unsigned();
             $table -> foreign('id') -> references('id') -> on('users') -> onDelete('cascade');
             $table->foreignId('id_gestor')->constrained('gestor');
