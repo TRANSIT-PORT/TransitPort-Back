@@ -23,8 +23,17 @@
                      * info: Dia seleccionado.
                      */
                     dateClick: function(info) {
-                        //Convertimos la fecha a formato YYYY-MM-DD.
-                        let fechaSeleccionada = info.dateStr;
+                        let fechaSeleccionada = info.dateStr; //Convertimos la fecha a formato YYYY-MM-DD.
+
+                        let celdas = document.querySelectorAll('.fc-day.selected');
+                        celdas.forEach(function(celda) {
+                            celda.classList.remove('selected');
+                        });
+
+                        let celda = document.querySelector(`[data-date="${fechaSeleccionada}"`);
+                        if (celda) {
+                            celda.classList.add('selected');
+                        }
 
                         //Cogemos el input y le actualizamos el valor.
                         let input = document.getElementById('fecha');
@@ -163,9 +172,17 @@
             .fc-icon {
                 color: #152D65;
             }
-            .fc-day:hover {
+            .fc-day:hover, .fc-daygrid-day.fc-day-today:hover {
                 color: #040813;
-                background-color: #C0D2F7;
+                background-color: #C0D2F7 !important;
+            }
+            .fc-day.selected, .fc-daygrid-day-number.selected {
+                background-color: #2362D4 !important;
+                color: var(--Light-Primary, #FFF);
+            }
+            .fc-day, .fc-daygrid-day-number {
+                background-color: none;
+                color: var(--Light-Primary, #333);
             }
 
             .crear {
