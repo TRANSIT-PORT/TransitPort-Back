@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class OperadorMiddleware
 {
@@ -15,6 +16,13 @@ class OperadorMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (Auth::check()) {    //si está autentificado
+            if (Auth::user()->role == "operador") {   //si es role es gestor
+
+                return $next($request);    //significa continua
+            }
+        }
+        //return redirect()->route('login');  //en caso contrario va al login
+        return redirect()->route('usuario');
     }
 }
