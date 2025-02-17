@@ -28,6 +28,16 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = Auth::user();
+
+        if ($user->cargo == 'Gestor') {
+            return redirect()->route('dashboard');
+        } elseif ($user->cargo == 'Administrativo') {
+            return redirect()->route('crearOrden');
+        } elseif ($user->cargo == 'Operador') {
+            return redirect()->route('dashboard');
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

@@ -198,7 +198,7 @@
                 <label for="contrasenya">Contraseña</label>
                 <input type="password" name="password" id="contrasenya">
                 <label for="contrasenya2">Confirma la contraseña</label>
-                <input type="password" name="password" id="contrasenya2">
+                <input type="password" name="password2" id="contrasenya2">
 
             </div>
 
