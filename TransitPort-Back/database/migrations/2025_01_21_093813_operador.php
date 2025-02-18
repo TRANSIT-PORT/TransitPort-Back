@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text(column: 'usuario');
             $table->text(column: 'password');
             $table->enum('cargo', ['operador']);
+            $table->string('estado');
             $table->text(column: 'tipo');
             $table->time(column: 'fin_horario');
             $table->time(column: 'inicio_horario');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gestor;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class GestorController extends Controller {
     public function index(Request $request) {
@@ -13,31 +14,31 @@ class GestorController extends Controller {
     }
 
     public function store(Request $request)
-    {
-       $validatedData = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'usuario' => 'string',
-            'password' => 'string',
-        ]);
+{
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'usuario' => 'required|string|max:255|unique:users,usuario',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:6',
+        'cargo' => 'required|string|in:Gestor,Administrativo,Operador',
+    ]);
 
-        try {
-            // Crear y guardar la tarea con asignación masiva
-            $task = Gestor::create($validatedData);
+    try {
+        $validatedData['password'] = bcrypt($validatedData['password']); // Encriptar contraseña
+        $user = User::create($validatedData);
 
-            return response()->json([
-                'message' => 'Gestor creado con éxito.',
-                'task' => $task,
-            ], 201); // Código HTTP 201: Creado
+        return response()->json([
+            'message' => 'Usuario creado con éxito.',
+            'user' => $user,
+        ], 201);
 
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'message' => 'Error al crear el Gestor.',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
-
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Error al crear el usuario.',
+            'error' => $e->getMessage(),
+        ], 500);
     }
+}
 
     public function show(Request $request)
     {
@@ -51,6 +52,9 @@ class GestorController extends Controller {
             'nombre' => 'required|string|max:255',
             'usuario' => 'string',
             'password' => 'string',
+            'cargo' => 'string',
+            'estado' => 'string',
+            'email' => 'string',
         ]);
 
         try {

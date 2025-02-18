@@ -17,4 +17,23 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::group(['middleware' => 'gestor'], function(){
+
+    Route::get('crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
+    Route::post('guardarUsuario', [GestorController::class, 'store'])->name('guardarUsuario');
+
+});
+
+Route::group(['middleware' => 'administrativo'], function(){
+
+    Route::get('/crearOrden', [OrdenController::class, 'crearOpciones']) -> name('crearOrden');
+    Route::post('/guardarOrden', [OrdenController::class, 'guardarOrden']) -> name('guardarOrden');
+
+    Route::view('/crearTurno', 'Administrativo.crearTurno') -> name('crearTurno');
+    Route::post('/guardarTurno', [TurnoController::class, 'guardarTurno']) -> name('guardarTurno');
+
+    Route::view('/calendario', 'Administrativo.calendario') -> name('calendario');
+
+});
+
 require __DIR__.'/auth.php';
