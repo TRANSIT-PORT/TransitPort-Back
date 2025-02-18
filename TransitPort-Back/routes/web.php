@@ -1,13 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\GestorController;
-use App\Http\Controllers\OrdenController;
-use App\Http\Controllers\TurnoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('operador/welcome');
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
@@ -19,15 +16,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::post('crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
-
-Route::get('/crearOrden', [OrdenController::class, 'crearOpciones']) -> name('crearOrden');
-Route::post('/guardarOrden', [OrdenController::class, 'guardarOrden']) -> name('guardarOrden');
-
-Route::view('/crearTurno', 'Administrativo.crearTurno') -> name('crearTurno');
-Route::post('/guardarTurno', [TurnoController::class, 'guardarTurno']) -> name('guardarTurno');
-
-Route::view('/calendario', 'Administrativo.calendario') -> name('calendario');
 
 require __DIR__.'/auth.php';
