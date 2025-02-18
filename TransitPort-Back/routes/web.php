@@ -7,7 +7,7 @@ use App\Http\Controllers\TurnoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('operador/welcome');
+    return view('Operador.welcome');
 });
 
 Route::get('/dashboard', function () {

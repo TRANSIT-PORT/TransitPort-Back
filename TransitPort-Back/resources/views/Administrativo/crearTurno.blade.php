@@ -164,6 +164,9 @@
                 justify-content: space-between;
                 width: 457px;
             }
+            #fecha {
+                pointer-events: none;
+            }
 
             .div1 {
                 position: absolute;
@@ -282,7 +285,7 @@
                 <h2 class="num">1</h2>
                 <h2>Fecha</h2>
                 <p>Seleccionar fecha</p>
-                <input class="date" type="date" name="fecha" id="fecha" disabled><img src="assets/Administrativo/calendario.svg" id="icono">
+                <input class="date" type="date" name="fecha" id="fecha" readonly><img src="assets/Administrativo/calendario.svg" id="icono">
             </div>
             
             <div class="div2">
