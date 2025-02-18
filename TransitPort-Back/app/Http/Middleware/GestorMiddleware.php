@@ -16,12 +16,11 @@ class GestorMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {    //si está autentificado
-            if (Auth::user()->role == "gestor") {   //si es role es gestor
 
-                return $next($request);    //significa continua
-            }
+        if (Auth::check() && Auth::user()->cargo === 'gestor') {
+            return $next($request);
         }
+
         return redirect()->route('login');  //en caso contrario va al login
         // return redirect()->route('usuario');
     }

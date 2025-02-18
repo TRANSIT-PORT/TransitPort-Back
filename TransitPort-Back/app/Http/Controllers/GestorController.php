@@ -16,11 +16,13 @@ class GestorController extends Controller {
     public function store(Request $request)
 {
     $validatedData = $request->validate([
-        'name' => 'required|string|max:255',
-        'usuario' => 'required|string|max:255|unique:users,usuario',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|string|min:6',
-        'cargo' => 'required|string|in:Gestor,Administrativo,Operador',
+            'name' => 'required|string|max:255',
+            'usuario' => 'required|string|max:255|unique:users,usuario',
+            'email' => 'required|email|unique:users,email',
+            'telefono' => 'required|string|max:15',
+            'codigoPostal' => 'required|string|max:10',
+            'password' => 'required|string|min:8|confirmed',
+            'cargo' => 'required|string|in:gestor,administrativo,operador',
     ]);
 
     try {
@@ -89,13 +91,13 @@ class GestorController extends Controller {
 
     public function crearUsuario(){
 
-        return view('Gestor/crearUsuario');
+        return view('Gestor.crearUsuario');
 
     }
 
     public function crearGrua(){
 
-        return view('Gestor/crearGrua');
+        return view('Gestor.crearGrua');
 
     }
 

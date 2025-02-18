@@ -173,7 +173,7 @@
                 <h2 class="num">1</h2>
                 <h2>Datos</h2>
                 <label for="nombre">Nombre y apellidos</label>
-                <input type="text" id="nombre" name="nombre">
+                <input type="text" id="nombre" name="name">
                 <label for="usuario">Usuario</label>
                 <input type="text" id="usuario" name="usuario">
                 <label for="ciudad">Ciudad</label>
@@ -186,9 +186,9 @@
             <div class="div4">
 
                 <label for="telf">Número de teléfono</label>
-                <input type="tel" id="telf" name="telf">
+                <input type="tel" id="telf" name="telfono">
                 <label for="postal">Código Postal</label>
-                <input type="text" id="postal" name="postal">
+                <input type="text" id="postal" name="codigoPostal">
 
             </div>
 
@@ -198,7 +198,7 @@
                 <label for="contrasenya">Contraseña</label>
                 <input type="password" name="password" id="contrasenya">
                 <label for="contrasenya2">Confirma la contraseña</label>
-                <input type="password" name="password2" id="contrasenya2">
+                <input type="password" name="password_confirmation" id="contrasenya2">
 
             </div>
 
@@ -207,9 +207,9 @@
                 <h2>Roles</h2>
                 <p>Tipo de usuario</p>
                 <select name="cargo">
-                    <option value="Gestor">Gestor</option>
-                    <option value="Administrativo">Administrativo</option>
-                    <option value="Operador">Operador</option>
+                    <option value="gestor">Gestor</option>
+                    <option value="administrativo">Administrativo</option>
+                    <option value="operador">Operador</option>
                 </select>
             </div>
 
