@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GestorController;
 use App\Http\Controllers\OrdenController;
@@ -7,9 +8,8 @@ use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthenticatedSessionController::class, 'create'])
+        ->name('login');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -22,8 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware(['gestor'])->group(function () {
-        Route::get('crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
-        Route::post('guardarUsuario', [GestorController::class, 'store'])->name('gestor.store');
+        Route::get('/crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
+        Route::post('/guardarUsuario', [GestorController::class, 'store'])->name('gestor.store');
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
     });
 
@@ -33,12 +33,12 @@ Route::middleware('auth')->group(function () {
         Route::view('/crearTurno', 'Administrativo.crearTurno')->name('crearTurno');
         Route::post('/guardarTurno', [TurnoController::class, 'guardarTurno'])->name('guardarTurno');
         Route::view('/calendario', 'Administrativo.calendario')->name('calendario');
+        Route::view('/verAuditoria', 'Administrativo.Auditorias.verAuditoria') -> name('verAuditoria');
     });
 
     Route::middleware(['operador'])->group(function () {
         Route::get('/ordenes', [OrdenController::class, 'index'])->name('ordenes');
     });
-
 });
 
 require __DIR__.'/auth.php';

@@ -10,6 +10,7 @@ use App\Models\Zona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Laravel\Pail\ValueObjects\Origin\Console;
+use Yajra\DataTables\Facades\DataTables;
 
 class OrdenController extends Controller {
     public function index(Request $request) {
@@ -183,5 +184,13 @@ class OrdenController extends Controller {
         -> get();
 
         return $task;
+    }
+
+    public function visualizarAuditoria(Request $request) {
+        return Orden::datatable([
+            'id',
+            'tipo',
+            'estado'
+        ]);
     }
 }
