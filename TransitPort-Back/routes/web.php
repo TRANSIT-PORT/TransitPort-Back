@@ -1,14 +1,14 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GestorController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\TurnoController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('Operador.welcome');
-});
+Route::get('/', [AuthenticatedSessionController::class, 'create'])
+        ->name('login');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

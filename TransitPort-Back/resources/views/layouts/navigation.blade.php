@@ -1,4 +1,19 @@
-    <link rel="preconnect" href="https://fonts.bunny.net">
+<style>
+    div.h-16 {
+        background-color: #133379;
+
+        position: absolute;
+        left: 0px;
+
+        width: 110px;
+        height: 100%;
+    }
+    a {
+        color: white !important;
+    }
+</style>
+
+<link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -21,12 +36,14 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                <br>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('crearOrden')" :active="request()->routeIs('crearOrden')">
                         {{ __('Crear Orden') }}
                     </x-nav-link>
                 </div>
             </div>
+            <br>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
