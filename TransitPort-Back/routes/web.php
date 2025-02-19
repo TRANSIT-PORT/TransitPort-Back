@@ -22,8 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware(['gestor'])->group(function () {
-        Route::get('crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
-        Route::post('guardarUsuario', [GestorController::class, 'store'])->name('gestor.store');
+        Route::get('/crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
+        Route::post('/guardarUsuario', [GestorController::class, 'store'])->name('gestor.store');
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
     });
 
