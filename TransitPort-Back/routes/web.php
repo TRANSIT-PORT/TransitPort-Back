@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
         Route::view('/crearTurno', 'Administrativo.crearTurno')->name('crearTurno');
         Route::post('/guardarTurno', [TurnoController::class, 'guardarTurno'])->name('guardarTurno');
         Route::view('/calendario', 'Administrativo.calendario')->name('calendario');
+        Route::view('/verAuditoria', 'Administrativo.Auditorias.verAuditoria') -> name('verAuditoria');
     });
 
     Route::middleware(['operador'])->group(function () {

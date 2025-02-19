@@ -51,6 +51,8 @@ Route::get('/orden/buscar/{id}', [OrdenController::class, 'show']);
 Route::get('/auditoriaArriba', [OrdenController::class, 'verAuditoria']);
 Route::get('/auditoriaAbajo', [OrdenController::class, 'verOrden']);
 
+Route::get('/visualizarAuditoria', [OrdenController::class, 'visualizarAuditoria']);
+
 
 //Contenedores
 Route::get('/contenedor', [ContenedorController::class, 'index']);
