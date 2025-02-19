@@ -17,12 +17,11 @@ class OperadorMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {    //si está autentificado
-            if (Auth::user()->role == "operador") {   //si es role es gestor
+            if (Auth::user()->cargo == "operador") {   //si es role es gestor
 
                 return $next($request);    //significa continua
             }
         }
-        //return redirect()->route('login');  //en caso contrario va al login
-        return redirect()->route('usuario');
+        return redirect()->route('login');  //en caso contrario va al login.
     }
 }

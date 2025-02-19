@@ -22,7 +22,6 @@ class GestorMiddleware
                 return $next($request);    //significa continua
             }
         }
-        //return redirect()->route('login');  //en caso contrario va al login
-        return redirect()->route('usuario');
+        return redirect()->route('login');  //en caso contrario va al login.
     }
 }
