@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\GestorMiddleware;
+use App\Http\Middleware\AdministrativoMiddleware;
+use App\Http\Middleware\OperadorMiddleware;
 
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -16,8 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'gestor' => GestorMiddleware::class,
-            'administrativo' => GestorMiddleware::class,
-            'operador' => GestorMiddleware::class,
+            'administrativo' => AdministrativoMiddleware::class,
+            'operador' => OperadorMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
