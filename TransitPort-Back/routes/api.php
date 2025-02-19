@@ -11,16 +11,21 @@ use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\TieneController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OrdenesController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
+//Login y Logout
+
+Route::post('/login', [AuthController::class, 'login']);
+
+//
+
 Route::get('/usuario', [UsuarioController::class, 'index']);
 
 Route::get('/gestor', [GestorController::class, 'index']);
-
-Route::get('/operador/ordenes', [OrdenesController::class, 'index']);
 
 Route::put('/gestor/actualizar/{id}', [GestorController::class, 'update']);
 
@@ -37,9 +42,11 @@ Route::get('/administrativo', [AdministrativoController::class, 'index']);
 Route::get('/operador', [OperadorController::class, 'index']);
 
 //Ordenes
+Route::get('/operador/ordenes', [OrdenesController::class, 'index']);
+
 Route::get('/orden', [OrdenController::class, 'index']);
 
-Route::put('/orden/actualizar/{id}', [OrdenController::class, 'update']);
+Route::put('operador/ordenes/orden/{id}', [OrdenController::class, 'update']);
 
 Route::post('/orden/guardar', [OrdenController::class, 'store']);
 

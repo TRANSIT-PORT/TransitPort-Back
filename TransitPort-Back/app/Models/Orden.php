@@ -10,7 +10,7 @@ class Orden extends Model
 {
     protected $table = 'orden';
     protected $primaryKey = 'id';
-    protected $fillable = ['tipo', 'cantidad_contenedores', 'fecha_inicio', 'fecha_fin', 'id_administrativo', 'id_buque', 'id_contenedor', 'id_grua'];
+    protected $fillable = ['tipo','estado', 'cantidad_contenedores', 'fecha_inicio', 'fecha_fin', 'id_administrativo', 'id_buque', 'id_contenedor', 'id_grua'];
 
     public function administrativos()
     {
@@ -35,5 +35,13 @@ class Orden extends Model
     public function tiene()
     {
         return $this->hasOne(Tiene::class, 'id_buque');
+    }
+    public function zona()
+    {
+        return $this->hasOne(Zona::class, 'id');
+    }
+    public function contenedor()
+    {
+        return $this->hasOne(Contenedor::class, 'id');
     }
 }

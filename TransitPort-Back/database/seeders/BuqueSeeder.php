@@ -30,10 +30,28 @@ class BuqueSeeder extends Seeder {
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'nombre' => 'Poseidón',
+                'amarre' => '5',
+                'procedencia' => 'Grecia',
+                'destino' => 'Barcelona',
+                'id_administrativo' => '3',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nombre' => 'Ocean Spirit',
+                'amarre' => '8',
+                'procedencia' => 'Noruega',
+                'destino' => 'Lisboa',
+                'id_administrativo' => '3',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         foreach ($buques as $buque) {
             Buque::create($buque);
-        }        
+        }
     }
 }

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create(table: 'orden', callback: function (Blueprint $table) {
             $table->id();
             $table->text(column: 'tipo');
-            $table->integer(column: 'cantidad_contenedores');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->enum('estado', ['Por empezar', 'En curso', 'Completada']);
