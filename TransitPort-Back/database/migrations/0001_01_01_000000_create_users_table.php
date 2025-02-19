@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('codigoPostal');
             $table->string('password');
-            $table->enum('cargo', ['Gestor', 'Administrativo', 'Operador']);
+            $table->enum('cargo', ['gestor', 'administrativo', 'operador']);
             $table->rememberToken();
 
             $table->timestamps();
