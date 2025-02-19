@@ -1,5 +1,5 @@
 <style>
-    div.h-16 {
+    div.menu {
         background-color: #133379;
 
         position: absolute;
@@ -10,39 +10,54 @@
     }
     div.link {
         margin-top: 100%;
-        margin-left: 10%;
+        margin-left: 20%;
     }
     div.dropdown {
         position: absolute;
-        top: 0px;
-        left: -20px;
+        top: 10px;
+        left: -15px;
+        width: 75%;
     }
-    a {
-        color: white !important;
+    .logout {
+        color: white;
+        margin-left: 8px;
     }
 </style>
 
 <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="border-b border-blue-100 bg-blue ">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-16 menu">
             <div class="flex flex-col space-y-4">
                 <!-- Navigation Links -->
-                <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('crearOrden')" :active="request()->routeIs('crearOrden')">
-                        {{ __('Crear Orden') }}
-                    </x-nav-link>
-                </div>
+                @if (auth() -> user() -> cargo === 'administrativo')
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('crearOrden')" :active="request()->routeIs('crearOrden')">
+                            <img src="assets/Administrativo/crearOrden.svg">
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('crearTurno')" :active="request()->routeIs('crearTurno')">
+                            <img src="assets/Administrativo/crearTurno.svg">
+                        </x-nav-link>
+                    </div>
+                @endif
+                @if (auth() -> user() -> cargo === 'gestor')
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('crearUsuario')" :active="request()->routeIs('crearUsuario')">
+                            {{ __('Crear Usuario') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+                <form method="POST" action="{{ route('logout') }}" class="logout">
+                    @csrf
+                    <button type="submit">Cerrar sesión</button>
+                </form>
             </div>
 
             <!-- Settings Dropdown -->
@@ -92,7 +107,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:open">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
