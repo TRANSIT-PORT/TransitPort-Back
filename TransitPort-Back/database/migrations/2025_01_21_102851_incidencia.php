@@ -10,11 +10,13 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create(table: 'turno', callback: function (Blueprint $table) {
+    {        
+        Schema::create(table: 'incidencia', callback: function (Blueprint $table) {
             $table->id();
-            $table->timestamp('fecha_inicio') -> nullable();
-            $table->timestamp('fecha_fin') -> nullable();
+            $table->integer(column: 'codigo_tipo');
+            $table->text(column: 'tipo');
+            $table->text(column: 'observacion');
+            $table->foreignId('id_administrativo')->constrained('administrativo')->onDelete('cascade');
             $table->foreignId('id_orden')->constrained('orden')->onDelete('cascade');
             $table->foreignId('id_operador')->constrained('operador')->onDelete('cascade');
             $table->timestamps();

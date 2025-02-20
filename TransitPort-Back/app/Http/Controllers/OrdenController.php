@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buque;
+use App\Models\Operador;
 use App\Models\Orden;
 use App\Models\Tiene;
 use App\Models\Turno;
+use App\Models\User;
 use App\Models\Zona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -104,21 +106,25 @@ class OrdenController extends Controller {
     public function crearOpciones() {
         $zonas = Zona::all();
         $buques = Buque::all();
-        $turnos = Turno::all();
+        $operadores = DB::table('users')
+        -> select('*')
+        -> where('cargo', 'operador')
+        -> get();
 
-        return view('Administrativo.crearOrden', ['zonas' => $zonas, 'buques' => $buques, 'turnos' => $turnos]);
+        return view('Administrativo.crearOrden', ['zonas' => $zonas, 'buques' => $buques, 'operadores' => $operadores]);
     }
 
     public function guardarOrden(Request $request) {
         $orden = $request -> validate([
             'tipo' => 'string',
-            'fecha_inicio' => 'int',
+            'operador' => 'int',
             'id_zona' => 'int',
             'id_buque' => 'int',
         ]);
 
         try {
-            $turno = Turno::findOrFail($orden['fecha_inicio']);
+            $operador = Operador::findOrFail($orden['operador']);
+            $turno = Turno::findOrFail($operador['id_turno']);
 
             $tiene = DB::table('tiene')
                 -> where('id_buque', $orden['id_buque'])
@@ -136,6 +142,7 @@ class OrdenController extends Controller {
                 "estado" => "Por empezar",
                 "id_grua" => $zona['id_grua'],
                 "id_administrativo" => $buque['id_administrativo'],
+                "id_operador" => $orden['operador'],
                 "id_buque" => $orden['id_buque'],
                 "id_zona" => $orden['id_zona'],
             ]);
@@ -146,7 +153,7 @@ class OrdenController extends Controller {
             ], 500);
         }
 
-        return view('Operador.welcome');
+        return view('dashboard');
     }
 
     public function verAuditoria(Request $request) {

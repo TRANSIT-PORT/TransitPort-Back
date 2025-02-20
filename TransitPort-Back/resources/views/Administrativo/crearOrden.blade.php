@@ -171,11 +171,11 @@
                 
                 <div class="div3">
                     <h2 class="num">3</h2>
-                    <h2>Turno</h2>
-                    <p>Seleccionar turno</p>
-                    <select name="fecha_inicio">
-                        @forelse ($turnos as $turno)
-                            <option value="{{$turno -> id}}">{{$turno -> fecha_inicio}}</option>
+                    <h2>Operador</h2>
+                    <p>Seleccionar operador</p>
+                    <select name="operador">
+                        @forelse ($operadores as $operador)
+                            <option value="{{$operador -> id}}">{{$operador -> name}}</option>
                         @empty
                             <p>No hay turnos actualmente</p>
                         @endforelse

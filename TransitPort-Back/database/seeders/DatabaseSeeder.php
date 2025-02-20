@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder {
             UsuarioSeeder::class,
             GestorSeeder::class,
             AdministrativoSeeder::class,
+            TurnoSeeder::class,
             OperadorSeeder::class,
             GruaSeeder::class,
             UtilizaSeeder::class,
@@ -24,7 +25,6 @@ class DatabaseSeeder extends Seeder {
             TieneSeeder::class,
             OrdenSeeder::class,
             IncidenciaSeeder::class,
-            TurnoSeeder::class,
         ]);
     }    
 }
