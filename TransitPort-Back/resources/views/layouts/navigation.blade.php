@@ -53,6 +53,11 @@
                             {{ __('Crear Usuario') }}
                         </x-nav-link>
                     </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('crearPatio')" :active="request()->routeIs('crearPatio')">
+                            {{ __('Crear Patio') }}
+                        </x-nav-link>
+                    </div>
                 @endif
                 <form method="POST" action="{{ route('logout') }}" class="logout">
                     @csrf
