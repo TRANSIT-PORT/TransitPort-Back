@@ -146,6 +146,8 @@ class OrdenController extends Controller {
                 "id_buque" => $orden['id_buque'],
                 "id_zona" => $orden['id_zona'],
             ]);
+
+            $mensaje = "¡Orden creada con éxito!";
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al crear la Orden.',
@@ -153,7 +155,7 @@ class OrdenController extends Controller {
             ], 500);
         }
 
-        return view('dashboard');
+        return view('Administrativo.exito', ['mensaje' => $mensaje]);
     }
 
     public function verAuditoria(Request $request) {

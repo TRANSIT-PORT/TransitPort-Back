@@ -6,6 +6,7 @@ use App\Http\Controllers\GestorController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\Turno;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
@@ -33,6 +34,10 @@ Route::middleware('auth')->group(function () {
         Route::view('/crearTurno', 'Administrativo.crearTurno')->name('crearTurno');
         Route::post('/guardarTurno', [TurnoController::class, 'guardarTurno'])->name('guardarTurno');
         Route::view('/calendario', 'Administrativo.calendario')->name('calendario');
+
+        Route::get('/asignarTurno', [TurnoController::class, 'crearOpciones'])->name('asignarTurno');
+        Route::post('/actualziarTurno', [TurnoController::class, 'actualizarTurno']) -> name('actualizarTurno');
+
         Route::view('/verAuditoria', 'Administrativo.Auditorias.verAuditoria') -> name('verAuditoria');
     });
 
