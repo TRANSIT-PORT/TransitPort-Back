@@ -20,8 +20,6 @@ class GestorMiddleware
         if (Auth::check() && Auth::user()->cargo === 'gestor') {
             return $next($request);
         }
-
-        return redirect()->route('login');  //en caso contrario va al login
-        // return redirect()->route('usuario');
+        return redirect()->route('login');  //en caso contrario va al login.
     }
 }
