@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel Datatables Tutorial</title>
+        <title>Ver auditoria</title>
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
         <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+        <style>
+            #auditoria tbody tr {
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
         
     <div class="container mt-5">
-        <h2 class="mb-4">Ñejejeje</h2>
+        <h2 class="mb-4">Visualizar Auditoria</h2>
         <table id="auditoria" class="table table-bordered">
             <thead>
                 <tr>
@@ -21,6 +27,7 @@
                 </tr>
             </thead>
             <tbody>
+
             </tbody>
         </table>
     </div>
@@ -33,16 +40,22 @@
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     
     <script type="text/javascript">
-        $(function () {
-            var table = $('#auditoria').DataTable({
+        $(document).ready(function () {
+            let table = $('#auditoria').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "http://localhost/api/orden",
+                ajax: '{{ route("recogerAuditoria") }}',
                 columns: [
-                    {data: 'Codigo orden', name: 'id'},
-                    {data: 'Orden asociada', name: 'tipo'},
-                    {data: 'Estado', name: 'estado'},
+                    { data: 'id', name: 'id' },
+                    { data: 'tipo', name: 'tipo' },
+                    { data: 'estado', name: 'estado' },
                 ]
+            });
+
+            $('#auditoria tbody').on('click', 'tr', function() {
+                let orden = table.row(this).data();
+                let id = orden.id;
+                window.location.href = "/verAuditoria/" + id;
             });
         });
     </script>
