@@ -97,6 +97,11 @@
                             <span>Crear Turno</span>
                         </x-nav-link>
                     </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('asignarTurno')" :active="request()->routeIs('asignarTurno')">
+                            <img src="assets/Administrativo/buscarContenedor.svg">
+                        </x-nav-link>
+                    </div>
                 @endif
                 @if (auth() -> user() -> cargo === 'gestor')
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">

@@ -5,7 +5,7 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Crear orden</title>
+            <title>Asignar turnos</title>
 
             <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
@@ -42,7 +42,7 @@
                     bottom: -45px;
                 }
                 .titulo {
-                    width: 290px;
+                    width: 320px;
 
                     display: flex;
                     align-items: center;
@@ -134,55 +134,37 @@
         </head>
 
         <body>
-            <h1 class="titulo"><img src="assets/Administrativo/crearOrdenVer.svg">  Crear Orden</h1>
-            <form action="{{ route('guardarOrden') }}" method="post">
+            <h1 class="titulo"><img src="assets/Administrativo/buscarContenedorVer.svg">  Asignar Turno</h1>
+            <form action="{{ route('actualizarTurno') }}" method="post">
                 @csrf
 
                 <div class="div1">
                     <h2 class="num">1</h2>
-                    <h2>Categoría</h2>
-                    <p>Tipo de acción</p>
-                    <select name="tipo">
-                        <option value="carga">Carga</option>
-                        <option value="descarga">Descarga</option>
+                    <h2>Operador</h2>
+                    <p>Seleccione al operador</p>
+                    <select name="id_operador">
+                        @forelse ($operadores as $operador)
+                            <option value="{{$operador -> id}}">{{$operador -> nombre}}</option>
+                        @empty
+                            <p>No hay operadores actualmente</p>
+                        @endforelse
                     </select>
                 </div>
                 
                 <div class="div2">
                     <h2 class="num">2</h2>
-                    <h2>Ubicación</h2>
-                    <p>Zona</p>
-                    <select name="id_zona">
-                        @forelse ($zonas as $zona)
-                            <option value="{{$zona -> id}}">{{$zona -> ubicacion}}</option>
+                    <h2>Turno</h2>
+                    <p>Seleccione el turno</p>
+                    <select name="id_turno">
+                        @forelse ($turnos as $turno)
+                            <option value="{{$turno -> id}}">{{$turno -> fecha_inicio}}</option>
                         @empty
                             <p>No hay zonas actualmente</p>
                         @endforelse
                     </select>
-                    <p>Buque</p>
-                    <select name="id_buque">
-                        @forelse ($buques as $buque)
-                            <option value="{{$buque -> id}}">{{$buque -> nombre}}</option>
-                        @empty
-                            <p>No hay amarres actualmente</p>
-                        @endforelse
-                    </select>
                 </div>
-                
-                <div class="div3">
-                    <h2 class="num">3</h2>
-                    <h2>Operador</h2>
-                    <p>Seleccionar operador</p>
-                    <select name="operador">
-                        @forelse ($operadores as $operador)
-                            <option value="{{$operador -> id}}">{{$operador -> name}}</option>
-                        @empty
-                            <p>No hay turnos actualmente</p>
-                        @endforelse
-                    </select>
-                </div>            
 
-                <button class="crear btn">Crear</button>
+                <button class="crear btn">Asignar</button>
             </form>
             <form action="" method="get">
                 <button class="cancelar btn">Cancelar</button>
