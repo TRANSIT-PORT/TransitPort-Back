@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
         Route::post('/guardarUsuario', [GestorController::class, 'guardarUsuario'])->name('guardarUsuario');
         Route::get('/crearPatio', [GestorController::class, 'crearPatio'])->name('crearPatio');
+        Route::get('/crearGrua', [GestorController::class, 'crearGrua'])->name('crearGrua');
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
     });
 

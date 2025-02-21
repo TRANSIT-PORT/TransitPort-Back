@@ -174,38 +174,47 @@
                 }
 
                 #valores{
-
+                    display:flex;
                     margin-top: 10px;
                 }
 
-                #valores>label{
+                #valores>label  {
                     margin-bottom: 40px;
                     margin-top: 10px;
-                    width: 40px;
+                    width: 80px;
+                    display: flex;
+                    text-align: center;
+
                 }
 
                 #valX{
                     display:flex;
-                    width: 80px;
+                    width: 70px;
                     text-align:center;
                     margin-top: 40px;
+                    margin-left: -80px;
 
                 }
                 #ValY{
 
                     display:flex;
-                    width: 80px;
+                    width: 70px;
+                    text-align:center;
+                    margin-top: 40px;
+                    margin-left: -80px;
                 }
                 #ValZ{
                     display:flex;
-                    margin-left: 10px;
-                    width: 80px;
+                    width: 70px;
+                    text-align:center;
+                    margin-top: 40px;
+                    margin-left: -80px;
                 }
             </style>
         </head>
 
         <body>
-            <h1><img src="assets/Gestor/usuariosCrear.svg">  Crear Usuario</h1>
+            <h1><img src="assets/Gestor/crearPatioVer.png">  Crear Patio</h1>
              <form {{--action="{{ route('guardarPatio') }}"--}} method="post">
                 @csrf
 
@@ -213,7 +222,7 @@
                     <h2 class="num">1</h2>
                     <h2>Nombre</h2>
                     <label for="name">Nombre</label>
-                    <input type="text" id="name" name="">
+                    <input type="text" id="name" name="name">
 
                 </div>
 
@@ -221,11 +230,11 @@
                     <h2 class="num">2</h2>
                     <h2>Dimensiones</h2>
                     <label for="valorX">Valor X:</label>
-                    <input type="number" name="" id="valorX">
+                    <input type="number" name="valorX" id="valorX">
                     <label for="valorY">Valor Y:</label>
-                    <input type="number" name="" id="valorY">
+                    <input type="number" name="valorY" id="valorY">
                     <label for="valorZ">Valor Z:</label>
-                    <input type="number" name="" id="valorZ">
+                    <input type="number" name="valorZ" id="valorZ">
 
                 </div>
 
@@ -237,11 +246,11 @@
 
                     <div id="valores">
                         <label for="valX">Valor X</label>
-                        <input type="number" name="" id="valX">
+                        <input type="number" name="valX" id="valX">
                         <label for="valY">Valor Y</label>
-                        <input type="number" name="" id="valY">
+                        <input type="number" name="valY" id="valY">
                         <label for="valZ">Valor Z</label>
-                        <input type="number" name="" id="valZ">
+                        <input type="number" name="valZ" id="valZ">
                     </div>
 
                     <button class="anyadirBoton btn btn-primary">Añadir</button>

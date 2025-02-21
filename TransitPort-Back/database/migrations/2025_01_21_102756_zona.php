@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('zona', callback: function (Blueprint $table) {
             $table->id();
             $table->text('ubicacion');
+            $table->float('x');
+            $table->float('y');
+            $table->float('z');
             $table->integer(column: 'capacidad');
             $table->foreignId('id_gestor')->constrained('gestor');
             $table->foreignId('id_patio')->constrained('patio');

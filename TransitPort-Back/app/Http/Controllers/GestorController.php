@@ -55,10 +55,11 @@ class GestorController extends Controller {
 
     public function destroy(Request $request)
     {
-        $task = Gestor::destroy($request->id);  //task tienen el id que se ha borrado
+        $task = Gestor::findOrFail($request->id);
+        $task->delete();
 
         return response()->json([
-            "message" => "Gestor con id =" . $task . " ha sido borrado con éxito"
+            "message" => "Gestor con id =" . $request->id . " ha sido borrado con éxito"
         ], 201);
         //Esta función obtendra el id de la tarea que hayamos seleccionado y la borrará de nuestra BD
     }
@@ -107,13 +108,12 @@ class GestorController extends Controller {
         return view('Gestor.crearUsuario');
 
     }
-
     public function guardarPatio(Request $request){
 
         $patio = $request -> validate([
-
-
-
+            'nombre' => 'required|string|max:255',
+            'ubicacion' => 'required|string|max:255',
+            'capacidad' => 'required|integer',
         ]);
 
         try {
@@ -128,5 +128,6 @@ class GestorController extends Controller {
         return view('Gestor.crearPatio');
 
     }
+    }
 
-}
+
