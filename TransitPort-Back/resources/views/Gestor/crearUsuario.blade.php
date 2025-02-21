@@ -1,3 +1,4 @@
+<x-app-layout>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -172,8 +173,8 @@
             <div class="div1">
                 <h2 class="num">1</h2>
                 <h2>Datos</h2>
-                <label for="nombre">Nombre y apellidos</label>
-                <input type="text" id="nombre" name="name">
+                <label for="name">Nombre y apellidos</label>
+                <input type="text" id="name" name="name">
                 <label for="usuario">Usuario</label>
                 <input type="text" id="usuario" name="usuario">
                 <label for="ciudad">Ciudad</label>
@@ -186,7 +187,7 @@
             <div class="div4">
 
                 <label for="telf">Número de teléfono</label>
-                <input type="tel" id="telf" name="telfono">
+                <input type="tel" id="telf" name="telefono">
                 <label for="postal">Código Postal</label>
                 <input type="text" id="postal" name="codigoPostal">
 
@@ -213,10 +214,11 @@
                 </select>
             </div>
 
-            <button type="submit" class="crear btn btn-primary">Crear</button>
+            <button class="crear btn btn-primary">Crear</button>
         </form>
 
             <a href="{{ url()->previous() }}" class="cancelar btn btn-warning">Cancelar</a>
 
     </body>
 </html>
+</x-app-layout>

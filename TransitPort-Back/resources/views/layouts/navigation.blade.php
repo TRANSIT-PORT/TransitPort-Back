@@ -1,27 +1,61 @@
 <style>
     div.menu {
         background-color: #133379;
-
+        transition: width 0.5s ease-in-out;
         position: absolute;
         left: 0px;
 
         width: 110px;
         height: 100%;
     }
+    div.menu:hover {
+        width: 200px;
+        z-index: 100;
+    }
+
     div.link {
         margin-top: 100%;
         margin-left: 20%;
+        transition: opacity 0.3s ease-in-out;
+        div.menu:hover .link {
+        opacity: 1;
+}
     }
-    div.dropdown {
-        position: absolute;
-        top: 10px;
-        left: -15px;
-        width: 75%;
+
+    div.link img {
+    margin-right: 10px;
     }
+
+    div.link span {
+    display: none;
+    color: white;
+    font-size: 14px;
+}
+
+    div.menu:hover .link span {
+    display: inline;
+    }
+
     .logout {
         color: white;
         margin-left: 8px;
     }
+    .profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    padding-top: 20px;
+    }
+
+    .profile-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid #ffffff;
+        transition: border-color 0.3s ease-in-out;
+    }
+
 </style>
 
 <link rel="preconnect" href="https://fonts.bunny.net">
@@ -32,66 +66,82 @@
 <nav x-data="{ open: false }" class="border-b border-blue-100 bg-blue ">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+
         <div class="flex justify-between h-16 menu">
+
             <div class="flex flex-col space-y-4">
                 <!-- Navigation Links -->
+
+                <div class="profile-container">
+                    <a href="{{ route('profile.edit') }}">
+                        @if (Auth::user()->profile_photo_url)
+                            <img class="profile-img" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+                        @elseif (Auth::user()->role == 'admin')
+                            <img class="profile-img" src="{{ asset('images/admin-avatar.png') }}" alt="Admin">
+                        @else
+                            <img class="profile-img" src="{{ asset('assets/Gestor/gestor.png') }}" alt="Gestor">
+                        @endif
+                    </a>
+                </div>
+
                 @if (auth() -> user() -> cargo === 'administrativo')
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearOrden')" :active="request()->routeIs('crearOrden')">
                             <img src="assets/Administrativo/crearOrden.svg">
+                            <span>Crear Orden</span>
                         </x-nav-link>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearTurno')" :active="request()->routeIs('crearTurno')">
                             <img src="assets/Administrativo/crearTurno.svg">
+                            <span>Crear Turno</span>
                         </x-nav-link>
                     </div>
                 @endif
                 @if (auth() -> user() -> cargo === 'gestor')
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearUsuario')" :active="request()->routeIs('crearUsuario')">
-                            {{ __('Crear Usuario') }}
+                            <img src="assets/Gestor/usuariosCrearVer.svg">
+                            <span>Crear Usuario</span>
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link >
+                            <img src="assets/Gestor/usuarios.svg">
+                            <span>Ver usuarios</span>
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('crearGrua')" :active="request()->routeIs('crearGrua')">
+                            <img src="assets/Gestor/gruas.png">
+                            <span>Crear Grua</span>
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('crearPatio')" :active="request()->routeIs('crearPatio')">
+                            <img src="assets/Gestor/crearPatio.png">
+                            <span>Crear Patio</span>
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link>
+                            <img src="assets/Gestor/gestionarGruas.svg">
+                            <span>Gestionar Gruas</span>
                         </x-nav-link>
                     </div>
                 @endif
+                <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link>
+                        <img src="assets/Gestor/home.svg">
+                    </x-nav-link>
+                </div>
                 <form method="POST" action="{{ route('logout') }}" class="logout">
                     @csrf
                     <button type="submit">Cerrar sesión</button>
                 </form>
             </div>
 
-            <!-- Settings Dropdown -->
-            <div class="hidden dropdown sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none">
-                            <div>{{ Auth::user()->name }}</div>
 
-                            <div class="ms-1">
-                                <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
             </div>
 
             <!-- Hamburger -->
