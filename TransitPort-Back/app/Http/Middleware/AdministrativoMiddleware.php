@@ -16,13 +16,10 @@ class AdministrativoMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {    //si está autentificado
-            if (Auth::user()->role == "administrativo") {   //si es role es gestor
 
-                return $next($request);    //significa continua
-            }
+        if (Auth::check() && Auth::user()->cargo === 'administrativo') {
+            return $next($request);
         }
-        //return redirect()->route('login');  //en caso contrario va al login
-        return redirect()->route('usuario');
+        return redirect()->route('login');  //en caso contrario va al login.
     }
 }

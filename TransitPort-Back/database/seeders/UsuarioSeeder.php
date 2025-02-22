@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Administrativo;
+use App\Models\Gestor;
+use App\Models\Operador;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,7 +17,7 @@ class UsuarioSeeder extends Seeder {
                 'email' => 'gpalomares@example.com',
                 'password' => bcrypt('1111'),
                 'estado' => 'Activo/a',
-                'cargo' => 'Gestor',
+                'cargo' => 'gestor',
                 'ciudad' => 'Valencia',
                 'telefono' => '666666666',
                 'codigoPostal' => '46000',
@@ -27,7 +30,7 @@ class UsuarioSeeder extends Seeder {
                 'email' => 'javila@example.com',
                 'password' => bcrypt(value: 'facilitadora'),
                 'estado' => 'Activo/a',
-                'cargo' => 'Administrativo',
+                'cargo' => 'administrativo',
                 'ciudad' => 'Valencia',
                 'telefono' => '666666666',
                 'codigoPostal' => '46000',
@@ -40,7 +43,7 @@ class UsuarioSeeder extends Seeder {
                 'email' => 'arum@example.com',
                 'password' => bcrypt('cobre'),
                 'estado' => 'Activo/a',
-                'cargo' => 'Operador',
+                'cargo' => 'operador',
                 'ciudad' => 'Valencia',
                 'telefono' => '666666666',
                 'codigoPostal' => '46000',
@@ -54,7 +57,7 @@ class UsuarioSeeder extends Seeder {
                 'password' => bcrypt('2222'),
                 'estado' => 'Inactivo/a',
                 'usuario' => 'bmendez',
-                'cargo' => 'Gestor',
+                'cargo' => 'gestor',
                 'ciudad' => 'Valencia',
                 'telefono' => '666666666',
                 'codigoPostal' => '46000',
@@ -67,7 +70,7 @@ class UsuarioSeeder extends Seeder {
                 'password' => bcrypt('1234'),
                 'estado' => 'Activo/a',
                 'usuario' => 'mjalvarez',
-                'cargo' => 'Administrativo',
+                'cargo' => 'administrativo',
                 'ciudad' => 'Valencia',
                 'telefono' => '666666666',
                 'codigoPostal' => '46000',
@@ -80,7 +83,7 @@ class UsuarioSeeder extends Seeder {
                 'password' => bcrypt('1111'),
                 'estado' => 'Inactivo/a',
                 'usuario' => 'lpotter',
-                'cargo' => 'Administrativo',
+                'cargo' => 'administrativo',
                 'ciudad' => 'Valencia',
                 'telefono' => '666666666',
                 'codigoPostal' => '46000',
@@ -93,7 +96,7 @@ class UsuarioSeeder extends Seeder {
                 'password' => bcrypt('1000'),
                 'estado' => 'Inactivo/a',
                 'usuario' => 'jsanchez',
-                'cargo' => 'Operador',
+                'cargo' => 'operador',
                 'ciudad' => 'Valencia',
                 'telefono' => '666666666',
                 'codigoPostal' => '46000',
@@ -106,7 +109,7 @@ class UsuarioSeeder extends Seeder {
                 'password' => bcrypt('2000'),
                 'estado' => 'Activo/a',
                 'usuario' => 'anavarro',
-                'cargo' => 'Operador',
+                'cargo' => 'operador',
                 'ciudad' => 'Valencia',
                 'telefono' => '666666666',
                 'codigoPostal' => '46000',
@@ -119,7 +122,7 @@ class UsuarioSeeder extends Seeder {
                 'password' => bcrypt('3300'),
                 'estado' => 'Activo/a',
                 'usuario' => 'emgonzalez',
-                'cargo' => 'Operador',
+                'cargo' => 'operador',
                 'ciudad' => 'Valencia',
                 'telefono' => '666666666',
                 'codigoPostal' => '46000',
@@ -132,7 +135,7 @@ class UsuarioSeeder extends Seeder {
                 'password' => bcrypt('2200'),
                 'estado' => 'Activo/a',
                 'usuario' => 'jmartinez',
-                'cargo' => 'Operador',
+                'cargo' => 'operador',
                 'ciudad' => 'Valencia',
                 'telefono' => '666666666',
                 'codigoPostal' => '46000',
@@ -145,7 +148,7 @@ class UsuarioSeeder extends Seeder {
                 'password' => bcrypt('2220'),
                 'estado' => 'Activo/a',
                 'usuario' => 'mdor',
-                'cargo' => 'Operador',
+                'cargo' => 'operador',
                 'ciudad' => 'Valencia',
                 'telefono' => '666666666',
                 'codigoPostal' => '46000',
