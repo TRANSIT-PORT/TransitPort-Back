@@ -75,7 +75,11 @@
     
     <script type="text/javascript">
         $(document).ready(function () {
-            let tableUp = $('#detalles').DataTable();
+            let tableUp = $('#detalles').DataTable({
+                //Como van a ser datos fijos, usamos estas líneas:
+                order: [[0, "desc"]], //Para empezar de abajo a arriba.
+                ordering: false, //Para evitar poder ordenar.
+            });
             let tableDown = $('#orden').DataTable();
         });
     </script>
