@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buque;
 use App\Models\Orden;
+use App\Models\Tiene;
 use App\Models\Turno;
 use App\Models\Zona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Laravel\Pail\ValueObjects\Origin\Console;
+use Yajra\DataTables\Facades\DataTables;
 
 class OrdenController extends Controller {
     public function index(Request $request) {
@@ -105,21 +109,48 @@ class OrdenController extends Controller {
 
     public function crearOpciones() {
         $zonas = Zona::all();
-        $amarres = DB::table('buque')
-        -> distinct()
-        -> pluck('amarre');
+        $buques = Buque::all();
         $turnos = Turno::all();
 
-        return view('Administrativo.crearOrden', ['zonas' => $zonas, 'amarres' => $amarres, 'turnos' => $turnos]);
+        return view('Administrativo.crearOrden', ['zonas' => $zonas, 'buques' => $buques, 'turnos' => $turnos]);
     }
 
     public function guardarOrden(Request $request) {
-        $orden = request() -> validate([
-            'tipo' => 'required',
-            'fecha_inicio' => 'required',
-            'id_zona' => 'required | exists: zona, id',
-            'amarre' => 'required | exists: buque, amarres'
+        $orden = $request -> validate([
+            'tipo' => 'string',
+            'fecha_inicio' => 'int',
+            'id_zona' => 'int',
+            'id_buque' => 'int',
         ]);
+
+        try {
+            $turno = Turno::findOrFail($orden['fecha_inicio']);
+
+            $tiene = DB::table('tiene')
+                -> where('id_buque', $orden['id_buque'])
+                -> count();
+
+            $zona = Zona::findOrFail($orden['id_zona']);
+            $buque = Buque::findOrFail($orden['id_buque']);
+
+            Orden::create([
+                "id" => null,
+                "tipo" => $orden['tipo'],
+                "cantidad_contenedores" => $tiene,
+                "fecha_inicio" => $turno['fecha_inicio'],
+                "fecha_fin" => $turno['fecha_fin'],
+                "estado" => "Por empezar",
+                "id_grua" => $zona['id_grua'],
+                "id_administrativo" => $buque['id_administrativo'],
+                "id_buque" => $orden['id_buque'],
+                "id_zona" => $orden['id_zona'],
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al crear la Orden.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
 
         return view('Operador.welcome');
     }
@@ -159,5 +190,13 @@ class OrdenController extends Controller {
         -> get();
 
         return $task;
+    }
+
+    public function visualizarAuditoria(Request $request) {
+        return Orden::datatable([
+            'id',
+            'tipo',
+            'estado'
+        ]);
     }
 }

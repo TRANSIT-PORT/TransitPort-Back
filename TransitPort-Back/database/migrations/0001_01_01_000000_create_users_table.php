@@ -16,8 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('estado') -> default('Activo/a');
+            $table->string('usuario')->unique();
+            $table->string('ciudad');
+            $table->string('telefono');
+            $table->string('codigoPostal');
             $table->string('password');
-            $table->enum('cargo', ['gestor', 'administrativo', 'operador']);
+            $table->enum('cargo', ['gestor', 'administrativo', 'operador'])->default('gestor');
             $table->rememberToken();
 
             $table->timestamps();

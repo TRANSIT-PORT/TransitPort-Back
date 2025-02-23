@@ -4,39 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Gestor;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
+use App\Models\Grua;
+use App\Models\Patio;
 
 class GestorController extends Controller {
     public function index(Request $request) {
         $task = Gestor::all();
         return $task;
         //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
-    }
-
-    public function store(Request $request)
-    {
-       $validatedData = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'usuario' => 'string',
-            'password' => 'string',
-        ]);
-
-        try {
-            // Crear y guardar la tarea con asignación masiva
-            $task = Gestor::create($validatedData);
-
-            return response()->json([
-                'message' => 'Gestor creado con éxito.',
-                'task' => $task,
-            ], 201); // Código HTTP 201: Creado
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'message' => 'Error al crear el Gestor.',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
-
     }
 
     public function show(Request $request)
@@ -51,6 +28,9 @@ class GestorController extends Controller {
             'nombre' => 'required|string|max:255',
             'usuario' => 'string',
             'password' => 'string',
+            'cargo' => 'string',
+            'estado' => 'string',
+            'email' => 'string',
         ]);
 
         try {
@@ -85,13 +65,67 @@ class GestorController extends Controller {
 
     public function crearUsuario(){
 
-        return view('Gestor/crearUsuario');
+        return view('Gestor.crearUsuario');
 
     }
 
     public function crearGrua(){
 
-        return view('Gestor/crearGrua');
+        return view('Gestor.crearGrua');
+
+    }
+
+    public function crearPatio(){
+
+        return view('Gestor.crearPatio');
+
+    }
+
+    public function guardarUsuario(Request $request){
+
+        $user = $request -> validate([
+            'name' => 'string',
+            'usuario' => 'string',
+            'email' => 'email',
+            'telefono' => 'string',
+            'ciudad' => 'string',
+            'codigoPostal' => 'string',
+            'password' => 'string',
+            'cargo' => 'string|in:gestor,administrativo,operador',
+        ]);
+
+        try {
+            $user['password'] = bcrypt($user['password']); // Encriptar contraseña
+            User::create($user);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al crear el usuario.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+        return view('Gestor.crearUsuario');
+
+    }
+
+    public function guardarPatio(Request $request){
+
+        $patio = $request -> validate([
+
+
+
+        ]);
+
+        try {
+            Patio::create($patio);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al crear el patio.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+        return view('Gestor.crearPatio');
 
     }
 

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId('id_administrativo')->constrained('administrativo')->onDelete('cascade');
             $table->foreignId('id_grua')->constrained('grua')->onDelete('cascade');
             $table->foreignId('id_buque')->constrained('buque')->onDelete('cascade');
-            $table->foreignId('id_contenedor')->constrained('contenedor')->onDelete('cascade');
             $table->foreignId('id_zona')->constrained('zona')->onDelete('cascade');
             $table->timestamps();
           });

@@ -17,7 +17,6 @@ class OrdenSeeder extends Seeder {
                 'id_grua' => '1',
                 'id_administrativo' => '3',
                 'id_buque' => '1',
-                'id_contenedor' => '1',
                 'id_zona' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
