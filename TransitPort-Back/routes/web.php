@@ -24,4 +24,7 @@ Route::post('crearUsuario', [GestorController::class, 'crearUsuario'])->name('cr
 Route::get('crearOrden', [OrdenController::class, 'crearOpciones']) -> name('crearOrden');
 Route::post('guardarOrden', [OrdenController::class, 'guardarOrden']) -> name('guardarOrden');
 
+Route::get('crearGrua', [OrdenController::class, 'crearGrua']) -> name('crearGrua');
+Route::post('guardarGrua', [OrdenController::class, 'guardarGrua']) -> name('guardarGrua');
+
 require __DIR__.'/auth.php';

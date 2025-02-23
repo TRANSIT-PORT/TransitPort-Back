@@ -54,7 +54,6 @@ Route::delete('/orden/borrar/{id}', [OrdenController::class, 'destroy']);
 
 Route::get('/orden/buscar/{id}', [OrdenController::class, 'show']);
 
-
 //Contenedores
 Route::get('/contenedor', [ContenedorController::class, 'index']);
 
@@ -84,7 +83,9 @@ Route::get('/incidencia', [IncidenciaController::class, 'index']);
 
 Route::put('/incidencia/actualizar/{id}', [IncidenciaController::class, 'update']);
 
-Route::post('/incidencia/guardar', [IncidenciaController::class, 'store']);
+Route::post('/incidencia/{id}', [IncidenciaController::class, 'store']);
+
+Route::post('/incidencia', [IncidenciaController::class, 'store']);
 
 Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy']);
 
@@ -136,16 +137,6 @@ Route::delete('/tiene/borrar/{id}', [TieneController::class, 'destroy']);
 Route::get('/tiene/buscar/{id}', [TieneController::class, 'show']);
 
 
-//Incidencia
-Route::get('/incidencia', [IncidenciaController::class, 'index']);
-
-Route::put('/incidencia/actualizar/{id}', [IncidenciaController::class, 'update']);
-
-Route::post('/incidencia/guardar', [IncidenciaController::class, 'store']);
-
-Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy']);
-
-Route::get('/incidencia/buscar/{id}', [IncidenciaController::class, 'show']);
 
 //Administrativo
 Route::get('/administrativo', [AdministrativoController::class, 'index']);
@@ -189,18 +180,6 @@ Route::delete('/tiene/borrar/{id}', [TieneController::class, 'destroy']);
 
 Route::get('/tiene/buscar/{id}', [TieneController::class, 'show']);
 
-
-//Incidencia
-Route::get('/incidencia', [IncidenciaController::class, 'index']);
-
-Route::put('/incidencia/actualizar/{id}', [IncidenciaController::class, 'update']);
-
-Route::post('/incidencia/guardar', [IncidenciaController::class, 'store']);
-
-Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy']);
-
-Route::get('/incidencia/buscar/{id}', [IncidenciaController::class, 'show']);
-
 //Administrativo
 Route::get('/administrativo', [AdministrativoController::class, 'index']);
 
@@ -243,14 +222,3 @@ Route::delete('/tiene/borrar/{id}', [TieneController::class, 'destroy']);
 
 Route::get('/tiene/buscar/{id}', [TieneController::class, 'show']);
 
-
-//Incidencia
-Route::get('/incidencia', [IncidenciaController::class, 'index']);
-
-Route::put('/incidencia/actualizar/{id}', [IncidenciaController::class, 'update']);
-
-Route::post('/incidencia/guardar', [IncidenciaController::class, 'store']);
-
-Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy']);
-
-Route::get('/incidencia/buscar/{id}', [IncidenciaController::class, 'show']);
