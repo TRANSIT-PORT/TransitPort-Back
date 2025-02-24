@@ -10,6 +10,8 @@
             <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+            <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
             <style>
                 h1 {
@@ -161,12 +163,12 @@
                     border-radius: 0px;
                     color: #C0D2F7;
                     text-align: center;
-                    font-size: 20px;
+                    font-size: 19px;
                     font-style: normal;
                     font-weight: 700;
                     line-height: normal;
                     display: inline-flex;
-                    padding: 13px 56px 12px 57px;
+                    padding: 10px 54px 12px 54px;
                     justify-content: center;
                     align-items: center;
                     background: var(--Cinder-950, #040813);
@@ -174,42 +176,26 @@
                 }
 
                 #valores{
-                    display:flex;
                     margin-top: 10px;
+                    width: 100%;
+                    margin-bottom: 20px;
                 }
 
                 #valores>label  {
                     margin-bottom: 40px;
                     margin-top: 10px;
                     width: 80px;
-                    display: flex;
                     text-align: center;
 
                 }
 
-                #valX{
-                    display:flex;
-                    width: 70px;
-                    text-align:center;
-                    margin-top: 40px;
-                    margin-left: -80px;
+                #valores>div>input {
+                    width: 80px;
 
                 }
-                #ValY{
 
-                    display:flex;
-                    width: 70px;
-                    text-align:center;
-                    margin-top: 40px;
-                    margin-left: -80px;
-                }
-                #ValZ{
-                    display:flex;
-                    width: 70px;
-                    text-align:center;
-                    margin-top: 40px;
-                    margin-left: -80px;
-                }
+
+
             </style>
         </head>
 
@@ -244,16 +230,39 @@
                     <label for="nombre">Nombre</label>
                     <input type="text" name="nombre" id="nombre">
 
-                    <div id="valores">
-                        <label for="valX">Valor X</label>
-                        <input type="number" name="valX" id="valX">
-                        <label for="valY">Valor Y</label>
-                        <input type="number" name="valY" id="valY">
-                        <label for="valZ">Valor Z</label>
-                        <input type="number" name="valZ" id="valZ">
+                    <div class="flex-row d-flex justify-content-between" id="valores">
+                        <div class="d-flex flex-column justify-content-center">
+                            <label class="d-flex justify-content-center" for="valX">Valor X:</label>
+                            <input type="number" class="valX" name="valX" id="valX">
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <label class="d-flex justify-content-center" for="valY">Valor Y:</label>
+                            <input type="number" name="valY" id="valY">
+                        </div>
+                        <div class="d-flex flex-column">
+                            <label class="d-flex justify-content-center" for="valZ">Valor Z:</label>
+                            <input type="number" name="valZ" id="valZ">
+                        </div>
                     </div>
 
                     <button class="anyadirBoton btn btn-primary">Añadir</button>
+
+                    <div class="container mt-5">
+                        <table id="auditoria" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>X</th>
+                                    <th>Y</th>
+                                    <th>Z</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <button class="crear btn btn-primary">Crear</button>

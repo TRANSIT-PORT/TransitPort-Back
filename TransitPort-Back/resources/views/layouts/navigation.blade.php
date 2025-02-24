@@ -42,6 +42,7 @@ div.menu:hover {
     align-items: center;
     width: 100%;
     gap: 10px;
+    text-decoration:none;
 }
 
 div.link {
@@ -52,6 +53,7 @@ div.link {
     transition: background 0.3s ease-in-out;
     white-space: nowrap;
     overflow: hidden;
+    text-decoration:none;
 }
 
 div.link:hover {
@@ -66,6 +68,7 @@ div.link:hover {
     font-size: 24px;
     border-right-radius: 8px;
     width: 280px;
+    text-decoration:none;
 }
 
 div.link img {
@@ -80,6 +83,7 @@ div.link span {
     color: white;
     font-size: 16px;
     white-space: nowrap;
+    text-decoration:none;
 }
 
 
@@ -105,6 +109,20 @@ div.menu:hover .link span {
     margin-bottom: 20px;
 }
 
+.home{
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    padding-top: 12px;
+    transition: background 0.3s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+    background: #133379
+
+}
+
+
+
 
 </style>
 
@@ -125,7 +143,7 @@ div.menu:hover .link span {
                 <div class="profile-container">
                     <a href="{{ route('profile.edit') }}">
                         @if (Auth::user()->profile_photo_url)
-                            <img class="profile-img" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+                            <img class="profile-img" src="{{ Auth::user()->profile_photo_url }}">
                         @elseif (Auth::user()->role == 'admin')
                             <img class="profile-img" src="{{ asset('images/admin-avatar.png') }}" alt="Admin">
                         @else
@@ -134,10 +152,6 @@ div.menu:hover .link span {
                     </a>
 
                 </div>
-                <form method="POST" action="{{ route('logout') }}" class="logout">
-                    @csrf
-                    <button type="submit">Cerrar sesión</button>
-                </form>
 
                 @if (auth() -> user() -> cargo === 'administrativo')
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
@@ -190,10 +204,13 @@ div.menu:hover .link span {
                         </x-nav-link>
                     </div>
                 @endif
-                <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link>
-                        <img src="assets/Gestor/home.svg">
-                    </x-nav-link>
+                <div class="hidden home link sm:-my-px sm:ms-10 sm:flex">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" style="border: none; background: none; padding: 0;">
+                            <img src="assets/Gestor/home.svg" alt="Cerrar sesión">
+                        </button>
+                    </form>
                 </div>
 
             </div>
@@ -202,19 +219,19 @@ div.menu:hover .link span {
             </div>
 
             <!-- Hamburger -->
-            <div class="flex items-center -me-2 sm:hidden">
+            {{-- <div class="flex items-center -me-2 sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500">
                     <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-            </div>
+            </div> --}}
         </div>
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:open">
+    {{-- <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:open">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
@@ -245,5 +262,5 @@ div.menu:hover .link span {
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 </nav>
