@@ -185,7 +185,7 @@ div.menu:hover .link span {
                     </div>
                     <div class="hidden link ">
                         <x-nav-link>
-                            <img src="assets/Gestor/gestionarGruas.svg">
+                            <img src="assets/Gestor/gestionarGrua.png">
                             <span>Gestionar Gruas</span>
                         </x-nav-link>
                     </div>
