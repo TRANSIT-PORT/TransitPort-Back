@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use App\Models\Grua;
 use App\Models\Patio;
+use App\Models\Zona;
 
 class GestorController extends Controller {
     public function index(Request $request) {
@@ -113,11 +114,12 @@ class GestorController extends Controller {
         $patio = $request -> validate([
             'nombre' => 'required|string|max:255',
             'ubicacion' => 'required|string|max:255',
-            'x' => 'required|float',
-            'y' => 'required|float',
-            'z' => 'required|float',
-            'capacidad' => 'integer',
+            'x' => 'required|numeric',
+            'y' => 'required|numeric',
+            'z' => 'required|numeric',
         ]);
+
+        $patio['capacidad'] = $patio['x'] * $patio['y'] * $patio['z'];
 
         try {
             Patio::create($patio);
@@ -131,6 +133,36 @@ class GestorController extends Controller {
         return view('Gestor.crearPatio');
 
     }
+
+    public function guardarZona(Request $request){
+
+        $zona = $request -> validate([
+            'nombre' => 'required|string|max:255',
+            'X' => 'required|numeric',
+            'Y' => 'required|numeric',
+            'Z' => 'required|numeric',
+            'id_gestor' => 'required|integer|exists:gestores,id',
+            'id_patio' => 'required|integer|exists:patios,id',
+            'id_grua' => 'required|integer|exists:gruas,id',
+        ]);
+
+        try {
+            Zona::create($zona);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al crear la zona.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+        return view('Gestor.crearPatio');
+    }
+
+    public function verZona() {
+         $zonas = Zona::select(['nombre', 'X', 'Y', 'Z']);
+        return datatables()->of($zonas)->make(true);
+    }
+
     }
 
 

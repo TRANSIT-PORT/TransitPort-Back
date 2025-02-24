@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('patio', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement();
             $table->text('nombre');
             $table->float('x')->default(0);
             $table->float('y')->default(0);
