@@ -14,6 +14,42 @@
             <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
             <style>
+                #zona{
+
+                    margin-top: 10%;
+
+                }
+
+                #zona{
+
+                    border: none;
+
+                }
+
+                #zona th {
+
+                    background: var(--Cinder-900, #152D65);
+                    color: var(--Cinder-50, #F1F5FE);
+                    width: 100px;
+                    height: 54px;
+                    padding-left:-70px;
+                    border:none;
+                    text-align: center;
+
+                }
+
+                #zona tbody {
+                    background: #F1F5FE;
+
+                }
+
+                #zona td {
+                    background: #FFF;
+                    color: #000000;
+                    border-top: 10px solid #F1F5FE;
+
+                }
+
                 h1 {
                     margin-left: 8%;
                 }
@@ -201,14 +237,14 @@
 
         <body>
             <h1><img src="assets/Gestor/crearPatioVer.png">  Crear Patio</h1>
-             <form {{--action="{{ route('guardarPatio') }}"--}} method="post">
+             <form action="{{ route('guardarPatio') }}" method="post">
                 @csrf
 
                 <div class="div1">
                     <h2 class="num">1</h2>
                     <h2>Nombre</h2>
                     <label for="name">Nombre</label>
-                    <input type="text" id="name" name="name">
+                    <input type="text" id="name" name="nombre">
 
                 </div>
 
@@ -216,11 +252,11 @@
                     <h2 class="num">2</h2>
                     <h2>Dimensiones</h2>
                     <label for="valorX">Valor X:</label>
-                    <input type="number" name="valorX" id="valorX">
+                    <input type="number" name="x" id="valorX">
                     <label for="valorY">Valor Y:</label>
-                    <input type="number" name="valorY" id="valorY">
+                    <input type="number" name="y" id="valorY">
                     <label for="valorZ">Valor Z:</label>
-                    <input type="number" name="valorZ" id="valorZ">
+                    <input type="number" name="z" id="valorZ">
 
                 </div>
 
@@ -233,23 +269,23 @@
                     <div class="flex-row d-flex justify-content-between" id="valores">
                         <div class="d-flex flex-column justify-content-center">
                             <label class="d-flex justify-content-center" for="valX">Valor X:</label>
-                            <input type="number" class="valX" name="valX" id="valX">
+                            <input type="number" class="valX" name="X" id="valX">
                         </div>
 
                         <div class="d-flex flex-column">
                             <label class="d-flex justify-content-center" for="valY">Valor Y:</label>
-                            <input type="number" name="valY" id="valY">
+                            <input type="number" name="Y" id="valY">
                         </div>
                         <div class="d-flex flex-column">
                             <label class="d-flex justify-content-center" for="valZ">Valor Z:</label>
-                            <input type="number" name="valZ" id="valZ">
+                            <input type="number" name="Z" id="valZ">
                         </div>
                     </div>
 
                     <button class="anyadirBoton btn btn-primary">Añadir</button>
 
-                    <div class="container mt-5">
-                        <table id="auditoria" class="table table-bordered">
+
+                        <table id="zona" class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -262,7 +298,7 @@
 
                             </tbody>
                         </table>
-                    </div>
+
                 </div>
 
                 <button class="crear btn btn-primary">Crear</button>
@@ -271,5 +307,29 @@
                 <a href="{{ url()->previous() }}" class="cancelar btn btn-warning">Cancelar</a>
 
         </body>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                let table = $('#zona').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: '{{ route("recogerAuditoria") }}',
+                    columns: [
+                        { data: 'nombre', name: 'nombre' },
+                        { data: 'X', name: 'X' },
+                        { data: 'Y', name: 'Y' },
+                        { data: 'Z', name: 'Z' },
+                    ]
+                });
+
+                $('.anyadirBoton').on('click', function () {
+                    table.row.add({
+                        "nombre": $('#nombre').val(),
+                        "X": $('#valX').val(),
+                        "Y": $('#valY').val(),
+                        "Z": $('#valZ').val(),
+                    }).draw();
+                });
+            });
+        </script>
     </html>
     </x-app-layout>

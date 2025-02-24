@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('patio', function (Blueprint $table) {
             $table->id();
-            $table->float('x');
-            $table->float('y');
-            $table->float('z');
+            $table->text('nombre');
+            $table->float('x')->default(0);
+            $table->float('y')->default(0);
+            $table->float('z')->default(0);
             $table->integer(column: 'capacidad');
             $table->foreignId('id_gestor')->constrained('gestor');
             $table->timestamps();

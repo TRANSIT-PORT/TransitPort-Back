@@ -113,7 +113,10 @@ class GestorController extends Controller {
         $patio = $request -> validate([
             'nombre' => 'required|string|max:255',
             'ubicacion' => 'required|string|max:255',
-            'capacidad' => 'required|integer',
+            'x' => 'required|float',
+            'y' => 'required|float',
+            'z' => 'required|float',
+            'capacidad' => 'integer',
         ]);
 
         try {

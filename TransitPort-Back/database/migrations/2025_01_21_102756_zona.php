@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('zona', callback: function (Blueprint $table) {
             $table->id();
+            $table->text('nombre');
             $table->text('ubicacion');
-            $table->float('x');
-            $table->float('y');
-            $table->float('z');
+            $table->float('X')->default(0);
+            $table->float('Y')->default(0);
+            $table->float('Z')->default(0);
             $table->integer(column: 'capacidad');
             $table->foreignId('id_gestor')->constrained('gestor');
             $table->foreignId('id_patio')->constrained('patio');
