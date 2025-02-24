@@ -1,60 +1,110 @@
 <style>
-    div.menu {
-        background-color: #133379;
-        transition: width 0.5s ease-in-out;
-        position: absolute;
-        left: 0px;
-
-        width: 110px;
-        height: 100%;
-    }
-    div.menu:hover {
-        width: 200px;
-        z-index: 100;
-    }
-
-    div.link {
-        margin-top: 100%;
-        margin-left: 20%;
-        transition: opacity 0.3s ease-in-out;
-        div.menu:hover .link {
-        opacity: 1;
-}
-    }
-
-    div.link img {
-    margin-right: 10px;
-    }
-
-    div.link span {
-    display: none;
-    color: white;
-    font-size: 14px;
+div.menu {
+    background-color: #133379;
+    transition: width 0.5s ease-in-out;
+    position: absolute;
+    left: 0;
+    width: 110px;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
 }
 
-    div.menu:hover .link span {
-    display: inline;
-    }
+div.menu:hover {
+    width: 320px;
+    z-index: 100;
+    align-items: flex-start;
+    padding-left: 15px;
+}
 
-    .logout {
-        color: white;
-        margin-left: 8px;
-    }
-    .profile-container {
+.profile-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120px;
-    padding-top: 20px;
-    }
+    width: 100%;
+    margin-bottom: 20px;
+}
 
-    .profile-img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        border: 3px solid #ffffff;
-        transition: border-color 0.3s ease-in-out;
-    }
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+div.link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    transition: background 0.3s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+div.link:hover {
+    display: inline-flex;
+    padding: 15px 88px 15px 29px;
+    align-items: center;
+    gap: 9px;
+    border-radius: 0px 20px 20px 0px;
+    /* background: var(--Cinder-50, #F1F5FE); */
+    background: #a7acb898;
+    color: var(--Cinder-950, #040813);
+    font-size: 24px;
+    border-right-radius: 8px;
+    width: 280px;
+}
+
+div.link img {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    margin-left:10px;
+}
+
+div.link span {
+    display: none;
+    color: white;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+
+div.menu:hover .link {
+    justify-content: flex-start;
+    width: 270px;
+}
+
+div.menu:hover .link img {
+    margin-right: 12px;
+}
+
+div.menu:hover .link span {
+    display: inline;
+    flex-grow: 1;
+}
+
+.logout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
 
 </style>
 
@@ -69,7 +119,7 @@
 
         <div class="flex justify-between h-16 menu">
 
-            <div class="flex flex-col space-y-4">
+            <div class="flex flex-col ">
                 <!-- Navigation Links -->
 
                 <div class="profile-container">
@@ -82,7 +132,12 @@
                             <img class="profile-img" src="{{ asset('assets/Gestor/gestor.png') }}" alt="Gestor">
                         @endif
                     </a>
+
                 </div>
+                <form method="POST" action="{{ route('logout') }}" class="logout">
+                    @csrf
+                    <button type="submit">Cerrar sesión</button>
+                </form>
 
                 @if (auth() -> user() -> cargo === 'administrativo')
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
@@ -128,7 +183,7 @@
                             <span>Crear Patio</span>
                         </x-nav-link>
                     </div>
-                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                    <div class="hidden link ">
                         <x-nav-link>
                             <img src="assets/Gestor/gestionarGruas.svg">
                             <span>Gestionar Gruas</span>
@@ -140,10 +195,7 @@
                         <img src="assets/Gestor/home.svg">
                     </x-nav-link>
                 </div>
-                <form method="POST" action="{{ route('logout') }}" class="logout">
-                    @csrf
-                    <button type="submit">Cerrar sesión</button>
-                </form>
+
             </div>
 
 
