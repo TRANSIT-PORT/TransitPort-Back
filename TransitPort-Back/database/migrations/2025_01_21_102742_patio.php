@@ -18,7 +18,7 @@ return new class extends Migration
             $table->float('y')->default(0);
             $table->float('z')->default(0);
             $table->integer(column: 'capacidad');
-            $table->foreignId('id_gestor')->constrained('gestor');
+            $table->foreignId('id_gestor')->constrained('users');
             $table->timestamps();
           });
     }
