@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('estado');
             $table->text(column: 'tipo');
             $table ->foreign('id') -> references('id') -> on('users') -> onDelete('cascade');
-            $table->foreignId('id_gestor')->constrained('gestor');
+            $table->foreignId('id_gestor')->constrained('users');
             $table->foreignId('id_turno')->constrained('turno');
             $table->timestamps();
           });

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('amarre');
             $table->text(column: 'procedencia');
             $table->text(column: 'destino');
-            $table->foreignId('id_administrativo')->constrained('administrativo');
+            $table->foreignId('id_administrativo')->constrained('users');
             $table->timestamps();
           });
     }

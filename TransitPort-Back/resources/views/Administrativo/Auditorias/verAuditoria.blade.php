@@ -10,14 +10,14 @@
             <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
             <style>
-                #auditoria tbody tr {
-                    cursor: pointer;
-                }
-                #auditoria th {
-                    background: var(--Cinder-900, #152D65);
-                    color: white;
-                }
-            </style>
+                    #auditoria tbody tr {
+                        cursor: pointer;
+                    }
+                    #auditoria th {
+                        background: var(--Cinder-900, #152D65);
+                        color: white;
+                    }
+                </style>
         </head>
         <body>
             
@@ -47,20 +47,22 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 let table = $('#auditoria').DataTable({
-                    pageLength: 10, //Limitamos las consultas a 10.
-                    lengthMenu: [10, 15, 20, 25], //Agregamos opciones de aumentar o dismiuir opciones de menu.
+                    processing: true,
+                    serverSide: true,
                     ajax: '{{ route("recogerAuditoria") }}',
                     columns: [
                         { data: 'id', name: 'id' },
                         { data: 'tipo', name: 'tipo' },
                         { data: 'estado', name: 'estado' },
-                    ]
+                    ],
+                    pageLength: 10, //Limitamos las consultas a 10.
+                        lengthMenu: [10, 15, 20, 25], //Agregamos opciones de aumentar o dismiuir opciones de menu.
                 });
 
-                //Agregamos la funcion de que al hacer click en una columna, puedas ver en detalle la orden.
                 $('#auditoria tbody').on('click', 'tr', function() {
-                    let orden = table.row(this).data(); //Consigue la informacion de la columna.
-                    window.location.href = "/verAuditoria/" + orden.id; //Navegamos a la id de la orden.
+                    let orden = table.row(this).data();
+                    let id = orden.id;
+                    window.location.href = "/verAuditoria/" + id;
                 });
             });
         </script>

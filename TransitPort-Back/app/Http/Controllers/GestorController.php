@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Gestor;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
+use App\Models\Grua;
+use App\Models\Patio;
 
 class GestorController extends Controller {
     public function index(Request $request) {
@@ -12,35 +15,6 @@ class GestorController extends Controller {
         return $task;
         //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
     }
-
-    public function store(Request $request)
-{
-    $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'usuario' => 'required|string|max:255|unique:users,usuario',
-            'email' => 'required|email|unique:users,email',
-            'telefono' => 'required|string|max:15',
-            'codigoPostal' => 'required|string|max:10',
-            'password' => 'required|string|min:8|confirmed',
-            'cargo' => 'required|string|in:gestor,administrativo,operador',
-    ]);
-
-    try {
-        $validatedData['password'] = bcrypt($validatedData['password']); // Encriptar contraseña
-        $user = User::create($validatedData);
-
-        return response()->json([
-            'message' => 'Usuario creado con éxito.',
-            'user' => $user,
-        ], 201);
-
-    } catch (\Exception $e) {
-        return response()->json([
-            'message' => 'Error al crear el usuario.',
-            'error' => $e->getMessage(),
-        ], 500);
-    }
-}
 
     public function show(Request $request)
     {
@@ -81,10 +55,11 @@ class GestorController extends Controller {
 
     public function destroy(Request $request)
     {
-        $task = Gestor::destroy($request->id);  //task tienen el id que se ha borrado
+        $task = Gestor::findOrFail($request->id);
+        $task->delete();
 
         return response()->json([
-            "message" => "Gestor con id =" . $task . " ha sido borrado con éxito"
+            "message" => "Gestor con id =" . $request->id . " ha sido borrado con éxito"
         ], 201);
         //Esta función obtendra el id de la tarea que hayamos seleccionado y la borrará de nuestra BD
     }
@@ -101,4 +76,58 @@ class GestorController extends Controller {
 
     }
 
-}
+    public function crearPatio(){
+
+        return view('Gestor.crearPatio');
+
+    }
+
+    public function guardarUsuario(Request $request){
+
+        $user = $request -> validate([
+            'name' => 'string',
+            'usuario' => 'string',
+            'email' => 'email',
+            'telefono' => 'string',
+            'ciudad' => 'string',
+            'codigoPostal' => 'string',
+            'password' => 'string',
+            'cargo' => 'string|in:gestor,administrativo,operador',
+        ]);
+
+        try {
+            $user['password'] = bcrypt($user['password']); // Encriptar contraseña
+            User::create($user);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al crear el usuario.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+        return view('Gestor.crearUsuario');
+
+    }
+    public function guardarPatio(Request $request){
+
+        $patio = $request -> validate([
+            'nombre' => 'required|string|max:255',
+            'ubicacion' => 'required|string|max:255',
+            'capacidad' => 'required|integer',
+        ]);
+
+        try {
+            Patio::create($patio);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al crear el patio.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+        return view('Gestor.crearPatio');
+
+    }
+    }
+
+
