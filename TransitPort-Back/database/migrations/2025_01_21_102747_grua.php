@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('estado');
             $table->enum('tipo', ['SC', 'STS']);
             $table->float(column: 'capacidad_carga');
-            $table->foreignId('id_gestor')->onDelete('cascade');
+            $table->foreignId('id_gestor')->constrained('users')->onDelete('cascade');
             $table->timestamps();
           });
     }
