@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer(column: 'capacidad');
             $table->foreignId('id_gestor')->constrained('gestor');
             $table->foreignId('id_patio')->constrained('patio');
-            $table->foreignId('id_grua')->constrained('grua');
+            // $table->foreignId('id_grua')->constrained('grua');
             $table->timestamps();
           });
     }

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Log;
 use App\Models\Grua;
 use App\Models\Patio;
 use App\Models\Zona;
+use App\Http\Controllers\Datatables;
+use Illuminate\Support\Facades\Auth;
 
 class GestorController extends Controller {
     public function index(Request $request) {
@@ -113,16 +115,17 @@ class GestorController extends Controller {
 
         $patio = $request -> validate([
             'nombre' => 'required|string|max:255',
-            'ubicacion' => 'required|string|max:255',
             'x' => 'required|numeric',
             'y' => 'required|numeric',
             'z' => 'required|numeric',
+            'id_gestor' => 'required|exists:gestor,id',
         ]);
 
         $patio['capacidad'] = $patio['x'] * $patio['y'] * $patio['z'];
+        $patio['id_gestor'] = Auth::id();
 
         try {
-            Patio::create($patio);
+            $nuevoPatio=Patio::create($patio);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al crear el patio.',
@@ -130,7 +133,9 @@ class GestorController extends Controller {
             ], 500);
         }
 
-        return view('Gestor.crearPatio');
+        session(['id_patio' => $nuevoPatio->id]);
+
+        return redirect()->route('crearPatio');
 
     }
 
@@ -141,10 +146,20 @@ class GestorController extends Controller {
             'X' => 'required|numeric',
             'Y' => 'required|numeric',
             'Z' => 'required|numeric',
-            'id_gestor' => 'required|integer|exists:gestores,id',
-            'id_patio' => 'required|integer|exists:patios,id',
-            'id_grua' => 'required|integer|exists:gruas,id',
+            'id_gestor' => 'required|integer|exists:gestor,id',
+            'id_patio' => 'required|integer|exists:patio,id',
         ]);
+
+        $patio = Patio::findOrFail($zona['id_patio']);
+
+        if ($patio) {
+            $zona['ubicacion'] = $patio->nombre;
+        } else {
+            $zona['ubicacion'] = null;
+        }
+
+        $zona['capacidad'] = $zona['X'] * $zona['Y'] * $zona['Z'];
+
 
         try {
             Zona::create($zona);

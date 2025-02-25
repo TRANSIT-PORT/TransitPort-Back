@@ -13,16 +13,22 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
             <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
             <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
             <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
             <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
             <style>
-                #zona{
+                #zona table{
 
-                    margin-top: 10%;
+                    margin-top: 40%;
+
+                }
+
+                #tabla {
+
+                    margin-top:10%;
 
                 }
 
@@ -38,14 +44,18 @@
                     color: var(--Cinder-50, #F1F5FE);
                     width: 100px;
                     height: 54px;
-                    padding-left:-70px;
-                    border:none;
+                    padding-left: -70px;
+                    border: none;
                     text-align: center;
+                    position: sticky;
+                    top: 0;
+                    z-index: 10;
 
                 }
 
                 #zona tbody {
                     background: #F1F5FE;
+                    border: none;
 
                 }
 
@@ -53,6 +63,7 @@
                     background: #FFF;
                     color: #000000;
                     border-top: 10px solid #F1F5FE;
+                    border-right: none;
 
                 }
 
@@ -231,8 +242,8 @@
                     justify-content: center;
                     align-items: center;
                     background: var(--Cinder-950, #040813);
-                    margin-top:550px;
-                    margin-left: 155px;;
+                    margin-top:597px;
+                    margin-left: 192px;;
 
                 }
 
@@ -285,6 +296,9 @@
 
                 </div>
 
+                {{-- es un input invisible que recoge el id del gestor, para asignarlo al patio --}}
+                <input type="hidden" name="id_gestor" value="{{ Auth::user()->id }}">
+
                 <button type="submit" class="anyadirPatio btn btn-primary">Añadir</button>
 
             </form>
@@ -307,16 +321,21 @@
                             <label class="d-flex justify-content-center" for="valY">Valor Y:</label>
                             <input type="number" name="Y" id="valY">
                         </div>
-                        
+
                         <div class="d-flex flex-column">
                             <label class="d-flex justify-content-center" for="valZ">Valor Z:</label>
                             <input type="number" name="Z" id="valZ">
                         </div>
                 </div>
 
+                <input type="hidden" name="id_gestor" value="{{ Auth::user()->id }}">
+                <input type="hidden" name="id_patio" value="{{ session('id_patio') }}">
+                {{-- se pasa el ultimo id de patio creado en la sesion actual --}}
+
                     <button type="submit" class="anyadirBoton btn btn-primary">Añadir</button>
                 </form>
 
+                <div id="tabla">
                 <table id="zona" class="table table-bordered">
                         <thead>
                                 <tr>
@@ -330,11 +349,12 @@
 
                             </tbody>
                 </table>
+                </div>
 
                 </div>
 
                 <a class="crear btn btn-primary">Aceptar</a>
-           
+
                 <a class="cancelar btn btn-warning">Cancelar</a>
 
         </body>
@@ -350,9 +370,13 @@
                         { data: 'Y', name: 'Y' },
                         { data: 'Z', name: 'Z' }
                     ],
-                   "info": false, 
-                   
-  
+                   "info": false,
+                   "paging": false,
+                   "searching": true,
+                   "responsive": true,
+                   "ordering": false,
+                   "scrollY": "200px",
+
                 });
             });
         </script>

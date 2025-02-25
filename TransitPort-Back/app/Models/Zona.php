@@ -10,7 +10,7 @@ use App\Models\Grua;
 class Zona extends Model {
     protected $table = 'zona';
     protected $primaryKey = 'id';
-    protected $fillable = ['nombre', 'ubicacion', 'x', 'y', 'z', 'capacidad', 'id_gestor', 'id_patio', 'id_grua'];
+    protected $fillable = ['nombre', 'ubicacion', 'X', 'Y', 'Z', 'capacidad', 'id_gestor', 'id_patio'];
 
     public function gestor()
     {
@@ -22,8 +22,4 @@ class Zona extends Model {
         return $this->belongsTo(Patio::class, 'id_patio');
     }
 
-    public function grua()
-    {
-        return $this->belongsTo(Grua::class, 'id_grua');
-    }
 }
