@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text(column: 'tipo');
             $table->time(column: 'fin_horario');
             $table->time(column: 'inicio_horario');
-            $table ->foreign('id') -> references('id') -> on('users') -> onDelete('cascade');
+            $table->foreignId('id_users')-> constrained('users') -> onDelete('cascade');
             $table->foreignId('id_gestor')->constrained('gestor');
             $table->timestamps();
           });

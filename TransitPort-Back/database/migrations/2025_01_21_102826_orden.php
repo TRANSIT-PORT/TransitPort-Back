@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('id_grua')->constrained('grua')->onDelete('cascade');
             $table->foreignId('id_buque')->constrained('buque')->onDelete('cascade');
             $table->foreignId('id_zona')->constrained('zona')->onDelete('cascade');
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->timestamps();
           });
     }
