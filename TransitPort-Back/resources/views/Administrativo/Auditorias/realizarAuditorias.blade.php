@@ -2,8 +2,7 @@
     <!DOCTYPE html>
     <html>
         <head>
-            <!-- composer require yajra/laravel-datatables-oracle:^10.0 -->
-            <title>Ver auditoria</title>
+            <title>Realizar auditoria</title>
             <meta charset="utf-8">
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
@@ -11,7 +10,7 @@
             <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
             <style>
-                table th {
+                #detalles th, #orden th {
                     background: var(--Cinder-900, #152D65);
                     color: white;
                 }
@@ -59,8 +58,6 @@
                         <th>Tipo</th>
                         <th>Turno</th>
                         <th>Estado</th>
-                        <th>Historial</th>
-                        <th>Identificación de riesgos</th>
                     </tr>
                 </thead>
                 <tbody>
