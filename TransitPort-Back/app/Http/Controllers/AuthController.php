@@ -27,13 +27,13 @@ class AuthController extends Controller
             return response()->json(['success' => $success, 'user'=> $user, 'cargo' => $cargo],
             $this->successStatus);
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json(['error' => 'Unauthoriced'], 401);
         }
     }
 
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
-        return response()->json(['message' => 'Cerrado sesion']);
+        return response()->json(['message' => 'Cerrando sesión']);
     }
 }

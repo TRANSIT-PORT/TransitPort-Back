@@ -17,7 +17,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/loginAngular', [AuthController::class, 'login']);
 
 Route::get('/gestor', [GestorController::class, 'index']);
 
