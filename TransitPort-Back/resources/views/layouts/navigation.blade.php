@@ -3,7 +3,6 @@ div.menu {
     background-color: #133379;
     transition: width 0.5s ease-in-out;
     position: absolute;
-    top: 0;
     left: 0;
     width: 110px;
     height: 100vh;
@@ -12,7 +11,6 @@ div.menu {
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
-    z-index: 100;
 }
 
 div.menu:hover {
@@ -171,13 +169,6 @@ div.menu:hover .link span {
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('asignarTurno')" :active="request()->routeIs('asignarTurno')">
                             <img src="assets/Administrativo/buscarContenedor.svg">
-                            <span>Asignar turnos</span>
-                        </x-nav-link>
-                    </div>
-                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('verAuditoria')" :active="request()->routeIs('verAuditoria')">
-                            <img src="assets/Administrativo/buscarContenedor.svg">
-                            <span>Realizar auditorias</span>
                         </x-nav-link>
                     </div>
                 @endif
@@ -248,10 +239,10 @@ div.menu:hover .link span {
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+        <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <div class="text-base font-medium text-gray-800">{{ Auth::user()->name }}</div>
+                <div class="text-sm font-medium text-gray-500">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">

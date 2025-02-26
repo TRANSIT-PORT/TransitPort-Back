@@ -6,7 +6,7 @@ use App\Http\Controllers\GestorController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\UsuarioController;
-use App\Models\Turno;
+use App\Http\Controllers\OperadorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
@@ -28,9 +28,6 @@ Route::middleware('auth')->group(function () {
         Route::post('/guardarUsuario', [GestorController::class, 'guardarUsuario'])->name('guardarUsuario');
         Route::get('/crearPatio', [GestorController::class, 'crearPatio'])->name('crearPatio');
         Route::get('/crearGrua', [GestorController::class, 'crearGrua'])->name('crearGrua');
-        Route::post('/guardarPatio', [GestorController::class, 'guardarPatio'])->name('guardarPatio');
-        Route::post('/guardarZona', [GestorController::class, 'guardarZona'])->name('guardarZona');
-        Route::get('/verZona', [GestorController::class, 'verZona'])->name('verZona');
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
 
     });
@@ -52,6 +49,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware(['operador'])->group(function () {
         Route::get('/ordenes', [OrdenController::class, 'index'])->name('ordenes');
+        Route::get('/perfil', [OperadorController::class, 'perfil'])->name('ordenes');
     });
 });
 

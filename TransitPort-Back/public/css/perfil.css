@@ -1,16 +1,10 @@
 
-#cuerpo{
-
-    height: 100%;
-
-}
 
 #titulo
 {
 
   padding-left: 60px;
   gap: 1px;
-  margin-top: 15px;
 }
 
 #titulo {
@@ -86,8 +80,8 @@
 
 #body-perfil > img{
 
-  height: 15%;
-  width: 15%;
+  height: 10%;
+  width: 10%;
   border-radius: 97.5px;
 
 }

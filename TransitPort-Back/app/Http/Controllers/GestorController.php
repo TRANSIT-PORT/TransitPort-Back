@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class GestorController extends Controller {
     public function index(Request $request) {
-        $task = Gestor::all();
+        $task = User::all();
         return $task;
         //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
     }

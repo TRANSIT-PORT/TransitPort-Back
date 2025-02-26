@@ -117,19 +117,6 @@ class UsuarioSeeder extends Seeder {
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Eva María González',
-                'email' => 'emgonzalez@example.com',
-                'password' => bcrypt('3300'),
-                'estado' => 'Activo/a',
-                'usuario' => 'emgonzalez',
-                'cargo' => 'operador',
-                'ciudad' => 'Valencia',
-                'telefono' => '666666666',
-                'codigoPostal' => '46000',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
                 'name' => 'Jordi Martínez',
                 'email' => 'jmartinez@example.com',
                 'password' => bcrypt('2200'),
@@ -142,40 +129,11 @@ class UsuarioSeeder extends Seeder {
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'name' => 'Marina Dor',
-                'email' => 'mdor@example.com',
-                'password' => bcrypt('2220'),
-                'estado' => 'Activo/a',
-                'usuario' => 'mdor',
-                'cargo' => 'operador',
-                'ciudad' => 'Valencia',
-                'telefono' => '666666666',
-                'codigoPostal' => '46000',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
 
         ];
 
         foreach ($users as $user) {
-            $usuario = User::create($user);
-            if ($user['cargo'] === 'operador') {
-                $grua = ['SC', 'STS'];
-                $random = rand(0, 1);
-                
-                Operador::create([
-                    'id' => $usuario -> id,
-                    'nombre' => $user['name'],
-                    'usuario' => $user['usuario'],
-                    'password' => $user['password'],
-                    'cargo' => $user['cargo'],
-                    'estado' => $user['estado'],
-                    'tipo' => $grua[$random],
-                    'id_gestor' => 1,
-                    'id_turno' => 1,
-                ]);
-            }
+            User::create($user);
         }
     }
 }

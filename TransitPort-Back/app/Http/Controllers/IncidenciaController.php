@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class IncidenciaController extends Controller {
     public function index(Request $request) {
         //$task = Incidencia::all();
-        $task = DB::table('incidencia') 
+        $task = DB::table('incidencia')
         -> join('operador', 'incidencia.id_operador', '=', 'operador.id')
         -> join('orden', 'incidencia.id_orden', '=', 'orden.id')
         -> select('codigo_tipo', 'incidencia.tipo', 'incidencia.id_operador', 'incidencia.id_orden')
@@ -30,10 +30,10 @@ class IncidenciaController extends Controller {
         return $task;
         //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
     }
-
     public function store(Request $request) {
        $validatedData = $request->validate([
             'codigo_tipo' => 'int',
+            'tipo' => 'string',
             'observacion' => 'string',
             'id_orden' => 'int',
             'id_administrativo' => 'int',
@@ -69,6 +69,7 @@ class IncidenciaController extends Controller {
     {
         $validatedData = $request->validate([
             'codigo_tipo' => 'int',
+            'tipo' => 'string',
             'observacion' => 'string',
             'id_orden' => 'int',
             'id_administrativo' => 'int',

@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <div class=" vh-100 col-10 col-xl-9 col-lg-9 col-md-9" id="cuerpo">
+    <div class=" vh-100 col-10 col-xl-12 col-lg-9 col-md-9" id="cuerpo">
 
         <div class="d-flex flex-row" id="titulo">
             <svg xmlns="http://www.w3.org/2000/svg" width="56" height="55" viewBox="0 0 56 55" fill="none">

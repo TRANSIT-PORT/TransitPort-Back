@@ -19,11 +19,7 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/usuario', [UsuarioController::class, 'index']);
-
 Route::get('/gestor', [GestorController::class, 'index']);
-
-Route::get('/operador/ordenes', [OrdenesController::class, 'index']);
 
 Route::put('/gestor/actualizar/{id}', [GestorController::class, 'update']);
 
@@ -40,22 +36,17 @@ Route::get('/administrativo', [AdministrativoController::class, 'index']);
 Route::get('/operador', [OperadorController::class, 'index']);
 
 //Ordenes
+Route::get('/operador/ordenes', [OrdenesController::class, 'index']);
+
 Route::get('/orden', [OrdenController::class, 'index']);
 
-Route::put('/orden/actualizar/{id}', [OrdenController::class, 'update']);
+Route::put('operador/ordenes/orden/{id}', [OrdenController::class, 'update']);
 
 Route::post('/orden/guardar', [OrdenController::class, 'store']);
 
 Route::delete('/orden/borrar/{id}', [OrdenController::class, 'destroy']);
 
 Route::get('/orden/buscar/{id}', [OrdenController::class, 'show']);
-
-
-Route::get('/auditoriaArriba', [OrdenController::class, 'verAuditoria']);
-Route::get('/auditoriaAbajo', [OrdenController::class, 'verOrden']);
-
-Route::get('/visualizarAuditoria', [OrdenController::class, 'visualizarAuditoria']);
-
 
 //Contenedores
 Route::get('/contenedor', [ContenedorController::class, 'index']);
@@ -86,7 +77,9 @@ Route::get('/incidencia', [IncidenciaController::class, 'index']);
 
 Route::put('/incidencia/actualizar/{id}', [IncidenciaController::class, 'update']);
 
-Route::post('/incidencia/guardar', [IncidenciaController::class, 'store']);
+Route::post('/incidencia/{id}', [IncidenciaController::class, 'store']);
+
+Route::post('/incidencia', [IncidenciaController::class, 'store']);
 
 Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy']);
 
