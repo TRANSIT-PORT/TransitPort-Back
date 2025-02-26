@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Operador;
 use App\Models\Turno;
 use DateInterval;
 use DateTime;
@@ -111,12 +112,43 @@ class TurnoController extends Controller {
                 'id_operador' => '5',
             ]);
 
-            return view('Operador.welcome');
+            $mensaje = "¡Turno creado con éxito!";
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al guardar el turno.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+        return view('Administrativo.exito', ['mensaje' => $mensaje]);
+    }
+
+    public function crearOpciones() {
+        $operadores = Operador::all();
+        $turnos = Turno::all();
+
+        return view('Administrativo.asignarTurno', ['operadores' => $operadores, 'turnos' => $turnos]);
+    }
+
+    public function actualizarTurno(Request $request) {
+        $turno = $request -> validate([
+            'id_operador' => 'int',
+            'id_turno' => 'int'
+        ]);
+
+        try {
+            $operador = Operador::findOrFail($turno['id_operador']);
+            $operador -> update($turno);
+
+            $mensaje = "A " . $operador -> nombre . " se le ha actualizado el turno con exito.";
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al actualizar el turno.',
                 'error' => $e->getMessage(),
             ], 500);
         }
+
+        return view('Administrativo.exito', ['mensaje' => $mensaje]);
     }
 }

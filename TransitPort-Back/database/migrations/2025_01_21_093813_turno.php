@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('patio', function (Blueprint $table) {
+        Schema::create(table: 'turno', callback: function (Blueprint $table) {
             $table->id();
-            $table->float('x');
-            $table->float('y');
-            $table->float('z');
-            $table->integer(column: 'capacidad');
-            $table->foreignId('id_gestor')->constrained('users');
+            $table->timestamp('fecha_inicio') -> nullable();
+            $table->timestamp('fecha_fin') -> nullable();
             $table->timestamps();
-          });
+          });          
     }
+
 
     /**
      * Reverse the migrations.

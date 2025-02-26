@@ -20,7 +20,6 @@ class AdministrativoMiddleware
         if (Auth::check() && Auth::user()->cargo === 'administrativo') {
             return $next($request);
         }
-        return redirect()->route('login');  //en caso contrario va al login
-        //return redirect()->route('usuario');
+        return redirect()->route('login');  //en caso contrario va al login.
     }
 }
