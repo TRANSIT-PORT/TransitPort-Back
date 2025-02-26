@@ -11,4 +11,10 @@ class OperadorController extends Controller {
         return $task;
         //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
     }
+
+    public function perfil(){
+
+        return view('Operador.perfil');
+
+    }
 }

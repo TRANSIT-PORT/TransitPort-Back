@@ -64,8 +64,9 @@ class OrdenController extends Controller {
     public function update(Request $request)
     {
         $validatedData = $request->validate([
+            'id' => 'required',
             'tipo' => 'string',
-            'cantidad_contenedores' => 'int',
+            'estado' => 'nullable|string|in:Por empezar,En curso,Completada',
             'fecha_carga' => 'date',
             'fecha_descarga' => 'date',
             'id_grua' => 'int',
@@ -76,14 +77,19 @@ class OrdenController extends Controller {
         ]);
 
         try {
-            $task = Orden::findOrFail($request["id"]);
-            $task->update($validatedData);
+            $task = Orden::findOrFail($validatedData["id"]);
+
+        // Usar fill() en lugar de update() para mayor control
+        $task->fill($validatedData);
+
+        if ($task->isDirty()) { // Verifica si hay cambios antes de guardar
+            $task->save();
+        }
 
             return response()->json([
-                'message' => 'Orden actualizada con éxito.',
-                'task' => $task,
+                'message' => 'Orden actualizada con éxito en la base de datos.',
+                'task' => $validatedData,
             ], 200);
-            //Esta función actualizará la tarea que hayamos seleccionado
 
         } catch (\Exception $e) {
 

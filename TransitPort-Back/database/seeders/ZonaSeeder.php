@@ -15,6 +15,25 @@ class ZonaSeeder extends Seeder {
                 'capacidad' => '3500',
                 'id_gestor' => '1',
                 'id_patio' => '1',
+                'id_grua' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'ubicacion' => 'Terminal Norte',
+                'capacidad' => '5000',
+                'id_gestor' => '2',
+                'id_patio' => '1',
+                'id_grua' => '2',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'ubicacion' => 'Muelle Este',
+                'capacidad' => '4200',
+                'id_gestor' => '1',
+                'id_patio' => '1',
+                'id_grua' => '3',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -34,3 +53,4 @@ class ZonaSeeder extends Seeder {
         }
     }
 }
+
