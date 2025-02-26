@@ -7,7 +7,9 @@ use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OperadorController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
@@ -40,8 +42,11 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware(['operador'])->group(function () {
-        Route::get('/ordenes', [OrdenController::class, 'index'])->name('ordenes');
-        Route::get('/perfil', [OperadorController::class, 'perfil'])->name('ordenes');
+        Route::get('operador/ordenes', [OrdenController::class, 'index'])->name('ordenes');
+        Route::get('operador/perfil', [OperadorController::class, 'perfil'])->name('perfil');
+        Route::post('operador/logout', [AuthController::class, 'logout'])->name('operador.logout');
+        Route::get('operador/logout', [AuthController::class, 'volver'])->name('operador.volver');
+
     });
 });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Operador;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OperadorController extends Controller {
     public function index(Request $request) {
@@ -14,7 +15,9 @@ class OperadorController extends Controller {
 
     public function perfil(){
 
-        return view('Operador.perfil');
+        $usuario = Auth::user();
+
+        return view('Operador.vistaPerfil', compact('usuario'));
 
     }
 }
