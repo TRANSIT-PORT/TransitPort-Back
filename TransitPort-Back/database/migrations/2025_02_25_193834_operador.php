@@ -11,14 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gestor', function (Blueprint $table) {
+        Schema::create('operador', function (Blueprint $table) {
             $table->id();
             $table->text('nombre');
             $table->text(column: 'usuario');
             $table->text(column: 'password');
-            $table->enum('cargo', ['gestor']);
+            $table->enum('cargo', ['operador']);
             $table->string('estado');
-            $table -> foreign('id') -> references('id') -> on('users');
+            $table->text(column: 'tipo');
+            $table->time(column: 'fin_horario');
+            $table->time(column: 'inicio_horario');
+            $table->foreignId('id_users')-> constrained('users') -> onDelete('cascade');
+            $table->foreignId('id_gestor')->constrained('gestor');
             $table->timestamps();
           });
     }

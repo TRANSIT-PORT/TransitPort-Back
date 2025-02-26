@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('grua', callback: function (Blueprint $table) {
+        Schema::create(table: 'turno', callback: function (Blueprint $table) {
             $table->id();
-            $table->text('nombre');
-            $table->text('modelo');
-            $table->text('marca');
-            $table->text('estado');
-            $table->enum('tipo', ['SC', 'STS']);
-            $table->float(column: 'capacidad_carga');
-            $table->foreignId('id_gestor')->constrained('users')->onDelete('cascade');
+            $table->timestamp('fecha_inicio') -> nullable();
+            $table->timestamp('fecha_fin') -> nullable();
             $table->timestamps();
-          });
+          });          
     }
+
 
     /**
      * Reverse the migrations.

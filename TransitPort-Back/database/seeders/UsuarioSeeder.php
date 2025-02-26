@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Administrativo;
+use App\Models\Gestor;
+use App\Models\Operador;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -130,7 +133,23 @@ class UsuarioSeeder extends Seeder {
         ];
 
         foreach ($users as $user) {
-            User::create($user);
+            $usuario = User::create($user);
+            if ($user['cargo'] === 'operador') {
+                $grua = ['SC', 'STS'];
+                $random = rand(0, 1);
+                
+                Operador::create([
+                    'id' => $usuario -> id,
+                    'nombre' => $user['name'],
+                    'usuario' => $user['usuario'],
+                    'password' => $user['password'],
+                    'cargo' => $user['cargo'],
+                    'estado' => $user['estado'],
+                    'tipo' => $grua[$random],
+                    'id_gestor' => 1,
+                    'id_turno' => 1,
+                ]);
+            }
         }
     }
 }

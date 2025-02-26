@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use App\Models\Grua;
 use App\Models\Patio;
+use App\Models\Zona;
+use App\Http\Controllers\Datatables;
+use Illuminate\Support\Facades\Auth;
 
 class GestorController extends Controller {
     public function index(Request $request) {
@@ -55,10 +58,11 @@ class GestorController extends Controller {
 
     public function destroy(Request $request)
     {
-        $task = Gestor::destroy($request->id);  //task tienen el id que se ha borrado
+        $task = Gestor::findOrFail($request->id);
+        $task->delete();
 
         return response()->json([
-            "message" => "Gestor con id =" . $task . " ha sido borrado con éxito"
+            "message" => "Gestor con id =" . $request->id . " ha sido borrado con éxito"
         ], 201);
         //Esta función obtendra el id de la tarea que hayamos seleccionado y la borrará de nuestra BD
     }
@@ -107,17 +111,21 @@ class GestorController extends Controller {
         return view('Gestor.crearUsuario');
 
     }
-
     public function guardarPatio(Request $request){
 
         $patio = $request -> validate([
-
-
-
+            'nombre' => 'required|string|max:255',
+            'x' => 'required|numeric',
+            'y' => 'required|numeric',
+            'z' => 'required|numeric',
+            'id_gestor' => 'required|exists:gestor,id',
         ]);
 
+        $patio['capacidad'] = $patio['x'] * $patio['y'] * $patio['z'];
+        $patio['id_gestor'] = Auth::id();
+
         try {
-            Patio::create($patio);
+            $nuevoPatio=Patio::create($patio);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al crear el patio.',
@@ -125,8 +133,51 @@ class GestorController extends Controller {
             ], 500);
         }
 
-        return view('Gestor.crearPatio');
+        session(['id_patio' => $nuevoPatio->id]);
+
+        return redirect()->route('crearPatio');
 
     }
 
-}
+    public function guardarZona(Request $request){
+
+        $zona = $request -> validate([
+            'nombre' => 'required|string|max:255',
+            'X' => 'required|numeric',
+            'Y' => 'required|numeric',
+            'Z' => 'required|numeric',
+            'id_gestor' => 'required|integer|exists:gestor,id',
+            'id_patio' => 'required|integer|exists:patio,id',
+        ]);
+
+        $patio = Patio::findOrFail($zona['id_patio']);
+
+        if ($patio) {
+            $zona['ubicacion'] = $patio->nombre;
+        } else {
+            $zona['ubicacion'] = null;
+        }
+
+        $zona['capacidad'] = $zona['X'] * $zona['Y'] * $zona['Z'];
+
+
+        try {
+            Zona::create($zona);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al crear la zona.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+        return view('Gestor.crearPatio');
+    }
+
+    public function verZona() {
+         $zonas = Zona::select(['nombre', 'X', 'Y', 'Z']);
+        return datatables()->of($zonas)->make(true);
+    }
+
+    }
+
+
