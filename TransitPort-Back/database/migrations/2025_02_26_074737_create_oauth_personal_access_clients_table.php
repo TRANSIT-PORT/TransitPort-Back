@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(table: 'buque', callback: function (Blueprint $table) {
-            $table->id();
-            $table->text('nombre');
-            $table->integer('amarre');
-            $table->text(column: 'procedencia');
-            $table->text(column: 'destino');
-            $table->foreignId('id_administrativo')->constrained('users');
+        Schema::create('oauth_personal_access_clients', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('client_id');
             $table->timestamps();
-          });
+        });
     }
 
     /**
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('oauth_personal_access_clients');
     }
 };
