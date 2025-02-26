@@ -175,10 +175,18 @@ div.menu:hover .link span {
                         </x-nav-link>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <img src="assets/Administrativo/buscarContenedor.svg">
+                        <span>Buscar contenedores</span>
+                    </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('verAuditoria')" :active="request()->routeIs('verAuditoria')">
-                            <img src="assets/Administrativo/buscarContenedor.svg">
+                            <img src="assets/Administrativo/realizarAuditoria.svg">
                             <span>Realizar auditorias</span>
                         </x-nav-link>
+                    </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <img src="assets/Administrativo/incidencias.svg">
+                        <span>Incidencias</span>
                     </div>
                 @endif
                 @if (auth() -> user() -> cargo === 'gestor')
