@@ -22,7 +22,6 @@ class AuthController extends Controller
     {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
-            $cargo = $user -> cargo;
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             return response()->json(['success' => $success, 'user'=> $user, 'cargo' => $cargo],
             $this->successStatus);
@@ -33,7 +32,21 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
-        return response()->json(['message' => 'Cerrando sesión']);
+
+        $isUser = $request->user()->token()->revoke();
+        if($isUser){
+            $success['message'] = "Successfully logged out.";
+            return response()->json(['success' => $isUser], $this->successStatus);
+        }
+        else{
+            return response()->json(['error' => 'Unauthorised'], 401);
+        }
+
+    }
+
+    public function volver(){
+
+        return redirect()->route('operador/logout');
+
     }
 }
