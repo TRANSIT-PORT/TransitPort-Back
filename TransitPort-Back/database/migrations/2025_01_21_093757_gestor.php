@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('grua', callback: function (Blueprint $table) {
+        Schema::create('gestor', function (Blueprint $table) {
             $table->id();
             $table->text('nombre');
-            $table->text('modelo');
-            $table->text('marca');
-            $table->text('estado');
-            $table->enum('tipo', ['SC', 'STS']);
-            $table->float(column: 'capacidad_carga');
-            $table->foreignId('id_gestor')->onDelete('cascade');
+            $table->text(column: 'usuario');
+            $table->text(column: 'password');
+            $table->enum('cargo', ['gestor']);
+            $table->string('estado');
+            $table -> foreign('id') -> references('id') -> on('users');
             $table->timestamps();
           });
     }

@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('patio', function (Blueprint $table) {
-            $table->id()->autoIncrement();
+        Schema::create('administrativo', function (Blueprint $table) {
+            $table->id();
             $table->text('nombre');
-            $table->float('x')->default(0);
-            $table->float('y')->default(0);
-            $table->float('z')->default(0);
-            $table->integer(column: 'capacidad');
+            $table->text(column: 'usuario');
+            $table->text(column: 'password');
+            $table->enum('cargo', ['administrativo']);
+            $table->string('estado');
+            //$table->integer(column: 'id_gestor')->unsigned();
+            $table -> foreign('id') -> references('id') -> on('users') -> onDelete('cascade');
             $table->foreignId('id_gestor')->constrained('gestor');
             $table->timestamps();
           });

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->enum('estado', ['Por empezar', 'En curso', 'Completada']);
-            $table->foreignId('id_administrativo')->constrained('users')->onDelete('cascade');
+            $table->foreignId('id_administrativo')->constrained('administrativo')->onDelete('cascade');
             $table->foreignId('id_operador')->constrained('operador')->onDelete('cascade');
             $table->foreignId('id_grua')->constrained('grua')->onDelete('cascade');
             $table->foreignId('id_buque')->constrained('buque')->onDelete('cascade');
