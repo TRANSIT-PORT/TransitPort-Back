@@ -22,8 +22,9 @@ class AuthController extends Controller
     {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
+            $cargo = $user -> cargo;
             $success['token'] =  $user->createToken('MyApp')->accessToken;
-            return response()->json(['success' => $success, 'user'=> $user],
+            return response()->json(['success' => $success, 'user'=> $user, 'cargo' => $cargo],
             $this->successStatus);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
