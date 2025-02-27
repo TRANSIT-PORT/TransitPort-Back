@@ -42,7 +42,7 @@
                     bottom: -45px;
                 }
                 .titulo {
-                    width: 320px;
+                    width: 340px;
 
                     display: flex;
                     align-items: center;

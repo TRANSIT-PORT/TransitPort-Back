@@ -19,8 +19,6 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/usuario', [UsuarioController::class, 'index']);
-
 Route::get('/gestor', [GestorController::class, 'index']);
 
 Route::get('/operador/ordenes', [OrdenesController::class, 'index']);

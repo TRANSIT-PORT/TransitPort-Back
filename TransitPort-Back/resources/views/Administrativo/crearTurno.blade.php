@@ -161,8 +161,7 @@
                 }
                 #icono {
                     position: relative;
-                    left: 90%;
-                    top: -40px;
+                    left: -10%;
                     cursor: pointer;
                 }
                 .hora {
@@ -192,7 +191,7 @@
                 /* Estilo del calendario */
                 #calendario {
                     float: right;
-                    margin-right: 6%;
+                    margin-right: 3%;
                     padding: 60px;
                     width: 50%;
                     box-shadow: 0px 4px 32px 0px rgba(170, 170, 170, 0.03);
