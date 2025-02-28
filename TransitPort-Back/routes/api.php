@@ -41,6 +41,8 @@ Route::get('/administrativo', [AdministrativoController::class, 'index']);
 //Operador
 Route::get('/operador', [OperadorController::class, 'index']);
 
+Route::get('/operador/notificaciones', [OperadorController::class, 'verNotificaciones']);
+
 //Ordenes
 Route::get('/operador/ordenes', [OrdenesController::class, 'index']);
 

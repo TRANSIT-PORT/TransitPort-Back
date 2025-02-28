@@ -44,8 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['operador'])->group(function () {
         Route::get('operador/ordenes', [OrdenController::class, 'index'])->name('ordenes');
         Route::get('operador/perfil', [OperadorController::class, 'perfil'])->name('perfil');
+        Route::get('operador/verNotificaciones', [OperadorController::class, 'verNotificaciones'])->name('verNotificaciones');
         Route::post('operador/logout', [AuthController::class, 'logout'])->name('operador.logout');
-        Route::get('operador/logout', [AuthController::class, 'volver'])->name('operador.volver');
+        Route::post('operador/logout', [AuthController::class, 'volver'])->name('operador.volver');
 
     });
 });

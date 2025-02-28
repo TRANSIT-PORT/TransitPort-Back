@@ -23,6 +23,7 @@ class OrdenController extends Controller {
        $validatedData = $request->validate([
             'tipo' => 'string',
             'cantidad_contenedores' => 'int',
+            'visto'=>'boolean',
             'fecha_carga' => 'date',
             'fecha_descarga' => 'date',
             'id_grua' => 'int',
@@ -138,6 +139,7 @@ class OrdenController extends Controller {
                 "tipo" => $orden['tipo'],
                 "cantidad_contenedores" => $tiene,
                 "fecha_inicio" => $turno['fecha_inicio'],
+                "visto" => '0',
                 "fecha_fin" => $turno['fecha_fin'],
                 "estado" => "Por empezar",
                 "id_grua" => $zona['id_grua'],
