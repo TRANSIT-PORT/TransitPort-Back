@@ -20,7 +20,6 @@ class OrdenController extends Controller {
     public function index(Request $request) {
         $task = Orden::all();
         return $task;
-        //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
     }
 
     public function store(Request $request) {
@@ -149,7 +148,6 @@ class OrdenController extends Controller {
                 "id_zona" => $orden['id_zona'],
             ]);
 
-            $mensaje = "¡Orden creada con éxito!";
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al crear la Orden.',
@@ -157,7 +155,10 @@ class OrdenController extends Controller {
             ], 500);
         }
 
-        return view('Administrativo.exito', ['mensaje' => $mensaje]);
+        return redirect() -> route('exito') -> with([
+            'cabecera' => "Crear orden",
+            'mensaje' => "¡Orden creada con éxito!"
+        ]);
     }
 
     public function verAuditoria(Request $request) {
@@ -197,8 +198,13 @@ class OrdenController extends Controller {
         return $task;
     }
 
+    /**
+     * Funcion para mostrar las auditorias con Datatables.
+     */
     public function visualizarAuditoria() {
-        $orden = Orden::select(['id', 'tipo', 'estado']);
+        $orden = Orden::select(['id', 'tipo', 'estado'])
+        -> where('estado', '!=', 'completada')
+        -> get();
 
         return DataTables::of($orden)
             -> make(true);
