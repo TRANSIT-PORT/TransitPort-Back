@@ -16,18 +16,23 @@ class GruaController extends Controller
 
     public function asignarGrua(Request $request)
     {
+
+        $request->validate([
+            'id_zona' => 'required|integer|exists:zonas,id', 
+            'id_grua' => 'required|integer|exists:gruas,id', 
+        ]);
+
         $id_zona = $request->input('id_zona');
-        $gruas = $request->input('gruas');
+        $id_grua = $request->input('id_grua');
 
-        foreach ($gruas as $grua) {
-            Pertenece::create([
-                'id_grua' => $grua['id'],
-                'id_zona' => $id_zona,
-                'fecha' => now()->toDateString(),
-                'hora' => now()->toTimeString(),
-            ]);
-        }
+        Pertenece::create([
+            'id_grua' => $id_grua,
+            'id_zona' => $id_zona,
+            'fecha' => now()->toDateString(),
+            'hora' => now()->toTimeString(), 
+        ]);
 
-        return response()->json(['message' => 'Grúas asignadas correctamente']);
+        
+        return response()->json(['message' => 'Grúa asignada correctamente']);
     }
 }

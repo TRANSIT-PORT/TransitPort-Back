@@ -42,19 +42,36 @@ Route::get('/operador/ordenes', [OrdenesController::class, 'index']);
 
 Route::get('/orden', [OrdenController::class, 'index']);
 
+Route::put('operador/ordenes/orden/{id}', [OrdenController::class, 'update']);
 
-Route::get('/auditoriaArriba', [OrdenController::class, 'verAuditoria']);
-Route::get('/auditoriaAbajo', [OrdenController::class, 'verOrden']);
+Route::post('/orden/guardar', [OrdenController::class, 'store']);
 
-Route::get('/visualizarAuditoria', [OrdenController::class, 'visualizarAuditoria']);
+Route::delete('/orden/borrar/{id}', [OrdenController::class, 'destroy']);
 
+Route::get('/orden/buscar/{id}', [OrdenController::class, 'show']);
 
 //Contenedores
 Route::get('/contenedor', [ContenedorController::class, 'index']);
 
+Route::put('/contenedor/actualizar/{id}', [ContenedorController::class, 'update']);
+
+Route::post('/contenedor/guardar', [ContenedorController::class, 'store']);
+
+Route::delete('/contenedor/borrar/{id}', [ContenedorController::class, 'destroy']);
+
+Route::get('/contenedor/buscar/{id}', [ContenedorController::class, 'show']);
+
 
 //Tiene
 Route::get('/tiene', [TieneController::class, 'index']);
+
+Route::put('/tiene/actualizar/{id}', [TieneController::class, 'update']);
+
+Route::post('/tiene/guardar', [TieneController::class, 'store']);
+
+Route::delete('/tiene/borrar/{id}', [TieneController::class, 'destroy']);
+
+Route::get('/tiene/buscar/{id}', [TieneController::class, 'show']);
 
 
 //Incidencia
@@ -69,3 +86,9 @@ Route::post('/incidencia', [IncidenciaController::class, 'store']);
 Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy']);
 
 Route::get('/incidencia/buscar/{id}', [IncidenciaController::class, 'show']);
+
+
+// Grúas
+Route::get('/grua', [GruaController::class, 'index']);
+Route::get('/zona', [ZonaController::class, 'index']);
+Route::post('/asignar-grua', [GruaController::class, 'asignarGrua']);
