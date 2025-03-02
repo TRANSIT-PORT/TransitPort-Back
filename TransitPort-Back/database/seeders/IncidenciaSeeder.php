@@ -15,7 +15,7 @@ class IncidenciaSeeder extends Seeder {
                 'observacion' => 'Gancho de la grua SC 2 averiado.',
                 'id_orden' => '1',
                 'id_administrativo' => '4',
-                'id_operador' => '7',
+                'id_operador' => '6',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -25,7 +25,7 @@ class IncidenciaSeeder extends Seeder {
                 'observacion' => 'Contenedor volcado en la zona 2.',
                 'id_orden' => '2',
                 'id_administrativo' => '4',
-                'id_operador' => '9',
+                'id_operador' => '6',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

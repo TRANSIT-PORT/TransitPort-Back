@@ -42,4 +42,12 @@ class Orden extends Model
     {
         return $this->hasOne(Tiene::class, 'id_buque');
     }
+    public function zona()
+    {
+        return $this->hasOne(Zona::class, 'id');
+    }
+    public function contenedor()
+    {
+        return $this->hasOne(Contenedor::class, 'id');
+    }
 }

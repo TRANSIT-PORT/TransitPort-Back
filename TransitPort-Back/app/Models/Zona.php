@@ -10,18 +10,16 @@ use App\Models\Grua;
 class Zona extends Model {
     protected $table = 'zona';
     protected $primaryKey = 'id';
-    protected $fillable = ['ubicacion', 'capacidad', 'id_gestor', 'id_patio', 'id_grua'];
+    protected $fillable = ['nombre', 'ubicacion', 'X', 'Y', 'Z', 'capacidad', 'id_gestor', 'id_patio'];
 
-    public function gestores()
+    public function gestor()
     {
-        return $this->belongsToMany(Gestor::class);
+        return $this->belongsTo(Gestor::class, 'id_gestor');
     }
-    public function patios()
+
+    public function patio()
     {
-        return $this->belongsToMany(Patio::class);
+        return $this->belongsTo(Patio::class, 'id_patio');
     }
-    public function gruas()
-    {
-        return $this->belongsToMany(Grua::class);
-    }
+
 }

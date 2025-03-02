@@ -6,8 +6,10 @@ use App\Http\Controllers\GestorController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\UsuarioController;
-use App\Models\Turno;
+use App\Http\Controllers\OperadorController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
@@ -23,11 +25,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware(['gestor'])->group(function () {
+
         Route::get('/crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
         Route::post('/guardarUsuario', [GestorController::class, 'guardarUsuario'])->name('guardarUsuario');
         Route::get('/crearPatio', [GestorController::class, 'crearPatio'])->name('crearPatio');
         Route::get('/crearGrua', [GestorController::class, 'crearGrua'])->name('crearGrua');
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+
     });
 
     Route::middleware(['administrativo'])->group(function () {
@@ -48,7 +52,11 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware(['operador'])->group(function () {
-        Route::get('/ordenes', [OrdenController::class, 'index'])->name('ordenes');
+        Route::get('operador/ordenes', [OrdenController::class, 'index'])->name('ordenes');
+        Route::get('operador/perfil', [OperadorController::class, 'perfil'])->name('perfil');
+        Route::post('operador/logout', [AuthController::class, 'logout'])->name('operador.logout');
+        Route::get('operador/logout', [AuthController::class, 'volver'])->name('operador.volver');
+
     });
 });
 

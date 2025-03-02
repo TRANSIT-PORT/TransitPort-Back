@@ -14,15 +14,14 @@ return new class extends Migration
         Schema::create(table: 'orden', callback: function (Blueprint $table) {
             $table->id();
             $table->text(column: 'tipo');
-            $table->integer(column: 'cantidad_contenedores');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->enum('estado', ['Por empezar', 'En curso', 'Completada']);
-            $table->foreignId('id_administrativo')->constrained('users')->onDelete('cascade');
-            $table->foreignId('id_operador')->constrained('operador')->onDelete('cascade');
+            $table->foreignId('id_administrativo')->constrained('administrativo')->onDelete('cascade');
             $table->foreignId('id_grua')->constrained('grua')->onDelete('cascade');
             $table->foreignId('id_buque')->constrained('buque')->onDelete('cascade');
             $table->foreignId('id_zona')->constrained('zona')->onDelete('cascade');
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

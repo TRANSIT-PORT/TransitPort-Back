@@ -9,8 +9,8 @@
 <body>
 
     <div class="d-flex flex-row">
-        @include('menu')
-        @include('perfil')
+        @include('Operador.menu')
+        @include('Operador.perfil')
     </div>
 
 </body>
