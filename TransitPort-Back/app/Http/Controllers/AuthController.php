@@ -18,14 +18,16 @@ class AuthController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function login()
-    {
+    public function login() {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $cargo = $user -> cargo;
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             return response()->json(['success' => $success, 'user'=> $user, 'cargo' => $cargo],
-            $this->successStatus);
+            $this->successStatus)
+                ->header('Access-Control-Allow-Origin', '*')
+                ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
+                ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
