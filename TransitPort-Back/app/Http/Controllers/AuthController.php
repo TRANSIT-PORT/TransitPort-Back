@@ -20,9 +20,7 @@ class AuthController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function login() {
-        Log::info("request('email')");
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
-            Log::info(request('email'));
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             return response()->json(['success' => $success, 'user'=> $user],
