@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer(column: 'codigo_tipo');
             $table->text(column: 'tipo');
             $table->text(column: 'observacion');
-            $table->foreignId('id_administrativo')->constrained('administrativo')->onDelete('cascade');
+            $table->foreignId('id_administrativo')-> constrained('users') -> onDelete('cascade');
             $table->foreignId('id_orden')->constrained('orden')->onDelete('cascade');
             $table->foreignId('id_operador')->constrained('operador')->onDelete('cascade');
             $table->timestamps();
