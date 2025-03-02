@@ -12,7 +12,7 @@ class Orden extends Model
 {
     protected $table = 'orden';
     protected $primaryKey = 'id';
-    protected $fillable = ['tipo', 'cantidad_contenedores', 'fecha_inicio', 'fecha_fin', 'id_administrativo', 'id_operador', 'id_buque', 'id_zona', 'id_grua'];
+    protected $fillable = ['tipo', 'cantidad_contenedores', 'fecha_inicio', 'fecha_fin', 'id_administrativo','visto', 'id_operador', 'id_buque', 'id_zona', 'id_grua'];
 
     public function administrativos()
     {

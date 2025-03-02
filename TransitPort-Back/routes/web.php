@@ -8,6 +8,7 @@ use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OperadorController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GruaController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,7 +17,7 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/guardarUsuario', [GestorController::class, 'guardarUsuario'])->name('guardarUsuario');
         Route::get('/crearPatio', [GestorController::class, 'crearPatio'])->name('crearPatio');
         Route::get('/crearGrua', [GestorController::class, 'crearGrua'])->name('crearGrua');
+        Route::post('/guardarGrua', [GruaController::class, 'guardarGrua'])->name('guardarGrua');
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
 
     });

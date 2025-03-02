@@ -27,7 +27,7 @@ class OrdenController extends Controller {
        $validatedData = $request->validate([
             'tipo' => 'string',
             'cantidad_contenedores' => 'int',
-            'visto'=>'boolean',
+            'visto'=> 'boolean',
             'fecha_carga' => 'date',
             'fecha_descarga' => 'date',
             'id_grua' => 'int',
@@ -68,6 +68,7 @@ class OrdenController extends Controller {
             'id' => 'required',
             'tipo' => 'string',
             'estado' => 'nullable|string|in:Por empezar,En curso,Completada',
+            'visto' => 'boolean',
             'fecha_carga' => 'date',
             'fecha_descarga' => 'date',
             'id_grua' => 'int',
@@ -157,7 +158,7 @@ class OrdenController extends Controller {
                 "id_zona" => $orden['id_zona'],
             ]);
 
-            $mensaje = "¡Orden creada con éxito!";
+            $mensaje = "¡Grua creada con éxito!";
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al crear la Orden.',

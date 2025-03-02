@@ -34,10 +34,8 @@ class OperadorController extends Controller {
         }
 
         $userId = $usuario->id;
+        $noLeidas = Orden::where('id_user', $userId)->where('visto', false)->count();
         $task = Orden::where('id_user', $userId)->with('administrativo')->get();
-        return view('Operador.vistaNotificaciones', compact('usuario', 'task'));
+        return view('Operador.vistaNotificaciones', compact('usuario', 'task', 'noLeidas'));
     }
-
-
-
 }

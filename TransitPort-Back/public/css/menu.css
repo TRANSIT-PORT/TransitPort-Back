@@ -73,6 +73,22 @@
     margin: 0;
 }
 
+#cantidadNotificaciones{
+
+    display: inline-flex;
+    background-color: #E59506;
+    align-items: center;
+    padding: 5px;
+    width: 40px;
+    font-size: 18px;
+    color: #040813;
+    font-weight: bolder;
+    justify-content: center;
+    align-content: center;
+    border-radius: 40px;
+
+}
+
 .boton-logout, .boton-logout:active, .boton-logout:focus{
 
     color: #f1f5fe;

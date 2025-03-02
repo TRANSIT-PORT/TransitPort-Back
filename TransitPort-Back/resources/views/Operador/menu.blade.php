@@ -49,7 +49,8 @@
               stroke-width="2"
             />
           </svg>
-          Notificaciones
+          Notificaciones <p id="cantidadNotificaciones">{{$noLeidas}}</p>
+
         </a>
       </div>
 

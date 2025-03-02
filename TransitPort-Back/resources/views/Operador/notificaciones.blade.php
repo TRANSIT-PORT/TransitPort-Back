@@ -28,7 +28,7 @@
 
                 @foreach($task as $t)
 
-                    @if($t->visto == '1')
+                    @if($t->visto == '0')
 
                         @if($t->tipo == 'carga')
 
@@ -40,7 +40,7 @@
                         <li class="descarga">{{$t->administrativo->nombre}} te ha asignado una nueva orden de {{$t->tipo}}</li>
                         @endif
 
-                        @endif
+                    @endif
 
                 @endforeach
 

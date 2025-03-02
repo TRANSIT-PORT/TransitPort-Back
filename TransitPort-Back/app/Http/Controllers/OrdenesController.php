@@ -14,4 +14,5 @@ class OrdenesController extends Controller
         $task = Orden::with(['buque', 'tiene', 'zona', 'contenedor'])->where('id_user', $idUser)->get();
         return $task;
     }
+    
 }
