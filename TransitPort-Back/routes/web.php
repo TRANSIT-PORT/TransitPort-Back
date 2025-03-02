@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/asignarTurno', [TurnoController::class, 'crearOpciones'])->name('asignarTurno');
         Route::post('/actualziarTurno', [TurnoController::class, 'actualizarTurno']) -> name('actualizarTurno');
 
+        Route::view('/exito', 'Administrativo.exito') -> name('exito');
+
         Route::view('/verAuditoria', 'Administrativo.Auditorias.verAuditoria') -> name('verAuditoria');
         Route::get('/recogerAuditoria', [OrdenController::class, 'visualizarAuditoria']) -> name('recogerAuditoria');
         Route::get('/verAuditoria/{id}', [OrdenController::class, 'mostrarUno']) -> name('mostrarAuditoria');
