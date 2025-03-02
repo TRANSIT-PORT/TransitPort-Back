@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'gestor' => GestorMiddleware::class,
-            'administrativo' => AdministrativoMiddleware::class,
+            'administrativo' => AdministrativoMiddleware::class,    
             'operador' => OperadorMiddleware::class,
         ]);
         $middleware->append(HandleCors::class);

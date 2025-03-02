@@ -12,6 +12,8 @@ use App\Http\Controllers\TieneController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OrdenesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GruaController;
+use App\Http\Controllers\ZonaController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -84,3 +86,9 @@ Route::post('/incidencia', [IncidenciaController::class, 'store']);
 Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy']);
 
 Route::get('/incidencia/buscar/{id}', [IncidenciaController::class, 'show']);
+
+
+// Grúas
+Route::get('/grua', [GruaController::class, 'index']);
+Route::get('/zona', [ZonaController::class, 'index']);
+Route::post('/asignar-grua', [GruaController::class, 'asignarGrua']);
