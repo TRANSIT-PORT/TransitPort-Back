@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Administrativo;
+use App\Models\Gestor;
+use App\Models\Operador;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;

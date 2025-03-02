@@ -17,13 +17,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-//Login y Logout
-
 Route::post('/login', [AuthController::class, 'login']);
-
-//
-
-Route::get('/usuario', [UsuarioController::class, 'index']);
 
 Route::get('/gestor', [GestorController::class, 'index']);
 
@@ -92,4 +86,3 @@ Route::post('/incidencia', [IncidenciaController::class, 'store']);
 Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy']);
 
 Route::get('/incidencia/buscar/{id}', [IncidenciaController::class, 'show']);
-

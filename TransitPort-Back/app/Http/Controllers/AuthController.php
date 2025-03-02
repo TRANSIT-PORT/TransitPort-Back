@@ -46,4 +46,9 @@ class AuthController extends Controller
 
     }
 
+    public function volver(){
+
+        return redirect()->route('operador/logout');
+
+    }
 }

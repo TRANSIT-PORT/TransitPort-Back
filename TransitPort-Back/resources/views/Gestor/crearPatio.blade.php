@@ -5,13 +5,78 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Crear usuario</title>
+            <title>Crear patio y zona</title>
 
             <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+            <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+            <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
             <style>
+                #zona table{
+
+                    margin-top: 40%;
+
+                }
+
+                #tabla {
+
+                    margin-top:10%;
+
+                }
+
+                #zona{
+
+                    border: none;
+
+                }
+
+                /* #zona_filter>label>.form-control {
+
+                    width: 300px;
+                    padding: 8px ;
+                    border-radius: 4px ;
+                    font-size: 1em ;
+
+                } */
+
+                #zona .dataTables_scroll>.dataTables_scrollHead>.dataTables_scrollHeadInner {
+
+                    background: var(--Cinder-900, #152D65) !important;
+                    color: var(--Cinder-50, #F1F5FE);
+                    width: 100px;
+                    height: 54px;
+                    padding-left: -70px;
+                    border: none;
+                    text-align: center;
+                    position: sticky;
+                    top: 0;
+                    z-index: 10;
+                    overflow: scroll !important;
+
+                }
+
+                #zona tbody {
+                    background: #F1F5FE;
+                    border: none;
+
+                }
+
+                #zona td {
+                    background: #FFF;
+                    color: #000000;
+                    border-top: 10px solid #F1F5FE;
+                    border-right: none;
+
+                }
+
                 h1 {
                     margin-left: 8%;
                 }
@@ -161,59 +226,71 @@
                     border-radius: 0px;
                     color: #C0D2F7;
                     text-align: center;
-                    font-size: 20px;
+                    font-size: 19px;
                     font-style: normal;
                     font-weight: 700;
                     line-height: normal;
                     display: inline-flex;
-                    padding: 13px 56px 12px 57px;
+                    padding: 10px 54px 12px 54px;
                     justify-content: center;
                     align-items: center;
                     background: var(--Cinder-950, #040813);
 
                 }
 
-                #valores{
+                .anyadirPatio {
 
-                    margin-top: 10px;
+                    border-radius: 0px;
+                    color: #C0D2F7;
+                    text-align: center;
+                    font-size: 19px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                    display: inline-flex;
+                    padding: 10px 54px 12px 54px;
+                    justify-content: center;
+                    align-items: center;
+                    background: var(--Cinder-950, #040813);
+                    margin-top:597px;
+                    margin-left: 192px;;
+
                 }
 
-                #valores>label{
+                #valores{
+                    margin-top: 10px;
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+
+                #valores>label  {
                     margin-bottom: 40px;
                     margin-top: 10px;
-                    width: 40px;
-                }
-
-                #valX{
-                    display:flex;
                     width: 80px;
-                    text-align:center;
-                    margin-top: 40px;
+                    text-align: center;
 
                 }
-                #ValY{
 
-                    display:flex;
+                #valores>div>input {
                     width: 80px;
+
                 }
-                #ValZ{
-                    display:flex;
-                    margin-left: 10px;
-                    width: 80px;
-                }
+
+
+
             </style>
         </head>
 
         <body>
-            <h1><img src="assets/Gestor/usuariosCrear.svg">  Crear Usuario</h1>
-             <form {{--action="{{ route('guardarPatio') }}"--}} method="post">
+            <h1><img src="assets/Gestor/crearPatioVer.png">  Crear Patio | Zona</h1>
+             <form action="{{ route('guardarPatio') }}" method="post">
                 @csrf
 
                 <div class="div1">
                     <h2 class="num">1</h2>
                     <h2>Nombre</h2>
                     <label for="name">Nombre</label>
-                    <input type="text" id="name" name="">
+                    <input type="text" id="name" name="nombre">
 
                 </div>
 
@@ -221,37 +298,97 @@
                     <h2 class="num">2</h2>
                     <h2>Dimensiones</h2>
                     <label for="valorX">Valor X:</label>
-                    <input type="number" name="" id="valorX">
+                    <input type="number" name="x" id="valorX">
                     <label for="valorY">Valor Y:</label>
-                    <input type="number" name="" id="valorY">
+                    <input type="number" name="y" id="valorY">
                     <label for="valorZ">Valor Z:</label>
-                    <input type="number" name="" id="valorZ">
+                    <input type="number" name="z" id="valorZ">
 
                 </div>
 
+                {{-- es un input invisible que recoge el id del gestor, para asignarlo al patio --}}
+                <input type="hidden" name="id_gestor" value="{{ Auth::user()->id }}">
+
+                <button type="submit" class="anyadirPatio btn btn-primary">Añadir</button>
+
+            </form>
+
+            <form action="{{ route('guardarZona') }}" method="post">
+            @csrf
                 <div class="div3">
                     <h2 class="num">3</h2>
                     <h2>Zonas</h2>
                     <label for="nombre">Nombre</label>
                     <input type="text" name="nombre" id="nombre">
 
-                    <div id="valores">
-                        <label for="valX">Valor X</label>
-                        <input type="number" name="" id="valX">
-                        <label for="valY">Valor Y</label>
-                        <input type="number" name="" id="valY">
-                        <label for="valZ">Valor Z</label>
-                        <input type="number" name="" id="valZ">
-                    </div>
+                    <div class="flex-row d-flex justify-content-between" id="valores">
+                        <div class="d-flex flex-column justify-content-center">
+                            <label class="d-flex justify-content-center" for="valX">Valor X:</label>
+                            <input type="number" class="valX" name="X" id="valX">
+                        </div>
 
-                    <button class="anyadirBoton btn btn-primary">Añadir</button>
+                        <div class="d-flex flex-column">
+                            <label class="d-flex justify-content-center" for="valY">Valor Y:</label>
+                            <input type="number" name="Y" id="valY">
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <label class="d-flex justify-content-center" for="valZ">Valor Z:</label>
+                            <input type="number" name="Z" id="valZ">
+                        </div>
                 </div>
 
-                <button class="crear btn btn-primary">Crear</button>
-            </form>
+                <input type="hidden" name="id_gestor" value="{{ Auth::user()->id }}">
+                <input type="hidden" name="id_patio" value="{{ session('id_patio') }}">
+                {{-- se pasa el ultimo id de patio creado en la sesion actual --}}
 
-                <a href="{{ url()->previous() }}" class="cancelar btn btn-warning">Cancelar</a>
+                    <button type="submit" class="anyadirBoton btn btn-primary">Añadir</button>
+                </form>
+
+                <div id="tabla">
+                <table id="zona" class="table table-bordered">
+                        <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>X</th>
+                                    <th>Y</th>
+                                    <th>Z</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                </table>
+                </div>
+
+                </div>
+
+                <a class="crear btn btn-primary">Aceptar</a>
+
+                <a class="cancelar btn btn-warning">Cancelar</a>
 
         </body>
+        <script type="text/javascript">
+           $(document).ready(function () {
+                let table = $('#zona').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: '{{ route("verZona") }}',
+                    columns: [
+                        { data: 'nombre', name: 'nombre' },
+                        { data: 'X', name: 'X' },
+                        { data: 'Y', name: 'Y' },
+                        { data: 'Z', name: 'Z' }
+                    ],
+                   "info": false,
+                   "paging": false,
+                   "searching": true,
+                   "responsive": true,
+                   "ordering": false,
+                   "scrollY": "200px",
+
+                });
+            });
+        </script>
     </html>
     </x-app-layout>

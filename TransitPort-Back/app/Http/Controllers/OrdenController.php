@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buque;
+use App\Models\Operador;
 use App\Models\Orden;
 use App\Models\Tiene;
 use App\Models\Turno;
+use App\Models\User;
 use App\Models\Zona;
+use Illuminate\Database\Schema\ColumnDefinition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Laravel\Pail\ValueObjects\Origin\Console;
+use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Facades\DataTables;
 
 class OrdenController extends Controller {
@@ -111,21 +115,25 @@ class OrdenController extends Controller {
     public function crearOpciones() {
         $zonas = Zona::all();
         $buques = Buque::all();
-        $turnos = Turno::all();
+        $operadores = DB::table('users')
+        -> select('*')
+        -> where('cargo', 'operador')
+        -> get();
 
-        return view('Administrativo.crearOrden', ['zonas' => $zonas, 'buques' => $buques, 'turnos' => $turnos]);
+        return view('Administrativo.crearOrden', ['zonas' => $zonas, 'buques' => $buques, 'operadores' => $operadores]);
     }
 
     public function guardarOrden(Request $request) {
         $orden = $request -> validate([
             'tipo' => 'string',
-            'fecha_inicio' => 'int',
+            'operador' => 'int',
             'id_zona' => 'int',
             'id_buque' => 'int',
         ]);
 
         try {
-            $turno = Turno::findOrFail($orden['fecha_inicio']);
+            $operador = Operador::findOrFail($orden['operador']);
+            $turno = Turno::findOrFail($operador['id_turno']);
 
             $tiene = DB::table('tiene')
                 -> where('id_buque', $orden['id_buque'])
@@ -144,9 +152,12 @@ class OrdenController extends Controller {
                 "estado" => "Por empezar",
                 "id_grua" => $zona['id_grua'],
                 "id_administrativo" => $buque['id_administrativo'],
+                "id_operador" => $orden['operador'],
                 "id_buque" => $orden['id_buque'],
                 "id_zona" => $orden['id_zona'],
             ]);
+
+            $mensaje = "¡Orden creada con éxito!";
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al crear la Orden.',
@@ -154,7 +165,7 @@ class OrdenController extends Controller {
             ], 500);
         }
 
-        return view('Operador.welcome');
+        return view('Administrativo.exito', ['mensaje' => $mensaje]);
     }
 
     public function verAuditoria(Request $request) {
@@ -194,11 +205,82 @@ class OrdenController extends Controller {
         return $task;
     }
 
-    public function visualizarAuditoria(Request $request) {
-        return Orden::datatable([
-            'id',
-            'tipo',
-            'estado'
-        ]);
+    public function visualizarAuditoria() {
+        $orden = Orden::select(['id', 'tipo', 'estado']);
+
+        return DataTables::of($orden)
+            -> make(true);
+    }
+
+    public function mostrarUno($id) {
+        $orden = DB::table('orden')
+            -> join ('grua', 'orden.id_grua', '=' , 'grua.id')
+            -> join ('operador', 'orden.id_operador', '=' , 'operador.id')
+            -> join ('buque', 'orden.id_buque', '=' , 'buque.id')
+            -> join ('tiene', 'buque.id', '=' , 'tiene.id_buque')
+            -> join('turno', 'operador.id_turno', '=', 'turno.id')
+            -> where ('orden.id', $id)
+
+            -> select('orden.id_grua', 'orden.id_operador', 'orden.id_buque', 'orden.id', 'orden.tipo', 'orden.estado', 'turno.fecha_inicio')
+
+            //Subconsulta Grua.
+            -> selectSub(function ($query) {
+                $query -> from('orden')
+                    -> select('grua.nombre')
+                    -> whereColumn('orden.id_grua', 'grua.id')
+                    -> limit(1);
+            }, 'id_grua')
+            //Subconsulta Operador.
+            -> selectSub(function ($query) {
+                $query -> from('orden')
+                    -> select('operador.nombre')
+                    -> whereColumn('orden.id_operador', 'operador.id')
+                    -> limit(1);
+            }, 'id_operador')
+            //Subconsulta Buque.
+            -> selectSub(function ($query) {
+                $query -> from('orden')
+                    -> select('buque.nombre')
+                    -> whereColumn('orden.id_buque', 'buque.id')
+                    -> limit(1);
+            }, 'id_buque')
+            //Subconsulta Contenedor.
+            -> selectSub(function ($query) {
+                $query -> from('buque')
+                    -> select('tiene.id_contenedor')
+                    -> whereColumn('buque.id', 'tiene.id_buque')
+                    -> limit(1);
+            }, 'id_contenedor')
+
+            -> join('contenedor', 'tiene.id_contenedor', '=', 'contenedor.id')
+            -> join('zona', 'contenedor.id_zona', '=', 'zona.id')
+
+            //Ubicacion y destino.
+            -> selectRaw('CASE
+                WHEN contenedor.estado = "Completada" THEN
+                    CASE
+                        WHEN tiene.tipo_destino = "Buque"
+                        THEN buque.nombre
+                        ELSE zona.ubicacion
+                    END
+                WHEN tiene.tipo_destino = "Buque"
+                THEN zona.ubicacion
+                ELSE buque.nombre
+                END AS ubicacion
+            ')
+            -> selectRaw('CASE
+                WHEN tiene.tipo_destino = "Buque"
+                THEN buque.nombre
+                ELSE zona.ubicacion
+                END AS destino
+            ')
+
+            -> first();
+
+        if ($orden) {
+            return view('Administrativo/Auditorias/realizarAuditorias', compact('orden'));
+        } else {
+            return redirect() -> route('Administrativo/Auditorias/verAuditoria');
+        }
     }
 }

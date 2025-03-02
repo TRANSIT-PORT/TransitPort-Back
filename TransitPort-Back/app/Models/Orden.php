@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Administrativo;
+use App\Models\Operador;
 use App\Models\Buque;
 use App\Models\Contenedor;
 
@@ -10,11 +12,15 @@ class Orden extends Model
 {
     protected $table = 'orden';
     protected $primaryKey = 'id';
-    protected $fillable = ['tipo','estado', 'cantidad_contenedores', 'visto', 'fecha_inicio', 'fecha_fin', 'id_administrativo', 'id_buque', 'id_contenedor', 'id_grua'];
+    protected $fillable = ['tipo', 'cantidad_contenedores', 'fecha_inicio', 'fecha_fin', 'id_administrativo', 'id_operador', 'id_buque', 'id_zona', 'id_grua'];
 
     public function administrativos()
     {
         return $this->belongsToMany(Administrativo::class);
+    }
+    public function operador()
+    {
+        return $this->belongsToMany(Operador::class);
     }
     public function buques()
     {

@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('oauth_personal_access_clients', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->uuid('client_id');
+        Schema::create(table: 'turno', callback: function (Blueprint $table) {
+            $table->id();
+            $table->timestamp('fecha_inicio') -> nullable();
+            $table->timestamp('fecha_fin') -> nullable();
             $table->timestamps();
-        });
+          });          
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('oauth_personal_access_clients');
+        //
     }
 };
