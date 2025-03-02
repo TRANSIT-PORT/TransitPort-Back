@@ -21,8 +21,8 @@ return new class extends Migration
             $table->text(column: 'tipo');
             /* $table->time(column: 'fin_horario');
             $table->time(column: 'inicio_horario'); */
-            $table->foreignId('id_gestor')-> constrained('users') -> onDelete('cascade');
-            $table->foreignId('id_turno')->constrained('turno') -> onDelete('cascade');
+            $table->foreignId('id_gestor') -> constrained('users') -> onDelete('cascade');
+            $table->foreignId('id_turno') ->constrained('turno') -> onDelete('cascade');
             $table->timestamps();
           });
     }
