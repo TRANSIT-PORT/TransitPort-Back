@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Pail\ValueObjects\Origin\Console;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Auth;
 
 class OrdenController extends Controller {
     public function index(Request $request) {
@@ -143,6 +144,8 @@ class OrdenController extends Controller {
             $zona = Zona::findOrFail($orden['id_zona']);
             $buque = Buque::findOrFail($orden['id_buque']);
 
+            $administrativo = Auth::user();
+
             Orden::create([
                 "id" => null,
                 "tipo" => $orden['tipo'],
@@ -152,7 +155,7 @@ class OrdenController extends Controller {
                 "fecha_fin" => $turno['fecha_fin'],
                 "estado" => "Por empezar",
                 "id_grua" => $zona['id_grua'],
-                "id_administrativo" => $buque['id_administrativo'],
+                "id_administrativo" => $administrativo['id'],
                 "id_operador" => $orden['operador'],
                 "id_buque" => $orden['id_buque'],
                 "id_zona" => $orden['id_zona'],

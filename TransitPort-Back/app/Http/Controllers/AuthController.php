@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 use Laravel\Passport\Passport;
 
 class AuthController extends Controller {
@@ -22,7 +23,7 @@ class AuthController extends Controller {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
-            return response()->json(['success' => $success, 'user'=> $user, 'cargo' => $cargo],
+            return response()->json(['success' => $success, 'user'=> $user],
             $this->successStatus)
                 ->header('Access-Control-Allow-Origin', '*')
                 ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
