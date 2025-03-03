@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="d-flex" id="boton-container">
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button type="submit" id="boton-perfil" class="btn btn-danger">Cerrar sesión</button>
                 </form>

@@ -118,23 +118,19 @@
 
             .crear {
                 color: var(--Cinder-50, #F1F5FE);
-
                 font-size: 32px;
                 font-style: normal;
                 font-weight: 700;
                 line-height: normal;
-
                 border-radius: 4px;
                 border: 2px solid var(--Cinder-900, #152D65);
                 background: var(--Cinder-900, #152D65);
                 box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
                 display: flex;
                 width: 498px;
                 padding: 10px 0px;
                 justify-content: center;
                 align-items: center;
-
                 position: absolute;
                 right: 22%;
                 bottom: 5%;

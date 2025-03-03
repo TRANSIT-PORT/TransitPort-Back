@@ -153,7 +153,7 @@ div.menu:hover .link span {
 
                 </div>
 
-                @if (auth() -> user() -> cargo === 'administrativo')
+                @if (auth() -> user()->cargo === 'administrativo')
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearOrden')" :active="request()->routeIs('crearOrden')">
                             <img src="assets/Administrativo/crearOrden.svg">
@@ -187,7 +187,7 @@ div.menu:hover .link span {
                         <span>Incidencias</span>
                     </div>
                 @endif
-                @if (auth() -> user() -> cargo === 'gestor')
+                @if (auth() -> user()->cargo === 'gestor')
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearUsuario')" :active="request()->routeIs('crearUsuario')">
                             <img src="assets/Gestor/usuariosCrearVer.svg">

@@ -8,6 +8,7 @@ use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OperadorController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GruaController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,7 +17,7 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/guardarUsuario', [GestorController::class, 'guardarUsuario'])->name('guardarUsuario');
         Route::get('/crearPatio', [GestorController::class, 'crearPatio'])->name('crearPatio');
         Route::get('/crearGrua', [GestorController::class, 'crearGrua'])->name('crearGrua');
+        Route::post('/guardarGrua', [GruaController::class, 'guardarGrua'])->name('guardarGrua');
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
 
     });
@@ -54,8 +56,9 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['operador'])->group(function () {
         Route::get('operador/ordenes', [OrdenController::class, 'index'])->name('ordenes');
         Route::get('operador/perfil', [OperadorController::class, 'perfil'])->name('perfil');
+        Route::get('operador/verNotificaciones', [OperadorController::class, 'verNotificaciones'])->name('verNotificaciones');
         Route::post('operador/logout', [AuthController::class, 'logout'])->name('operador.logout');
-        Route::get('operador/logout', [AuthController::class, 'volver'])->name('operador.volver');
+        Route::post('operador/logout', [AuthController::class, 'volver'])->name('operador.volver');
 
     });
 });

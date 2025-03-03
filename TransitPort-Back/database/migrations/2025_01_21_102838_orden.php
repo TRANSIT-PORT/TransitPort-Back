@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text(column: 'tipo');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
+            $table->boolean('visto');
             $table->enum('estado', ['Por empezar', 'En curso', 'Completada']);
             $table->foreignId('id_administrativo')->constrained('administrativo')->onDelete('cascade');
             $table->foreignId('id_grua')->constrained('grua')->onDelete('cascade');

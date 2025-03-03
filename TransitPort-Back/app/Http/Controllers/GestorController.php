@@ -75,7 +75,9 @@ class GestorController extends Controller {
 
     public function crearGrua(){
 
-        return view('Gestor.crearGrua');
+        $zonas = Zona::all();
+
+        return view('Gestor.crearGrua', compact('zonas'));
 
     }
 

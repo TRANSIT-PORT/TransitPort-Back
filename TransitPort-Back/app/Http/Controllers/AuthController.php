@@ -34,7 +34,23 @@ class AuthController extends Controller {
 
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
-        return response()->json(['message' => 'Cerrado sesion']);
+
+        $isUser = $request->user()->token()->revoke();
+        if($isUser){
+            $success['message'] = "Successfully logged out.";
+            return response()->json(['success' => $isUser], $this->successStatus);
+        }
+        else{
+            return response()->json(['error' => 'Unauthorised'], 401);
+        }
+
+        return view('login');
+
+    }
+
+    public function volver(){
+
+        return redirect()->route('operador/logout');
+
     }
 }
