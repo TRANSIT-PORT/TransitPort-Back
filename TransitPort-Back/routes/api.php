@@ -13,6 +13,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OrdenesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GruaController;
+use App\Http\Controllers\BuqueController;
 use App\Http\Controllers\ZonaController;
 
 Route::get('/user', function (Request $request) {
@@ -41,6 +42,7 @@ Route::get('/operador', [OperadorController::class, 'index']);
 Route::get('/operador/ordenes', [OrdenesController::class, 'index']);
 
 Route::get('/orden', [OrdenController::class, 'index']);
+Route::put('orden/actualizar/{id}', [OrdenController::class, 'update']);
 
 
 Route::get('/auditoriaArriba', [OrdenController::class, 'verAuditoria']);
@@ -69,3 +71,10 @@ Route::post('/incidencia', [IncidenciaController::class, 'store']);
 Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy']);
 
 Route::get('/incidencia/buscar/{id}', [IncidenciaController::class, 'show']);
+
+//Buscar para actualizar.
+
+Route::get('/grua/show/{id}', [GruaController::class, 'show']);
+Route::get('/buque/show/{id}', [BuqueController::class, 'show']);
+Route::get('/zona/show/{id}', [BuqueController::class, 'show']);
+Route::get('/operador/show/{id}', [OperadorController::class, 'show']);

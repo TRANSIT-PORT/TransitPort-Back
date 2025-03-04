@@ -30,4 +30,10 @@ class GruaController extends Controller
 
         return response()->json(['message' => 'Grúas asignadas correctamente']);
     }
+
+    public function show(Request $request)
+    {
+        $task = Grua::findOrFail($request->id);
+        return $task;
+    }
 }

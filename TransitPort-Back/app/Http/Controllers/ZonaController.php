@@ -11,4 +11,10 @@ class ZonaController extends Controller
         $zonas = Zona::all();
         return response()->json($zonas);
     }
+
+    public function show(Request $request)
+    {
+        $task = Zona::findOrFail($request->id);
+        return $task;
+    }
 }

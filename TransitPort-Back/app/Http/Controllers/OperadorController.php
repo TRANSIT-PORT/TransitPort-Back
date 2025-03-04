@@ -20,4 +20,10 @@ class OperadorController extends Controller {
         return view('Operador.vistaPerfil', compact('usuario'));
 
     }
+
+    public function show(Request $request)
+    {
+        $task = Operador::findOrFail($request->id);
+        return $task;
+    }
 }
