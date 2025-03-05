@@ -33,6 +33,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/crearGrua', [GestorController::class, 'crearGrua'])->name('crearGrua');
         Route::post('/guardarGrua', [GruaController::class, 'guardarGrua'])->name('guardarGrua');
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+        Route::post('/guardarPatio', [GestorController::class, 'guardarPatio'])->name('guardarPatio');
+        Route::post('/guardarZona', [GestorController::class, 'guardarZona'])->name('guardarZona');
+        Route::get('/verZona', [GestorController::class, 'verZona'])->name('verZona');
 
     });
 

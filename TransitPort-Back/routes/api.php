@@ -21,6 +21,8 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/login', [AuthController::class, 'login']);
 
+//Gestor
+
 Route::get('/gestor', [GestorController::class, 'index']);
 
 Route::put('/gestor/actualizar/{id}', [GestorController::class, 'update']);
@@ -30,6 +32,9 @@ Route::post('/gestor/guardar', [GestorController::class, 'store']);
 Route::delete('/gestor/borrar/{id}', [GestorController::class, 'destroy']);
 
 Route::get('/gestor/buscar/{id}', [GestorController::class, 'show']);
+
+Route::put('/modificar-estado/{id}', [UsuarioController::class, 'modificarEstado']);
+
 
 //Administrativo
 Route::get('/administrativo', [AdministrativoController::class, 'index']);

@@ -180,6 +180,8 @@ class GestorController extends Controller {
         return datatables()->of($zonas)->make(true);
     }
 
+    
+
     }
 
 

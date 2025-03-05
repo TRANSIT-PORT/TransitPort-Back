@@ -38,15 +38,6 @@
 
                 }
 
-                /* #zona_filter>label>.form-control {
-
-                    width: 300px;
-                    padding: 8px ;
-                    border-radius: 4px ;
-                    font-size: 1em ;
-
-                } */
-
                 #zona .dataTables_scroll>.dataTables_scrollHead>.dataTables_scrollHeadInner {
 
                     background: var(--Cinder-900, #152D65) !important;

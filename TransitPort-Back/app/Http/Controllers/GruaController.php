@@ -14,6 +14,7 @@ class GruaController extends Controller
 {
 
     public function guardarGrua(Request $request) {
+
         $validatedData = $request->validate([
              'nombre' => 'string',
              'modelo' => 'string',
@@ -85,25 +86,32 @@ class GruaController extends Controller
         return response()->json($gruas);
     }
 
-    public function asignarGrua(Request $request)
-    {
+    public function asignarGrua(Request $request){
 
-        $request->validate([
-            'id_zona' => 'required|integer|exists:zonas,id', 
-            'id_grua' => 'required|integer|exists:gruas,id', 
-        ]);
+        try {
+            $request->validate([
+                'id_zona' => 'required|integer|exists:zona,id', 
+                'id_grua' => 'required|integer|exists:grua,id', 
+            ]);
 
-        $id_zona = $request->input('id_zona');
-        $id_grua = $request->input('id_grua');
+            $id_zona = $request->input('id_zona');
+            $id_grua = $request->input('id_grua');
 
-        Pertenece::create([
-            'id_grua' => $id_grua,
-            'id_zona' => $id_zona,
-            'fecha' => now()->toDateString(),
-            'hora' => now()->toTimeString(), 
-        ]);
+            Pertenece::create([
+                'id_grua' => $id_grua,
+                'id_zona' => $id_zona,
+                'fecha' => now()->toDateString(),
+                'hora' => now()->toTimeString(), 
+            ]);
 
-        
-        return response()->json(['message' => 'Grúa asignada correctamente']);
+            return response()->json(['message' => 'Grúa asignada correctamente']);
+            
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al asignar la grúa',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
+
 }
