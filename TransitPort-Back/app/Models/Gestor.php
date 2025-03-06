@@ -8,6 +8,6 @@ class Gestor extends Model
 {
     protected $table = 'gestor';
     protected $primaryKey = 'id';
-    protected $fillable = ['nombre', 'usuario', 'password', 'cargo', 'estado'];
+    protected $fillable = ['nombre', 'usuario', 'password'];
     public $timestamps = false;
 }

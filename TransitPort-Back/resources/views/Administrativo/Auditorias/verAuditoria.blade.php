@@ -10,14 +10,14 @@
             <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
             <style>
-                    #auditoria tbody tr {
-                        cursor: pointer;
-                    }
-                    #auditoria th {
-                        background: var(--Cinder-900, #152D65);
-                        color: white;
-                    }
-                </style>
+                #auditoria th {
+                    background: var(--Cinder-900, #152D65);
+                    color: white;
+                }
+                #auditoria tbody tr {
+                    cursor: pointer;
+                }
+            </style>
         </head>
         <body>
             
@@ -54,9 +54,7 @@
                         { data: 'id', name: 'id' },
                         { data: 'tipo', name: 'tipo' },
                         { data: 'estado', name: 'estado' },
-                    ],
-                    pageLength: 10, //Limitamos las consultas a 10.
-                        lengthMenu: [10, 15, 20, 25], //Agregamos opciones de aumentar o dismiuir opciones de menu.
+                    ]
                 });
 
                 $('#auditoria tbody').on('click', 'tr', function() {

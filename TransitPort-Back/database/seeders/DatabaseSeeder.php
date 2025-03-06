@@ -11,9 +11,9 @@ class DatabaseSeeder extends Seeder {
         $this -> call([
             TurnoSeeder::class,
             UsuarioSeeder::class,
-            // GestorSeeder::class,
-            // AdministrativoSeeder::class,
-            // OperadorSeeder::class,
+            //GestorSeeder::class,
+            //AdministrativoSeeder::class,
+            //OperadorSeeder::class,
             GruaSeeder::class,
             UtilizaSeeder::class,
             PatioSeeder::class,

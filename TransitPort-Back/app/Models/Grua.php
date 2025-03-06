@@ -9,10 +9,11 @@ class Grua extends Model
 {
     protected $table = 'grua';
     protected $primaryKey = 'id';
-    protected $fillable = ['capacidad_carga', 'estado', 'id_gestor'];
+    protected $fillable = ['nombre', 'modelo', 'marca', 'estado', 'tipo', 'capacidad_carga', 'id_gestor'];
 
     public function gestores()
     {
         return $this->belongsToMany(Gestor::class);
     }
+
 }

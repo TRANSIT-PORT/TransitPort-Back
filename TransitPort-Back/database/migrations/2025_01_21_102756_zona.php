@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('zona', callback: function (Blueprint $table) {
             $table->id();
+            $table->text('nombre');
             $table->text('ubicacion');
-            $table->float('x') -> default(0);
-            $table->float('y') -> default(0);
-            $table->float('z') -> default(0);
+            $table->float('X')->default(0);
+            $table->float('Y')->default(0);
+            $table->float('Z')->default(0);
             $table->integer(column: 'capacidad');
-            $table->foreignId('id_gestor')->constrained('users');
+            $table->foreignId('id_gestor')-> constrained('users') -> onDelete('cascade');
             $table->foreignId('id_patio')->constrained('patio');
             $table->foreignId('id_grua')->constrained('grua');
             $table->timestamps();

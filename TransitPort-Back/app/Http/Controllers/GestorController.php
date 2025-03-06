@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Gestor;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Log;
-use App\Models\Grua;
-use App\Models\Patio;
 
 class GestorController extends Controller {
+
     public function index(Request $request) {
         $task = User::all();
         return $task;
-        //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
+       
     }
 
     public function show(Request $request)
@@ -59,29 +57,19 @@ class GestorController extends Controller {
         $task->delete();
 
         return response()->json([
-            "message" => "Gestor con id =" . $request->id . " ha sido borrado con éxito"
+            "message" => "Usuario con id =" . $request->id . " ha sido borrado con éxito"
         ], 201);
         //Esta función obtendra el id de la tarea que hayamos seleccionado y la borrará de nuestra BD
     }
 
+    //me lleva a la vista para crear usuarios  nuevos
     public function crearUsuario(){
 
         return view('Gestor.crearUsuario');
 
     }
 
-    public function crearGrua(){
-
-        return view('Gestor.crearGrua');
-
-    }
-
-    public function crearPatio(){
-
-        return view('Gestor.crearPatio');
-
-    }
-
+    //almacena los datos del formulario en crear usuario
     public function guardarUsuario(Request $request){
 
         $user = $request -> validate([
@@ -96,7 +84,7 @@ class GestorController extends Controller {
         ]);
 
         try {
-            $user['password'] = bcrypt($user['password']); // Encriptar contraseña
+            $user['password'] = bcrypt($user['password']);
             User::create($user);
         } catch (\Exception $e) {
             return response()->json([
@@ -108,26 +96,12 @@ class GestorController extends Controller {
         return view('Gestor.crearUsuario');
 
     }
-    public function guardarPatio(Request $request){
+    
 
-        $patio = $request -> validate([
-            'nombre' => 'required|string|max:255',
-            'ubicacion' => 'required|string|max:255',
-            'capacidad' => 'required|integer',
-        ]);
+    
 
-        try {
-            Patio::create($patio);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Error al crear el patio.',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
+    
 
-        return view('Gestor.crearPatio');
-
-    }
     }
 
 

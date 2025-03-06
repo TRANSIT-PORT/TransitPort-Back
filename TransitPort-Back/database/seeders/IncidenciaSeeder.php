@@ -25,7 +25,7 @@ class IncidenciaSeeder extends Seeder {
                 'observacion' => 'Contenedor volcado en la zona 2.',
                 'id_orden' => '2',
                 'id_administrativo' => '4',
-                'id_operador' => '9',
+                'id_operador' => '7',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

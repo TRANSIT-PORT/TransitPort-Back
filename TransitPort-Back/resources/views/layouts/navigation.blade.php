@@ -1,131 +1,127 @@
 <style>
-div.menu {
-    background-color: #133379;
-    transition: width 0.5s ease-in-out;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 110px;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-    z-index: 100;
-}
+    div.menu {
+        background-color: #133379;
+        transition: width 0.5s ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 110px;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+        z-index: 100;
+    }
 
-div.menu:hover {
-    width: 320px;
-    z-index: 100;
-    align-items: flex-start;
-    padding-left: 15px;
-}
+    div.menu:hover {
+        width: 320px;
+        z-index: 100;
+        align-items: flex-start;
+        padding-left: 15px;
+    }
 
-.profile-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
-}
+    .profile-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }
 
-.profile-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 3px solid #ffffff;
-    transition: border-color 0.3s ease-in-out;
-}
+    .profile-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid #ffffff;
+        transition: border-color 0.3s ease-in-out;
+    }
 
-.menu-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 10px;
-    text-decoration:none;
-}
+    .menu-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+        text-decoration:none;
+    }
 
-div.link {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 12px;
-    transition: background 0.3s ease-in-out;
-    white-space: nowrap;
-    overflow: hidden;
-    text-decoration:none;
-}
+    div.link {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 12px;
+        transition: background 0.3s ease-in-out;
+        white-space: nowrap;
+        overflow: hidden;
+        text-decoration:none;
+    }
 
-div.link:hover {
-    display: inline-flex;
-    padding: 15px 88px 15px 29px;
-    align-items: center;
-    gap: 9px;
-    border-radius: 0px 20px 20px 0px;
-    /* background: var(--Cinder-50, #F1F5FE); */
-    background: #a7acb898;
-    color: var(--Cinder-950, #040813);
-    font-size: 24px;
-    border-right-radius: 8px;
-    width: 280px;
-    text-decoration:none;
-}
+    div.link:hover {
+        display: inline-flex;
+        padding: 15px 88px 15px 29px;
+        align-items: center;
+        gap: 9px;
+        border-radius: 0px 20px 20px 0px;
+        /* background: var(--Cinder-50, #F1F5FE); */
+        background: #a7acb898;
+        color: var(--Cinder-950, #040813);
+        font-size: 24px;
+        border-right-radius: 8px;
+        width: 280px;
+        text-decoration:none;
+    }
 
-div.link img {
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;
-    margin-left:10px;
-}
+    div.link img {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+        margin-left:10px;
+    }
 
-div.link span {
-    display: none;
-    color: white;
-    font-size: 16px;
-    white-space: nowrap;
-    text-decoration:none;
-}
-
-
-div.menu:hover .link {
-    justify-content: flex-start;
-    width: 270px;
-}
-
-div.menu:hover .link img {
-    margin-right: 12px;
-}
-
-div.menu:hover .link span {
-    display: inline;
-    flex-grow: 1;
-}
-
-.logout{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.home{
-    position: absolute;
-    bottom: 40px;
-    width: 100%;
-    padding-top: 12px;
-    transition: background 0.3s ease-in-out;
-    white-space: nowrap;
-    overflow: hidden;
-    background: #133379
-
-}
+    div.link span {
+        display: none;
+        color: white;
+        font-size: 16px;
+        white-space: nowrap;
+        text-decoration:none;
+    }
 
 
+    div.menu:hover .link {
+        justify-content: flex-start;
+        width: 270px;
+    }
 
+    div.menu:hover .link img {
+        margin-right: 12px;
+    }
 
+    div.menu:hover .link span {
+        display: inline;
+        flex-grow: 1;
+    }
+
+    .logout{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .home{
+        position: absolute;
+        bottom: 40px;
+        width: 100%;
+        padding-top: 12px;
+        transition: background 0.3s ease-in-out;
+        white-space: nowrap;
+        overflow: hidden;
+        background: #133379
+
+    }
 </style>
 
 <link rel="preconnect" href="https://fonts.bunny.net">
@@ -155,7 +151,7 @@ div.menu:hover .link span {
 
                 </div>
 
-                @if (auth() -> user() -> cargo === 'administrativo')
+                @if (auth() -> user()->cargo === 'administrativo')
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearOrden')" :active="request()->routeIs('crearOrden')">
                             <img src="assets/Administrativo/crearOrden.svg">
@@ -175,13 +171,21 @@ div.menu:hover .link span {
                         </x-nav-link>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <img src="assets/Administrativo/buscarContenedor.svg">
+                        <span>Buscar contenedores</span>
+                    </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('verAuditoria')" :active="request()->routeIs('verAuditoria')">
-                            <img src="assets/Administrativo/buscarContenedor.svg">
+                            <img src="assets/Administrativo/realizarAuditoria.svg">
                             <span>Realizar auditorias</span>
                         </x-nav-link>
                     </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <img src="assets/Administrativo/incidencias.svg">
+                        <span>Incidencias</span>
+                    </div>
                 @endif
-                @if (auth() -> user() -> cargo === 'gestor')
+                @if (auth() -> user()->cargo === 'gestor')
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearUsuario')" :active="request()->routeIs('crearUsuario')">
                             <img src="assets/Gestor/usuariosCrearVer.svg">

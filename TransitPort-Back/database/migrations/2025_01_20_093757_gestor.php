@@ -10,18 +10,15 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {          
-        Schema::create('operador', function (Blueprint $table) {
+    {
+        Schema::create('gestor', function (Blueprint $table) {
             $table->id();
             $table->text('nombre');
             $table->text(column: 'usuario');
             $table->text(column: 'password');
-            $table->enum('cargo', ['operador']);
+            $table->enum('cargo', ['gestor']);
             $table->string('estado');
-            $table->text(column: 'tipo');
-            $table ->foreign('id') -> references('id') -> on('users') -> onDelete('cascade');
-            $table->foreignId('id_gestor')->constrained('users');
-            $table->foreignId('id_turno')->constrained('turno');
+            $table -> foreign('id') -> references('id') -> on('users');
             $table->timestamps();
           });
     }

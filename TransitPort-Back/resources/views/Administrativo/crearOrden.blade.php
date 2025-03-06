@@ -119,7 +119,7 @@
                     border: 2px solid var(--Cinder-900, #152D65);
                     background: var(--Amarillo, #E59506);
                     box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                    
+
                     display: inline-flex;
                     width: 15%;
                     padding: 10px 0px;
@@ -147,7 +147,7 @@
                         <option value="descarga">Descarga</option>
                     </select>
                 </div>
-                
+
                 <div class="div2">
                     <h2 class="num">2</h2>
                     <h2>Ubicación</h2>
@@ -168,7 +168,7 @@
                         @endforelse
                     </select>
                 </div>
-                
+
                 <div class="div3">
                     <h2 class="num">3</h2>
                     <h2>Operador</h2>
@@ -180,7 +180,7 @@
                             <p>No hay turnos actualmente</p>
                         @endforelse
                     </select>
-                </div>            
+                </div>
 
                 <button class="crear btn">Crear</button>
             </form>
