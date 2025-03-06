@@ -95,7 +95,7 @@ Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy'
 Route::get('/incidencia/buscar/{id}', [IncidenciaController::class, 'show']);
 
 
-// Grúas
+//Grúas
 Route::get('/grua', [GruaController::class, 'index']);
 Route::get('/zona', [ZonaController::class, 'index']);
 Route::post('/asignar-grua', [GruaController::class, 'asignarGrua']);

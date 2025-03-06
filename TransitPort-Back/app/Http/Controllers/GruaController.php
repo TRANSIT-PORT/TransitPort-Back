@@ -8,10 +8,19 @@ use App\Models\SC;
 use App\Models\STS;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Pertenece;
+use App\Models\Zona;
 
 
 class GruaController extends Controller
 {
+
+    public function crearGrua(){
+
+        $zonas = Zona::all();
+
+        return view('Gestor.crearGrua', compact('zonas'));
+
+    }
 
     public function guardarGrua(Request $request) {
 
@@ -27,7 +36,7 @@ class GruaController extends Controller
          try {
 
             $usuario = Auth::user();
-             // Crear y guardar la tarea con asignación masiva
+
              $task = Grua::create([
                 "id" => null,
                 "nombre" => $validatedData['nombre'],
@@ -67,7 +76,7 @@ class GruaController extends Controller
 
             }
 
-            $mensaje = "Grua creada con éxito!";
+            $mensaje = "Grua creada!";
 
          } catch (\Exception $e) {
 

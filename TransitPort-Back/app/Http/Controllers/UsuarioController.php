@@ -9,24 +9,24 @@ class UsuarioController extends Controller {
 
     public function index(Request $request) {
 
-        $usuarios = User::where('cargo', '!=', 'gestor')->get();//sirve para extraer solo los usuarios que no sean gestores
+        $usuarios = User::where('cargo', '!=', 'gestor')->get();//sirve para extraer solo los usuarios que no sean gestores en la tabla de angular
         return $usuarios;
 
     }
 
     public function modificarEstado(Request $request, $id) {
-        // Validar la solicitud
+
         $request->validate([
-            'estado' => 'required|string|in:Activo/a,Inactivo/a', // Validar el estado
+            'estado' => 'required|string|in:Activo/a,Inactivo/a', //valido el estado del usuario
         ]);
     
-        // Buscar el usuario y actualizar su estado
-        $user = User::findOrFail($id);
-        $user->estado = $request->input('estado');
-        $user->save();
+        
+        $user = User::findOrFail($id);//busca el usuario
+        $user->estado = $request->input('estado');//le asigno el estado
+        $user->save();//lo guardo
     
         return response()->json([
-            'message' => 'Estado actualizado correctamente',
+            'message' => 'Actualizado correctamente',
             'estado' => $user->estado,
         ]);
     }
