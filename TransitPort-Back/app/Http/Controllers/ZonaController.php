@@ -13,6 +13,12 @@ class ZonaController extends Controller
         return response()->json($zonas);
     }
 
+    public function show(Request $request)
+    {
+        $task = Zona::findOrFail($request->id);
+        return $task;
+    }
+
     public function guardarZona(Request $request){
 
         $zona = $request -> validate([

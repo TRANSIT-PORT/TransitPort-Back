@@ -123,4 +123,9 @@ class GruaController extends Controller
         }
     }
 
+    public function show(Request $request)
+    {
+        $task = Grua::findOrFail($request->id);
+        return $task;
+    }
 }
