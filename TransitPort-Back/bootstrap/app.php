@@ -17,12 +17,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+
+        $middleware->append(HandleCors::class);
+
         $middleware->alias([
             'gestor' => GestorMiddleware::class,
             'administrativo' => AdministrativoMiddleware::class,
             'operador' => OperadorMiddleware::class,
         ]);
-        $middleware->append(HandleCors::class);
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
