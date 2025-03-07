@@ -11,7 +11,7 @@ class UtilizaSeeder extends Seeder {
         $utiliza = [
             [
                 'id_grua' => '1',
-                'id_operador' => '5',
+                'id_operador' => '9',
                 'hora_inicio' => '12:00',
                 'hora_fin' => '14:00',
                 'created_at' => now(),
@@ -19,7 +19,7 @@ class UtilizaSeeder extends Seeder {
             ],
             [
                 'id_grua' => '2',
-                'id_operador' => '5',
+                'id_operador' => '8',
                 'hora_inicio' => '12:00',
                 'hora_fin' => '14:00',
                 'created_at' => now(),

@@ -38,9 +38,9 @@
 
                 }
 
-                #zona th {
+                #zona .dataTables_scroll>.dataTables_scrollHead>.dataTables_scrollHeadInner {
 
-                    background: var(--Cinder-900, #152D65);
+                    background: var(--Cinder-900, #152D65) !important;
                     color: var(--Cinder-50, #F1F5FE);
                     width: 100px;
                     height: 54px;
@@ -50,6 +50,7 @@
                     position: sticky;
                     top: 0;
                     z-index: 10;
+                    overflow: scroll !important;
 
                 }
 

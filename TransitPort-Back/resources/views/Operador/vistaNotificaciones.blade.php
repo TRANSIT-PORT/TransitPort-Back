@@ -10,7 +10,7 @@
 
     <div class="d-flex flex-row">
         @include('Operador.menu')
-        @include('Operador.perfil')
+        @include('Operador.notificaciones')
     </div>
 
 </body>

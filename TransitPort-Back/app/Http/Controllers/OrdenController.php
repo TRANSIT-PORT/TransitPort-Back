@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Pail\ValueObjects\Origin\Console;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Auth;
 
 class OrdenController extends Controller {
     public function index(Request $request) {
@@ -27,6 +28,7 @@ class OrdenController extends Controller {
        $validatedData = $request->validate([
             'tipo' => 'string',
             'cantidad_contenedores' => 'int',
+            'visto'=> 'boolean',
             'fecha_carga' => 'date',
             'fecha_descarga' => 'date',
             'id_grua' => 'int',
@@ -67,6 +69,7 @@ class OrdenController extends Controller {
             'id' => 'required',
             'tipo' => 'string',
             'estado' => 'nullable|string|in:Por empezar,En curso,Completada',
+            'visto' => 'boolean',
             'fecha_carga' => 'date',
             'fecha_descarga' => 'date',
             'id_grua' => 'int',
@@ -141,21 +144,24 @@ class OrdenController extends Controller {
             $zona = Zona::findOrFail($orden['id_zona']);
             $buque = Buque::findOrFail($orden['id_buque']);
 
+            $administrativo = Auth::user();
+
             Orden::create([
                 "id" => null,
                 "tipo" => $orden['tipo'],
                 "cantidad_contenedores" => $tiene,
                 "fecha_inicio" => $turno['fecha_inicio'],
+                "visto" => '0',
                 "fecha_fin" => $turno['fecha_fin'],
                 "estado" => "Por empezar",
                 "id_grua" => $zona['id_grua'],
-                "id_administrativo" => $buque['id_administrativo'],
+                "id_administrativo" => $administrativo['id'],
                 "id_operador" => $orden['operador'],
                 "id_buque" => $orden['id_buque'],
                 "id_zona" => $orden['id_zona'],
             ]);
 
-            $mensaje = "¡Orden creada con éxito!";
+            $mensaje = "¡Grua creada con éxito!";
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al crear la Orden.',
@@ -163,7 +169,10 @@ class OrdenController extends Controller {
             ], 500);
         }
 
-        return view('Administrativo.exito', ['mensaje' => $mensaje]);
+        return redirect() -> route('exito') -> with([
+            'cabecera' => "Crear orden",
+            'mensaje' => "¡Orden creada con éxito!"
+        ]);
     }
 
     public function verAuditoria(Request $request) {
@@ -203,8 +212,13 @@ class OrdenController extends Controller {
         return $task;
     }
 
+    /**
+     * Funcion para mostrar las auditorias con Datatables.
+     */
     public function visualizarAuditoria() {
-        $orden = Orden::select(['id', 'tipo', 'estado']);
+        $orden = Orden::select(['id', 'tipo', 'estado'])
+        -> where('estado', '!=', 'completada')
+        -> get();
 
         return DataTables::of($orden)
             -> make(true);

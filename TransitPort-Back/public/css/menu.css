@@ -12,10 +12,11 @@
     background: var(--Cinder-800, #133379);
 }
 
-#menu > a {
+#menu > #superior > a, #menu > a {
     color: #f1f5fe;
     text-decoration: none;
     font-weight: bolder;
+    font-size: 24px;
     display: inline-flex;
     padding: 15px 33px 15px 52px;
     justify-content: left;
@@ -42,6 +43,21 @@
     margin: 0;
 }
 
+#menu > a:active {
+    color: #f1f5fe;
+    text-decoration: none;
+    font-weight: bolder;
+    display: inline-flex;
+    padding: 15px 33px 15px 52px;
+    justify-content: left;
+    align-items: center;
+    gap: 16px;
+    width: 95%;
+    border-radius: 0px 20px 20px 0px;
+    background: #808faf;
+    margin: 0;
+}
+
 #enlace {
     color: #f1f5fe;
     text-decoration: none;
@@ -55,6 +71,38 @@
     border-radius: 0px 20px 20px 0px;
     background: #133379;
     margin: 0;
+}
+
+#cantidadNotificaciones{
+
+    display: inline-flex;
+    background-color: #E59506;
+    align-items: center;
+    padding: 5px;
+    width: 40px;
+    font-size: 18px;
+    color: #040813;
+    font-weight: bolder;
+    justify-content: center;
+    align-content: center;
+    border-radius: 40px;
+
+}
+
+.boton-logout, .boton-logout:active, .boton-logout:focus{
+
+    color: #f1f5fe;
+    text-decoration: none;
+    font-weight: bolder;
+    display: inline-flex;
+    text-align: left;
+    gap: 16px;
+    width: 95%;
+    border-radius: 0px 20px 20px 0px;
+    background: #133379;
+    margin: 0;
+    border: none;
+
 }
 
 #perfil > a {
@@ -72,9 +120,10 @@
 }
 
 #perfil > a > img {
-    width: 114px;
-    height: 114px;
-    border-radius: 57px;
+    width: 160px;
+    height: 160px;
+    border-radius: 90px;
     margin: auto;
     margin-top: 20px;
+    margin-bottom: 15px;
 }

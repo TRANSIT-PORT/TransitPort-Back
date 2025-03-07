@@ -12,12 +12,17 @@ use App\Http\Controllers\TieneController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OrdenesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GruaController;
+use App\Http\Controllers\BuqueController;
+use App\Http\Controllers\ZonaController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
 Route::post('/login', [AuthController::class, 'login']);
+
+//Gestor
 
 Route::get('/gestor', [GestorController::class, 'index']);
 
@@ -29,16 +34,22 @@ Route::delete('/gestor/borrar/{id}', [GestorController::class, 'destroy']);
 
 Route::get('/gestor/buscar/{id}', [GestorController::class, 'show']);
 
+Route::put('/modificar-estado/{id}', [UsuarioController::class, 'modificarEstado']);
+
+
 //Administrativo
 Route::get('/administrativo', [AdministrativoController::class, 'index']);
 
 //Operador
 Route::get('/operador', [OperadorController::class, 'index']);
 
+Route::get('/operador/notificaciones', [OperadorController::class, 'verNotificaciones']);
+
 //Ordenes
 Route::get('/operador/ordenes', [OrdenesController::class, 'index']);
 
 Route::get('/orden', [OrdenController::class, 'index']);
+Route::put('orden/actualizar/{id}', [OrdenController::class, 'update']);
 
 Route::put('operador/ordenes/orden/{id}', [OrdenController::class, 'update']);
 
@@ -84,3 +95,15 @@ Route::post('/incidencia', [IncidenciaController::class, 'store']);
 Route::delete('/incidencia/borrar/{id}', [IncidenciaController::class, 'destroy']);
 
 Route::get('/incidencia/buscar/{id}', [IncidenciaController::class, 'show']);
+
+//Buscar para actualizar.
+
+Route::get('/grua/show/{id}', [GruaController::class, 'show']);
+Route::get('/buque/show/{id}', [BuqueController::class, 'show']);
+Route::get('/zona/show/{id}', [BuqueController::class, 'show']);
+Route::get('/operador/show/{id}', [OperadorController::class, 'show']);
+
+//Grúas
+Route::get('/grua', [GruaController::class, 'index']);
+Route::get('/zona', [ZonaController::class, 'index']);
+Route::post('/asignar-grua', [GruaController::class, 'asignarGrua']);

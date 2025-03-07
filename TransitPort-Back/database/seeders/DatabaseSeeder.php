@@ -9,11 +9,11 @@ use Database\Seeders\OrdenSeeder;
 class DatabaseSeeder extends Seeder {
     public function run(): void {
         $this -> call([
-            UsuarioSeeder::class,
-            GestorSeeder::class,
-            AdministrativoSeeder::class,
             TurnoSeeder::class,
-            OperadorSeeder::class,
+            UsuarioSeeder::class,
+            //GestorSeeder::class,
+            //AdministrativoSeeder::class,
+            //OperadorSeeder::class,
             GruaSeeder::class,
             UtilizaSeeder::class,
             PatioSeeder::class,

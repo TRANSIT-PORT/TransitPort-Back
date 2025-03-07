@@ -22,7 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->alias([
             'gestor' => GestorMiddleware::class,
-            'administrativo' => AdministrativoMiddleware::class,
+            'administrativo' => AdministrativoMiddleware::class,    
             'operador' => OperadorMiddleware::class,
         ]);
 
