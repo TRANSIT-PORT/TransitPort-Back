@@ -24,9 +24,9 @@ Route::get('/dashboard', function () {
 //una vez autentificado mediante auth
 Route::middleware('auth')->group(function () {
 
-    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //dependiendo del rol del usuario accede a unas funciones u otras
     Route::middleware(['gestor'])->group(function () {

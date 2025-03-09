@@ -36,7 +36,7 @@
 
         @if (session('mensaje') && session('cabecera'))
             <script>
-                document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function() {     
                     Swal.fire ({
                         title: "{{ session('cabecera') }}",
                         text: "{{ session('mensaje') }}",

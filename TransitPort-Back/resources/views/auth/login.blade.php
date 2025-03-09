@@ -27,8 +27,8 @@
                         <img id="verContrasenya" class="icono-ojo" src="{{ asset('assets/Login/eye.svg') }}" onclick="ocultarContrasenya()" alt="Mostrar contraseña">
 
                         <div class="form-check d-flex align-items-center recordarForm">
-                            <input id="recordar" type="checkbox" class="form-check-input me-2 recordarCheck" name="remember">
-                            <label for="recordar" class="recordarUser form-check-label">Recordar usuario</label>
+                            <!-- <input id="recordar" type="checkbox" class="form-check-input me-2 recordarCheck" name="remember">
+                            <label for="recordar" class="recordarUser form-check-label">Recordar usuario</label> -->
                         </div>
 
                         <button type="submit" class="px-10 py-3 mt-6 text-lg font-bold text-white transition bg-gray-900 rounded-lg shadow-md botonLogin hover:bg-gray-800">
