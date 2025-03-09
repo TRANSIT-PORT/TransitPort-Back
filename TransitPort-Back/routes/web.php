@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/guardarPatio', [PatioController::class, 'guardarPatio'])->name('guardarPatio');
         Route::post('/guardarZona', [ZonaController::class, 'guardarZona'])->name('guardarZona');
         Route::get('/verZona', [ZonaController::class, 'verZona'])->name('verZona');
+        Route::view('/exitoGestor', 'Gestor.exitoGestor') -> name('exitoGestor');
 
     });
 

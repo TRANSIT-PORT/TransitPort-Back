@@ -202,7 +202,7 @@
             </div>
 
             <form action="" method="get">
-                <button class="cancelar btn btn-warning" id="cancelar">Cancelar</button>
+                <button href="{{ url()->previous() }}" class="cancelar btn btn-warning" id="cancelar">Cancelar</button>
             </form>
         </body>
     </html>

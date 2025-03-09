@@ -385,7 +385,7 @@
 
                 <a class="crear btn btn-primary">Aceptar</a>
 
-                <a class="cancelar btn btn-warning">Cancelar</a>
+                <a href="{{ url()->previous() }}" class="cancelar btn btn-warning">Cancelar</a>
 
         </body>
         <script type="text/javascript">

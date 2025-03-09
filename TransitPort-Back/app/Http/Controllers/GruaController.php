@@ -85,7 +85,11 @@ class GruaController extends Controller
                  'error' => $e->getMessage(),
              ], 500);
          }
-         return view('Administrativo.exito', ['mensaje' => $mensaje]);
+
+         return redirect() -> route('exitoGestor') -> with([
+            'cabecera' => "Crear grúa",
+            'mensaje' => "¡Grúa creada con éxito!"
+        ]);
 
      }
 
