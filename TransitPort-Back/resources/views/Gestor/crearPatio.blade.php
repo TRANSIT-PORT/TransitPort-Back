@@ -88,7 +88,6 @@
                     border-top: 10px solid #F1F5FE;
                     border-right: none;
                     text-align: center;
-
                 }
 
                 h1 {
