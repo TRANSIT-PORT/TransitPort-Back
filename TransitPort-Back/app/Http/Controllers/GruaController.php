@@ -73,7 +73,6 @@ class GruaController extends Controller
                     "capacidad_carga" => $validatedData['capacidad_carga'],
                     "id_gestor" => $usuario->id,
                 ]);
-
             }
 
             $mensaje = "Grua creada!";

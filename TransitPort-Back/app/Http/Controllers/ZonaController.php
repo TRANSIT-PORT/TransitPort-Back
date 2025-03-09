@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Zona;
 use App\Models\Patio;
@@ -26,11 +27,11 @@ class ZonaController extends Controller
             'X' => 'required|numeric',
             'Y' => 'required|numeric',
             'Z' => 'required|numeric',
-            'id_gestor' => 'required|integer|exists:gestor,id',
             'id_patio' => 'required|integer|exists:patio,id',
         ]);
 
         $patio = Patio::findOrFail($zona['id_patio']);
+        $zona['id_gestor'] = Auth::id();
 
         if ($patio) {
             $zona['ubicacion'] = $patio->nombre;

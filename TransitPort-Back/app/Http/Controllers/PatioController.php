@@ -15,13 +15,11 @@ class PatioController extends Controller
     }
 
     public function guardarPatio(Request $request){
-
         $patio = $request -> validate([
             'nombre' => 'required|string|max:255',
             'x' => 'required|numeric',
             'y' => 'required|numeric',
             'z' => 'required|numeric',
-            'id_gestor' => 'required|exists:gestor,id',
         ]);
 
         $patio['capacidad'] = $patio['x'] * $patio['y'] * $patio['z'];
