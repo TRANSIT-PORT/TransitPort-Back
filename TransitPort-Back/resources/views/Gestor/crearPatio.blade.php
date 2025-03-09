@@ -88,7 +88,6 @@
                     border-top: 10px solid #F1F5FE;
                     border-right: none;
                     text-align: center;
-
                 }
 
                 h1 {
@@ -203,7 +202,7 @@
                     box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
                     display: flex;
-                    width: 498px;
+                    width: 435px;
                     padding: 10px 0px;
                     justify-content: center;
                     align-items: center;
