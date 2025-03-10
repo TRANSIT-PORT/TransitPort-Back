@@ -108,7 +108,7 @@
             .div4 {
                 position: absolute;
                 left: 36%;
-                top: 19.7%;
+                top: 20%;
                 margin-right:70px;
             }
             .div3 {
