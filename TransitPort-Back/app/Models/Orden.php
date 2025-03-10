@@ -50,7 +50,7 @@ class Orden extends Model
     }
     public function zona()
     {
-        return $this->belongsTo(Zona::class, foreignKey: 'id_zona', 'id');
+        return $this->belongsTo(Zona::class, foreignKey: 'id_zona');
     }
     public function administrativo()
     {
