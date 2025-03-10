@@ -135,6 +135,7 @@ form {
     font-size: 22px;
     font-weight: bold;
     margin-top: -2px;
+
 }
 
 #password {
@@ -165,7 +166,7 @@ form {
     margin-right: 10px;
     background: none;
     border-width: 3px;
-    border-color: #ccc;
+    border-color: #FFF;
     border-style: solid;
     border-radius: 4px;
     transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out;

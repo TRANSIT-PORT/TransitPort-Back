@@ -86,6 +86,7 @@ class GestorController extends Controller {
         try {
             $user['password'] = bcrypt($user['password']);
             User::create($user);
+            $mensaje = "¡Usuario creada con éxito!";
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al crear el usuario.',
@@ -93,7 +94,11 @@ class GestorController extends Controller {
             ], 500);
         }
 
-        return view('Gestor.crearUsuario');
+        // return view('Gestor.crearUsuario');
+        return redirect() -> route('exitoGestor') -> with([
+            'cabecera' => "Crear usuario",
+            'mensaje' => "¡Usuario creado con éxito!"
+        ]);
 
     }
     

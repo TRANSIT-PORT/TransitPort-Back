@@ -73,7 +73,6 @@ class GruaController extends Controller
                     "capacidad_carga" => $validatedData['capacidad_carga'],
                     "id_gestor" => $usuario->id,
                 ]);
-
             }
 
             $mensaje = "Grua creada!";
@@ -85,7 +84,11 @@ class GruaController extends Controller
                  'error' => $e->getMessage(),
              ], 500);
          }
-         return view('Administrativo.exito', ['mensaje' => $mensaje]);
+
+         return redirect() -> route('exitoGestor') -> with([
+            'cabecera' => "Crear grúa",
+            'mensaje' => "¡Grúa creada con éxito!"
+        ]);
 
      }
 

@@ -14,6 +14,52 @@
                     background: var(--Cinder-900, #152D65);
                     color: white;
                 }
+
+                input.form-control.form-control-sm {
+
+                    width: 70% !important;
+                    padding: 8px !important;
+                    border-radius: 4px !important;
+                    font-size: 20px !important;
+                    border: 2px solid #000 !important;
+                    height: 36px !important;
+                    font-weight: 700;
+                    color: #000 !important;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+                    background-image: url('assets/lupa.svg') !important;
+                    background-repeat: no-repeat !important;
+                    background-position: left 10px center !important;
+                    padding-left: 70px !important;
+
+                }
+
+                th.sorting_disabled {
+
+                    background: var(--Cinder-900, #152D65) !important;
+                    color: var(--Cinder-50, #F1F5FE);
+                    width: 100px;
+                    height: 54px;
+                    padding-left: -70px;
+                    border: none;
+                    text-align: center;
+                    position: sticky;
+                    z-index: 10;
+
+                }
+
+                #zona tbody {
+                    background: #F1F5FE;
+                    border: none;
+
+                }
+
+                #zona td {
+                    background: #FFF;
+                    color: #000000;
+                    border-top: 10px solid #F1F5FE;
+                    border-right: none;
+                    text-align: center;
+                }
             </style>
         </head>
         <body>
@@ -86,6 +132,13 @@
                     ordering: false, //Para evitar poder ordenar.
                     pageLength: 3, //Limitamos las consultas a 10.
                     lengthMenu: [3], //Agregamos opciones de aumentar o dismiuir opciones de menu.
+                    
+                   "info": false,
+                   "paging": false,
+                   "searching": true,
+                   "responsive": true,
+                   "ordering": false,
+                   "scrollY": "200px",
                 });
                 let tableDown = $('#orden').DataTable();
             });

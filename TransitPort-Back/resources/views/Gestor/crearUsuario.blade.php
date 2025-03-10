@@ -13,8 +13,9 @@
 
         <style>
             h1 {
-                margin-left: 8%;
-            }
+                    margin-top: 1%;
+                    margin-left: 8%;
+                }
             h2 {
                 color: var(--Cinder-950, #040813);
 
@@ -100,14 +101,14 @@
             .div2 {
                 position: absolute;
                 left: 10%;
-                top: 40%;
+                top: 45%;
                 margin-top:140px;
             }
 
             .div4 {
                 position: absolute;
                 left: 36%;
-                top: 19.3%;
+                top: 19.7%;
                 margin-right:70px;
             }
             .div3 {
@@ -127,7 +128,7 @@
                 background: var(--Cinder-900, #152D65);
                 box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.25);
                 display: flex;
-                width: 498px;
+                width: 435px;
                 padding: 10px 0px;
                 justify-content: center;
                 align-items: center;

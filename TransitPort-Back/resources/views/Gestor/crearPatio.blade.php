@@ -20,6 +20,12 @@
             <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
             <style>
+
+                h1 {
+                    margin-top: 1%;
+                    margin-left: 8%;
+                }
+
                 #zona table{
 
                     margin-top: 40%;
@@ -28,7 +34,7 @@
 
                 #tabla {
 
-                    margin-top:10%;
+                    margin-top:5%;
 
                 }
 
@@ -38,7 +44,25 @@
 
                 }
 
-                #zona .dataTables_scroll>.dataTables_scrollHead>.dataTables_scrollHeadInner {
+                input.form-control.form-control-sm{
+
+                    width: 70% !important;
+                    padding: 8px !important;
+                    border-radius: 4px !important;
+                    font-size: 20px !important;
+                    border: 2px solid #000 !important;
+                    height: 36px !important;
+                    font-weight: 700;
+                    color: #000 !important;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+                    background-image: url('assets/lupa.svg') !important;
+                    background-repeat: no-repeat !important;
+                    background-position: left 10px center !important;
+                    padding-left: 70px !important;
+
+                }
+
+                th.sorting_disabled{
 
                     background: var(--Cinder-900, #152D65) !important;
                     color: var(--Cinder-50, #F1F5FE);
@@ -48,9 +72,7 @@
                     border: none;
                     text-align: center;
                     position: sticky;
-                    top: 0;
                     z-index: 10;
-                    overflow: scroll !important;
 
                 }
 
@@ -65,7 +87,7 @@
                     color: #000000;
                     border-top: 10px solid #F1F5FE;
                     border-right: none;
-
+                    text-align: center;
                 }
 
                 h1 {
@@ -180,7 +202,7 @@
                     box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
                     display: flex;
-                    width: 498px;
+                    width: 435px;
                     padding: 10px 0px;
                     justify-content: center;
                     align-items: center;
@@ -267,6 +289,12 @@
 
                 }
 
+                #valZ, #labelZ{
+
+                    margin-right: 70px;
+
+                }
+
 
 
             </style>
@@ -324,7 +352,7 @@
                         </div>
 
                         <div class="d-flex flex-column">
-                            <label class="d-flex justify-content-center" for="valZ">Valor Z:</label>
+                            <label class="d-flex justify-content-center" id="labelZ" for="valZ">Valor Z:</label>
                             <input type="number" name="Z" id="valZ">
                         </div>
                 </div>
@@ -356,7 +384,7 @@
 
                 <a class="crear btn btn-primary">Aceptar</a>
 
-                <a class="cancelar btn btn-warning">Cancelar</a>
+                <a href="{{ url()->previous() }}" class="cancelar btn btn-warning">Cancelar</a>
 
         </body>
         <script type="text/javascript">

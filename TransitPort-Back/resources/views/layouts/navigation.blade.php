@@ -154,34 +154,34 @@
                 @if (auth() -> user()->cargo === 'administrativo')
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearOrden')" :active="request()->routeIs('crearOrden')">
-                            <img src="assets/Administrativo/crearOrden.svg">
+                            <img src="assets/Administrativo/crearOrden.png">
                             <span>Crear Orden</span>
                         </x-nav-link>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearTurno')" :active="request()->routeIs('crearTurno')">
-                            <img src="assets/Administrativo/crearTurno.svg">
+                            <img src="assets/Administrativo/crearTurno.png">
                             <span>Crear Turno</span>
                         </x-nav-link>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('asignarTurno')" :active="request()->routeIs('asignarTurno')">
-                            <img src="assets/Administrativo/buscarContenedor.svg">
+                            <img src="assets/Administrativo/buscarContenedor.png">
                             <span>Asignar turnos</span>
                         </x-nav-link>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
-                        <img src="assets/Administrativo/buscarContenedor.svg">
+                        <img src="assets/Administrativo/buscarContenedor.png">
                         <span>Buscar contenedores</span>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('verAuditoria')" :active="request()->routeIs('verAuditoria')">
-                            <img src="assets/Administrativo/realizarAuditoria.svg">
+                            <img src="assets/Administrativo/realizarAuditoria.png">
                             <span>Realizar auditorias</span>
                         </x-nav-link>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
-                        <img src="assets/Administrativo/incidencias.svg">
+                        <img src="assets/Administrativo/incidencias.png">
                         <span>Incidencias</span>
                     </div>
                 @endif
