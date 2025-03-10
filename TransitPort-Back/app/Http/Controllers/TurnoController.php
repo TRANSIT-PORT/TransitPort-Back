@@ -108,8 +108,6 @@ class TurnoController extends Controller {
             Turno::create([
                 'fecha_inicio' => $fecha_inicial,
                 'fecha_fin' => $fecha_fin,
-                'id_orden' => '1',
-                'id_operador' => '5',
             ]);
         } catch (\Exception $e) {
             return response()->json([
