@@ -47,25 +47,28 @@
 
                 }
 
-                #zona tbody {
+                #detalles tbody, #orden tbody {
                     background: #F1F5FE;
                     border: none;
-
                 }
 
-                #zona td {
+                #detalles td, #orden td {
                     background: #FFF;
                     color: #000000;
                     border-top: 10px solid #F1F5FE;
                     border-right: none;
                     text-align: center;
                 }
+
+                #detalles {                    
+                    margin-bottom: 150px !important;
+                }
             </style>
         </head>
         <body>
 
         <div class="container mt-5">
-            <h2 class="mb-4">Visualizar Auditoria</h2>
+            <h2 class="mb-4"><img src="assets/Administrativo/realizarAuditoriaVer.png">Visualizar Auditoria</h2>
             <table id="detalles" class="table table-bordered">
                 <thead>
                     <tr>
@@ -132,15 +135,15 @@
                     ordering: false, //Para evitar poder ordenar.
                     pageLength: 3, //Limitamos las consultas a 10.
                     lengthMenu: [3], //Agregamos opciones de aumentar o dismiuir opciones de menu.
-                    
-                   "info": false,
-                   "paging": false,
-                   "searching": true,
-                   "responsive": true,
-                   "ordering": false,
-                   "scrollY": "200px",
+                    info: false, //Para que no muestre la información de lo que muestra.
+                    paging: false, //Para evitar paginación.
+                    searching: false, //Para que no muestre la barra de búsqueda.
                 });
-                let tableDown = $('#orden').DataTable();
+                let tableDown = $('#orden').DataTable({
+                    info: false,
+                    paging: false,
+                    searching: false,
+                });
             });
         </script>
     </html>

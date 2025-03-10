@@ -7,13 +7,12 @@ use App\Models\Administrativo;
 use App\Models\Operador;
 use App\Models\Buque;
 use App\Models\Zona;
-use App\Models\Grua;
 
 class Orden extends Model
 {
     protected $table = 'orden';
     protected $primaryKey = 'id';
-    protected $fillable = ['tipo', 'cantidad_contenedores', 'fecha_inicio', 'fecha_fin', 'id_administrativo','visto', 'id_operador', 'id_buque', 'id_zona', 'id_grua'];
+    protected $fillable = ['tipo', 'cantidad_contenedores', 'fecha_inicio', 'fecha_fin', 'id_administrativo','visto', 'id_operador', 'id_buque', 'id_zona'];
 
     public function administrativos()
     {
@@ -30,10 +29,6 @@ class Orden extends Model
     public function zonas()
     {
         return $this->belongsToMany(zona::class);
-    }
-    public function gruas()
-    {
-        return $this->belongsToMany(Grua::class);
     }
 
     public function buque()

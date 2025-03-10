@@ -321,8 +321,7 @@
                     <label for="valorY">Valor Y:</label>
                     <input type="number" name="y" id="valorY">
                     <label for="valorZ">Valor Z:</label>
-                    <input type="number" name="z" id="valorZ">
-
+                    <input type="number" name="z" id="valorZ" value="1" min="1" max="1">
                 </div>
 
                 {{-- es un input invisible que recoge el id del gestor, para asignarlo al patio --}}
@@ -353,7 +352,7 @@
 
                         <div class="d-flex flex-column">
                             <label class="d-flex justify-content-center" id="labelZ" for="valZ">Valor Z:</label>
-                            <input type="number" name="Z" id="valZ">
+                            <input type="number" name="Z" id="valZ" value="1" min="1" max="1">
                         </div>
                 </div>
 

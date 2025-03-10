@@ -142,8 +142,8 @@
                     <a href="{{ route('profile.edit') }}">
                         @if (Auth::user()->profile_photo_url)
                             <img class="profile-img" src="{{ Auth::user()->profile_photo_url }}">
-                        @elseif (Auth::user()->role == 'admin')
-                            <img class="profile-img" src="{{ asset('images/admin-avatar.png') }}" alt="Admin">
+                        @elseif (auth() -> user()->cargo === 'administrativo')
+                            <img class="profile-img" src="{{ asset('assets/Administrativo/lucas.svg') }}" alt="Admin">
                         @else
                             <img class="profile-img" src="{{ asset('assets/Gestor/gestor.png') }}" alt="Gestor">
                         @endif
@@ -154,34 +154,38 @@
                 @if (auth() -> user()->cargo === 'administrativo')
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearOrden')" :active="request()->routeIs('crearOrden')">
-                            <img src="assets/Administrativo/crearOrden.png">
+                            <img src="{{ asset('assets/Administrativo/crearOrden.png') }}">
                             <span>Crear Orden</span>
                         </x-nav-link>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearTurno')" :active="request()->routeIs('crearTurno')">
-                            <img src="assets/Administrativo/crearTurno.png">
+                            <img src="{{ asset('assets/Administrativo/crearTurno.png') }}">
                             <span>Crear Turno</span>
                         </x-nav-link>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('asignarTurno')" :active="request()->routeIs('asignarTurno')">
-                            <img src="assets/Administrativo/buscarContenedor.png">
+                            <img src="{{ asset('assets/Administrativo/asignarTurno.png') }}">
                             <span>Asignar turnos</span>
                         </x-nav-link>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
-                        <img src="assets/Administrativo/buscarContenedor.png">
+                        <img src="{{ asset('assets/Administrativo/monitorizarOrden.png') }}">
+                        <span>Monitorizar orden</span>
+                    </div>
+                    <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
+                        <img src="{{ asset('assets/Administrativo/buscarContenedor.png') }}">
                         <span>Buscar contenedores</span>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('verAuditoria')" :active="request()->routeIs('verAuditoria')">
-                            <img src="assets/Administrativo/realizarAuditoria.png">
+                            <img src="{{ asset('assets/Administrativo/realizarAuditoria.png') }}">
                             <span>Realizar auditorias</span>
                         </x-nav-link>
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
-                        <img src="assets/Administrativo/incidencias.png">
+                        <img src="{{ asset('assets/Administrativo/incidencias.png') }}">
                         <span>Incidencias</span>
                     </div>
                 @endif
@@ -200,7 +204,7 @@
                     </div>
                     <div class="hidden link sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('crearGrua')" :active="request()->routeIs('crearGrua')">
-                            <img src="assets/Gestor/gruas.png">
+                            <img src="assets/Gestor/crearGruas.png">
                             <span>Crear Grua</span>
                         </x-nav-link>
                     </div>
@@ -212,7 +216,7 @@
                     </div>
                     <div class="hidden link ">
                         <x-nav-link>
-                            <img src="assets/Gestor/gestionarGrua.png">
+                            <img src="assets/Gestor/gestionarGruas.png">
                             <span>Gestionar Gruas</span>
                         </x-nav-link>
                     </div>
@@ -221,7 +225,7 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" style="border: none; background: none; padding: 0;">
-                            <img src="assets/Gestor/home.svg" alt="Cerrar sesión">
+                            <img src="{{ asset('assets/Gestor/home.svg') }}" alt="Cerrar sesión">
                         </button>
                     </form>
                 </div>

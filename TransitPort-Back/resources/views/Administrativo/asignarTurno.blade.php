@@ -48,6 +48,10 @@
                     align-items: center;
                     justify-content: space-between;
                 }
+                img {
+                    width: 60px;
+                    height: 60px;
+                }
 
                 select {
                     appearance: none;
@@ -146,7 +150,7 @@
         </head>
 
         <body>
-            <h1 class="titulo"><img src="assets/Administrativo/buscarContenedorVer.svg">  Asignar Turno</h1>
+            <h1 class="titulo"><img src="assets/Administrativo/asignarTurnoVer.png">  Asignar Turno</h1>
             <form action="{{ route('actualizarTurno') }}" method="post">
                 @csrf
 
