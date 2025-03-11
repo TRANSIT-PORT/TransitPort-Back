@@ -94,7 +94,7 @@ class UsuarioSeeder extends Seeder {
                 'name' => 'Juan Sanchez',
                 'email' => 'jsanchez@example.com',
                 'password' => bcrypt('1000'),
-                'estado' => 'Inactivo/a',
+                'estado' => 'Activo/a',
                 'usuario' => 'jsanchez',
                 'cargo' => 'operador',
                 'ciudad' => 'Valencia',
@@ -137,7 +137,7 @@ class UsuarioSeeder extends Seeder {
             if ($user['cargo'] === 'operador') {
                 $grua = ['SC', 'STS'];
                 $random = rand(0, 1);
-                
+
                 Operador::create([
                     'id' => $usuario -> id,
                     'nombre' => $user['name'],
