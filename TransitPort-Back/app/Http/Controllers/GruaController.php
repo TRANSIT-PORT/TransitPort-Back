@@ -8,11 +8,22 @@ use App\Models\SC;
 use App\Models\STS;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Pertenece;
+use App\Models\Zona;
+
 
 class GruaController extends Controller
 {
 
+    public function crearGrua(){
+
+        $zonas = Zona::all();
+
+        return view('Gestor.crearGrua', compact('zonas'));
+
+    }
+
     public function guardarGrua(Request $request) {
+
         $validatedData = $request->validate([
              'nombre' => 'string',
              'modelo' => 'string',
@@ -25,7 +36,7 @@ class GruaController extends Controller
          try {
 
             $usuario = Auth::user();
-             // Crear y guardar la tarea con asignación masiva
+
              $task = Grua::create([
                 "id" => null,
                 "nombre" => $validatedData['nombre'],
@@ -62,10 +73,9 @@ class GruaController extends Controller
                     "capacidad_carga" => $validatedData['capacidad_carga'],
                     "id_gestor" => $usuario->id,
                 ]);
-
             }
 
-            $mensaje = "Grua creada con éxito!";
+            $mensaje = "Grua creada!";
 
          } catch (\Exception $e) {
 
@@ -74,8 +84,51 @@ class GruaController extends Controller
                  'error' => $e->getMessage(),
              ], 500);
          }
-         return view('Administrativo.exito', ['mensaje' => $mensaje]);
+
+         return redirect() -> route('exitoGestor') -> with([
+            'cabecera' => "Crear grúa",
+            'mensaje' => "¡Grúa creada con éxito!"
+        ]);
 
      }
 
+    public function index()
+    {
+        $gruas = Grua::all();
+        return response()->json($gruas);
+    }
+
+    public function asignarGrua(Request $request){
+
+        try {
+            $request->validate([
+                'id_zona' => 'required|integer|exists:zona,id', 
+                'id_grua' => 'required|integer|exists:grua,id', 
+            ]);
+
+            $id_zona = $request->input('id_zona');
+            $id_grua = $request->input('id_grua');
+
+            Pertenece::create([
+                'id_grua' => $id_grua,
+                'id_zona' => $id_zona,
+                'fecha' => now()->toDateString(),
+                'hora' => now()->toTimeString(), 
+            ]);
+
+            return response()->json(['message' => 'Grúa asignada correctamente']);
+            
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al asignar la grúa',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function show(Request $request)
+    {
+        $task = Grua::findOrFail($request->id);
+        return $task;
+    }
 }

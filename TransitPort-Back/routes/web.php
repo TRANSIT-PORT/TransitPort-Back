@@ -9,6 +9,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OperadorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GruaController;
+use App\Http\Controllers\ZonaController;
+use App\Http\Controllers\PatioController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,20 +21,26 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+//una vez autentificado mediante auth
 Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    //dependiendo del rol del usuario accede a unas funciones u otras
     Route::middleware(['gestor'])->group(function () {
 
         Route::get('/crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
         Route::post('/guardarUsuario', [GestorController::class, 'guardarUsuario'])->name('guardarUsuario');
-        Route::get('/crearPatio', [GestorController::class, 'crearPatio'])->name('crearPatio');
-        Route::get('/crearGrua', [GestorController::class, 'crearGrua'])->name('crearGrua');
+        Route::get('/crearPatio', [PatioController::class, 'crearPatio'])->name('crearPatio');
+        Route::get('/crearGrua', [GruaController::class, 'crearGrua'])->name('crearGrua');
         Route::post('/guardarGrua', [GruaController::class, 'guardarGrua'])->name('guardarGrua');
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+        Route::post('/guardarPatio', [PatioController::class, 'guardarPatio'])->name('guardarPatio');
+        Route::post('/guardarZona', [ZonaController::class, 'guardarZona'])->name('guardarZona');
+        Route::get('/verZona', [ZonaController::class, 'verZona'])->name('verZona');
+        Route::view('/exitoGestor', 'Gestor.exitoGestor') -> name('exitoGestor');
 
     });
 
@@ -46,6 +54,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/asignarTurno', [TurnoController::class, 'crearOpciones'])->name('asignarTurno');
         Route::post('/actualziarTurno', [TurnoController::class, 'actualizarTurno']) -> name('actualizarTurno');
+
+        Route::view('/exito', 'Administrativo.exito') -> name('exito');
 
         Route::view('/verAuditoria', 'Administrativo.Auditorias.verAuditoria') -> name('verAuditoria');
         Route::get('/recogerAuditoria', [OrdenController::class, 'visualizarAuditoria']) -> name('recogerAuditoria');

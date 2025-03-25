@@ -25,6 +25,12 @@ class OperadorController extends Controller {
 
     }
 
+    public function show(Request $request)
+    {
+        $task = Operador::findOrFail($request->id);
+        return $task;
+    }
+
     public function verNotificaciones()
     {
         $usuario = Auth::user();

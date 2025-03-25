@@ -104,7 +104,7 @@
                     box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
                     display: flex;
-                    width: 498px;
+                    width: 435px;
                     padding: 10px 0px;
                     justify-content: center;
                     align-items: center;
@@ -113,6 +113,13 @@
                     right: 22%;
                     bottom: 5%;
                 }
+                .crear:hover {
+                    color: var(--Cinder-50, #F1F5FE);
+
+                    border: 2px solid #0B5ED7;
+                    background: #0B5ED7;
+                }
+
                 .cancelar {
                     color: var(--Cinder-800, #133379);
 
@@ -125,7 +132,7 @@
                     border: 2px solid var(--Cinder-900, #152D65);
                     background: var(--Amarillo, #E59506);
                     box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                    
+
                     display: inline-flex;
                     width: 15%;
                     padding: 10px 0px;
@@ -135,6 +142,11 @@
                     position: absolute;
                     right: 5%;
                     bottom: 5%;
+                }
+                .cancelar:hover {
+                    color: black;
+
+                    background: #FFCA2C;
                 }
             </style>
         </head>
@@ -153,7 +165,7 @@
                         <option value="descarga">Descarga</option>
                     </select>
                 </div>
-                
+
                 <div class="div2">
                     <h2 class="num">2</h2>
                     <h2>Ubicación</h2>
@@ -180,7 +192,7 @@
                     </select>
                     
                 </div>
-                
+
                 <div class="div3">
                     <h2 class="num">3</h2>
                     <h2>Operador</h2>
@@ -193,6 +205,7 @@
                         @endforelse
                     </select>
                 </div>  
+                </div>
 
                 <button class="crear btn">Crear</button>
             </form>

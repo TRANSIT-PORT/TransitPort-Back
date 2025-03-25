@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 
 class TurnoController extends Controller {
-    
+
     public function index(Request $request) {
         $task = Turno::all();
         return $task;
@@ -108,12 +108,7 @@ class TurnoController extends Controller {
             Turno::create([
                 'fecha_inicio' => $fecha_inicial,
                 'fecha_fin' => $fecha_fin,
-                'id_orden' => '1',
-                'id_operador' => '5',
             ]);
-
-            $mensaje = "¡Turno creado con éxito!";
-
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al guardar el turno.',
@@ -121,7 +116,10 @@ class TurnoController extends Controller {
             ], 500);
         }
 
-        return view('Administrativo.exito', ['mensaje' => $mensaje]);
+        return redirect() -> route('exito') -> with([
+            'cabecera' => "Crear turno",
+            'mensaje' => "¡Turno creado con éxito!",
+        ]);
     }
 
     public function crearOpciones() {
@@ -141,7 +139,6 @@ class TurnoController extends Controller {
             $operador = Operador::findOrFail($turno['id_operador']);
             $operador -> update($turno);
 
-            $mensaje = "A " . $operador -> nombre . " se le ha actualizado el turno con exito.";
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al actualizar el turno.',
@@ -149,6 +146,9 @@ class TurnoController extends Controller {
             ], 500);
         }
 
-        return view('Administrativo.exito', ['mensaje' => $mensaje]);
+        return redirect() -> route('exito') -> with([
+            'cabecera' => "Actualizar turno",
+            'mensaje' => "A " . $operador -> nombre . " se le ha actualizado el turno con exito.",
+        ]);
     }
 }

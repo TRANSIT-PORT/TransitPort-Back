@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Pail\ValueObjects\Origin\Console;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Auth;
 
 class OrdenController extends Controller {
     public function index(Request $request) {
@@ -146,8 +147,9 @@ class OrdenController extends Controller {
                 -> where('id_buque', $orden['id_buque'])
                 -> count();
 
-            $zona = Zona::findOrFail($orden['id_zona']);
             $buque = Buque::findOrFail($orden['id_buque']);
+
+            $administrativo = Auth::user();
 
             Orden::create([
                 "id" => null,
@@ -157,8 +159,7 @@ class OrdenController extends Controller {
                 "visto" => '0',
                 "fecha_fin" => $turno['fecha_fin'],
                 "estado" => "Por empezar",
-                "id_grua" => $zona['id_grua'],
-                "id_administrativo" => $buque['id_administrativo'],
+                "id_administrativo" => $administrativo['id'],
                 "id_operador" => $orden['operador'],
                 "id_buque" => $orden['id_buque'],
                 "id_zona" => $orden['id_zona'],
@@ -172,7 +173,10 @@ class OrdenController extends Controller {
             ], 500);
         }
 
-        return view('Administrativo.exito', ['mensaje' => $mensaje]);
+        return redirect() -> route('exito') -> with([
+            'cabecera' => "Crear orden",
+            'mensaje' => "¡Orden creada con éxito!"
+        ]);
     }
 
     public function verAuditoria(Request $request) {
@@ -212,8 +216,13 @@ class OrdenController extends Controller {
         return $task;
     }
 
+    /**
+     * Funcion para mostrar las auditorias con Datatables.
+     */
     public function visualizarAuditoria() {
-        $orden = Orden::select(['id', 'tipo', 'estado']);
+        $orden = Orden::select(['id', 'tipo', 'estado'])
+        -> where('estado', '!=', 'completada')
+        -> get();
 
         return DataTables::of($orden)
             -> make(true);
@@ -221,20 +230,20 @@ class OrdenController extends Controller {
 
     public function mostrarUno($id) {
         $orden = DB::table('orden')
-            -> join ('grua', 'orden.id_grua', '=' , 'grua.id')
             -> join ('operador', 'orden.id_operador', '=' , 'operador.id')
             -> join ('buque', 'orden.id_buque', '=' , 'buque.id')
             -> join ('tiene', 'buque.id', '=' , 'tiene.id_buque')
             -> join('turno', 'operador.id_turno', '=', 'turno.id')
+            -> join('pertenece', 'orden.id_zona', '=', 'pertenece.id_zona')
             -> where ('orden.id', $id)
 
-            -> select('orden.id_grua', 'orden.id_operador', 'orden.id_buque', 'orden.id', 'orden.tipo', 'orden.estado', 'turno.fecha_inicio')
+            -> select('pertenece.id_grua', 'orden.id_operador', 'orden.id_buque', 'orden.id', 'orden.tipo', 'orden.estado', 'turno.fecha_inicio')
 
             //Subconsulta Grua.
             -> selectSub(function ($query) {
-                $query -> from('orden')
+                $query -> from('grua')
                     -> select('grua.nombre')
-                    -> whereColumn('orden.id_grua', 'grua.id')
+                    -> whereColumn('pertenece.id_grua', 'grua.id')
                     -> limit(1);
             }, 'id_grua')
             //Subconsulta Operador.

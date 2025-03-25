@@ -12,7 +12,7 @@ class IncidenciaController extends Controller {
         $task = DB::table('incidencia')
         -> join('operador', 'incidencia.id_operador', '=', 'operador.id')
         -> join('orden', 'incidencia.id_orden', '=', 'orden.id')
-        -> select('codigo_tipo', 'incidencia.tipo', 'incidencia.id_operador', 'incidencia.id_orden')
+        -> select('incidencia.id', 'codigo_tipo', 'incidencia.tipo', 'incidencia.id_operador', 'incidencia.id_orden', 'observacion')
 
         -> selectSub(function ($query) {
             $query -> from('operador')
