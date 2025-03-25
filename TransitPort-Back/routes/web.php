@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware(['administrativo'])->group(function () {
+        Route::get('/verZona', [OrdenController::class, 'zonaActual'])->name('buscarZona');
         Route::get('/crearOrden', [OrdenController::class, 'crearOpciones'])->name('crearOrden');
         Route::post('/guardarOrden', [OrdenController::class, 'guardarOrden'])->name('guardarOrden');
         Route::view('/crearTurno', 'Administrativo.crearTurno')->name('crearTurno');

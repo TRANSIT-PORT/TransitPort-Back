@@ -124,6 +124,12 @@ class OrdenController extends Controller {
         return view('Administrativo.crearOrden', ['zonas' => $zonas, 'buques' => $buques, 'operadores' => $operadores]);
     }
 
+    public function zonaActual(Request $request){
+
+        dump($request);
+
+    }
+
     public function guardarOrden(Request $request) {
         $orden = $request -> validate([
             'tipo' => 'string',

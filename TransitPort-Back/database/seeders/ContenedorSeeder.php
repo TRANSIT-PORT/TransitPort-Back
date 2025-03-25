@@ -13,6 +13,7 @@ class ContenedorSeeder extends Seeder {
             [
                 'estado' => 'Por empezar',
                 'id_zona' => '1',
+                'altura' => '0',
                 'parcela' => '4',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -20,6 +21,7 @@ class ContenedorSeeder extends Seeder {
             [
                 'estado' => 'Por empezar',
                 'id_zona' => '3',
+                'altura' => '0',
                 'parcela' => '7',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -27,6 +29,7 @@ class ContenedorSeeder extends Seeder {
             [
                 'estado' => 'En curso',
                 'id_zona' => '2',
+                'altura' => '0',
                 'parcela' => '12',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -34,6 +37,7 @@ class ContenedorSeeder extends Seeder {
             [
                 'estado' => 'En curso',
                 'id_zona' => '1',
+                'altura' => '0',
                 'parcela' => '400',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -41,6 +45,7 @@ class ContenedorSeeder extends Seeder {
             [
                 'estado' => 'Completada',
                 'id_zona' => '1',
+                'altura' => '0',
                 'parcela' => '167',
                 'created_at' => now(),
                 'updated_at' => now(),

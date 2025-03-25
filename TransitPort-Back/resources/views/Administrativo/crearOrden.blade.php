@@ -84,6 +84,12 @@
                     top: 10%;
                 }
 
+                .tabla_parcelas {
+                    position: absolute;
+                    left: 52%;
+                    top: 33%;
+                }
+
                 .crear {
                     color: var(--Cinder-50, #F1F5FE);
 
@@ -152,13 +158,18 @@
                     <h2 class="num">2</h2>
                     <h2>Ubicación</h2>
                     <p>Zona</p>
-                    <select name="id_zona">
-                        @forelse ($zonas as $zona)
-                            <option value="{{$zona -> id}}">{{$zona -> ubicacion}}</option>
-                        @empty
-                            <p>No hay zonas actualmente</p>
-                        @endforelse
-                    </select>
+                        <select name="id_zona">
+                            @forelse ($zonas as $zona)
+                                <option id="zona_actual" value="{{$zona -> id}}">{{$zona -> ubicacion}}</option>
+                                
+                            @empty
+                                <p>No hay zonas actualmente</p>
+                            @endforelse
+                        </select>
+
+
+                </form>
+
                     <p>Buque</p>
                     <select name="id_buque">
                         @forelse ($buques as $buque)
@@ -167,6 +178,7 @@
                             <p>No hay amarres actualmente</p>
                         @endforelse
                     </select>
+                    
                 </div>
                 
                 <div class="div3">
@@ -180,7 +192,7 @@
                             <p>No hay turnos actualmente</p>
                         @endforelse
                     </select>
-                </div>            
+                </div>  
 
                 <button class="crear btn">Crear</button>
             </form>

@@ -10,10 +10,10 @@ class PatioSeeder extends Seeder {
     public function run(): void {
         $patios = [
             [
-            'x' => 50,
-            'y' => 50,
-            'z' => 1,
-            'capacidad' => 16000,
+            'x' => 400,
+            'y' => 300,
+            'z' => 2,
+            'capacidad' => 360000,
             'id_gestor' => 1,
             'nombre' => 'Patio Central',
             'created_at' => now(),

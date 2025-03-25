@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create(table: 'contenedor', callback: function (Blueprint $table) {
             $table->id();
             $table->integer('parcela');
+            $table->integer('altura');
             $table->enum('estado', ['Por empezar', 'En curso', 'Completada']);
             $table->foreignId('id_zona')->constrained('zona');
             $table->timestamps();
