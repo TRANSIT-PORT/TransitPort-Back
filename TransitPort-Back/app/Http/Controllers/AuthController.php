@@ -19,20 +19,22 @@ class AuthController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function login() {
+    public function login()
+{
+    try {
+        // Intentar autenticar al usuario
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
-            $success['token'] =  $user->createToken('MyApp')->accessToken;
-            return response()->json(['success' => $success, 'user'=> $user],
-            $this->successStatus)
-                ->header('Access-Control-Allow-Origin', '*')
-                ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
-                ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+            $success['token'] = $user->createToken('MyApp')->accessToken;
+            return response()->json(['success' => $success, 'user'=> $user], 200); // Código de éxito 200
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json(['error' => 'Unauthorized'], 401); // Error de credenciales
         }
+    } catch (\Exception $e) {
+        // Capturar cualquier error no anticipado
+        return response()->json(['error' => 'Server Error', 'message' => $e->getMessage()], 500);
     }
-
+}
     public function logout(Request $request)
     {
 

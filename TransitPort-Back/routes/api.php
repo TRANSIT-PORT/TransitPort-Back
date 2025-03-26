@@ -49,9 +49,10 @@ Route::get('/operador/notificaciones', [OperadorController::class, 'verNotificac
 Route::get('/operador/ordenes', [OrdenesController::class, 'index']);
 
 Route::get('/orden', [OrdenController::class, 'index']);
+
 Route::put('orden/actualizar/{id}', [OrdenController::class, 'update']);
 
-Route::put('operador/ordenes/orden/{id}', [OrdenController::class, 'update']);
+Route::put('operador/ordenes/orden/{id}', [OrdenController::class, 'actualizarEstado']);
 
 Route::post('/orden/guardar', [OrdenController::class, 'store']);
 

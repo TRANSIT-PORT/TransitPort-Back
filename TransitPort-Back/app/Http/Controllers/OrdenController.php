@@ -80,6 +80,8 @@ class OrdenController extends Controller {
             'id_zona' => 'int',
         ]);
 
+        dd('Se manda' . $validatedData);
+
         try {
             $task = Orden::findOrFail($validatedData["id"]);
 
@@ -103,6 +105,43 @@ class OrdenController extends Controller {
             ], 500);
         }
 
+    }
+
+    public function actualizarEstado(Request $request) {
+
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'tipo' => 'string',
+            'estado' => 'nullable|string|in:Por empezar,En curso,Completada',
+            'visto' => 'boolean',
+            'fecha_carga' => 'date',
+            'fecha_descarga' => 'date',
+            'id_grua' => 'int',
+            'id_administrativo' => 'int',
+            'id_buque' => 'int',
+            'id_contenedor' => 'int',
+            'id_zona' => 'int',
+        ]);
+
+        try {
+            $task = Orden::findOrFail($validatedData['id']);
+        // Usar fill() en lugar de update() para mayor control
+            $task->fill($validatedData);
+
+            $task->save();
+
+            return response()->json([
+                'message' => 'Orden actualizada con éxito en la base de datos.',
+                'task' => $validatedData,
+            ], 200);
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'message' => 'Error al actualizar la Orden.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function destroy(Request $request)

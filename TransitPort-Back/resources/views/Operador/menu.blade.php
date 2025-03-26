@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div class="d-flex vh-100 col-12 col-xl-3 col-lg-3 col-md-3">
+<div class="d-flex vh-100 col-12 col-xl-2 col-lg-3 col-md-3">
   <!-- Quitamos el binding Angular [style.display] -->
   <div class="sidebar bg-light col-12 col-xl-12 col-lg-12 col-md-12" id="sidebar">
     <div class="navbar-nav flex-column justify-content-between" id="menu">
