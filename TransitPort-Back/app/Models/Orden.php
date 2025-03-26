@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Administrativo;
 use App\Models\Operador;
 use App\Models\Buque;
+use App\Models\Train;
+use App\Models\Truck;
 use App\Models\Zona;
 use App\Models\User;
 
@@ -13,7 +15,7 @@ class Orden extends Model
 {
     protected $table = 'orden';
     protected $primaryKey = 'id';
-    protected $fillable = ['tipo', 'cantidad_contenedores', 'fecha_inicio', 'estado', 'fecha_fin', 'id_administrativo', 'visto', 'id_operador', 'id_buque', 'id_zona'];
+    protected $fillable = ['tipo', 'cantidad_contenedores', 'fecha_inicio', 'estado', 'fecha_fin', 'visto', 'id_administrativo', 'visto', 'id_operador', 'id_buque', 'id_zona', 'tipo_transporte'];
 
     public function administrativos()
     {
@@ -34,6 +36,16 @@ class Orden extends Model
     public function buque()
     {
         return $this->belongsTo(Buque::class, 'id_buque', 'id');
+    }
+
+    public function train()
+    {
+        return $this->belongsTo(Train::class, 'id_train', 'id');
+    }
+
+    public function truck()
+    {
+        return $this->belongsTo(Truck::class, 'id_truck', 'id');
     }
     public function tiene()
     {

@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder {
             PatioSeeder::class,
             ZonaSeeder::class,
             PerteneceSeeder::class,
+            TrainSeeder::class,
+            TruckSeeder::class,
             BuqueSeeder::class,
             ContenedorSeeder::class,
             GestionaSeeder::class,
