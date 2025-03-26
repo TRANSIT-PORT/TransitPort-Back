@@ -10,6 +10,7 @@
             <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+            
 
             <style>
                 h1 {
@@ -170,7 +171,7 @@
                     <h2 class="num">2</h2>
                     <h2>Ubicación</h2>
                     <p>Zona</p>
-                        <select name="id_zona">
+                        <select name="id_zona" id="id_zona">
                             @forelse ($zonas as $zona)
                                 <option id="zona_actual" value="{{$zona -> id}}">{{$zona -> ubicacion}}</option>
                                 
@@ -178,9 +179,6 @@
                                 <p>No hay zonas actualmente</p>
                             @endforelse
                         </select>
-
-
-                </form>
 
                     <p>Buque</p>
                     <select name="id_buque">
@@ -206,6 +204,8 @@
                     </select>
                 </div>  
                 </div>
+
+                
 
                 <button class="crear btn">Crear</button>
             </form>

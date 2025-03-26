@@ -31,7 +31,7 @@
               stroke-linejoin="round"
             />
           </svg>
-          Órdenes
+          <p id="enlace-menu">Órdenes</p>
         </a>
 
         <a class="nav-link enlace" href="./verNotificaciones" id="notificaciones">
@@ -49,7 +49,7 @@
               stroke-width="2"
             />
           </svg>
-          Notificaciones <p id="cantidadNotificaciones">{{$noLeidas}}</p>
+          <p id="enlace-menu">Notificaciones</p><p id="cantidadNotificaciones">{{$noLeidas}}</p>
 
         </a>
       </div>

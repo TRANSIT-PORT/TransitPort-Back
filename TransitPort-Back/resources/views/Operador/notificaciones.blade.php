@@ -32,12 +32,12 @@
 
                         @if($t->tipo == 'carga')
 
-                        <li class="carga">{{$t->administrativo->nombre}} te ha asignado una nueva orden de {{$t->tipo}}</li>
+                        <li class="carga">{{$t->user->name}} te ha asignado una nueva orden de {{$t->tipo}}</li>
                         @endif
 
                         @if($t->tipo == 'descarga')
 
-                        <li class="descarga">{{$t->administrativo->nombre}} te ha asignado una nueva orden de {{$t->tipo}}</li>
+                        <li class="descarga">{{$t->user->name}} te ha asignado una nueva orden de {{$t->tipo}}</li>
                         @endif
 
                     @endif

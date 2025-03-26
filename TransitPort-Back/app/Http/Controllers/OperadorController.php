@@ -20,8 +20,10 @@ class OperadorController extends Controller {
     public function perfil(){
 
         $usuario = Auth::user();
+        $userId = $usuario->id;
+        $noLeidas = Orden::where('id_operador', $userId)->where('visto', false)->count();
 
-        return view('Operador.vistaPerfil', compact('usuario'));
+        return view('Operador.vistaPerfil', compact('usuario', 'noLeidas'));
 
     }
 
@@ -40,8 +42,8 @@ class OperadorController extends Controller {
         }
 
         $userId = $usuario->id;
-        $noLeidas = Orden::where('id_user', $userId)->where('visto', false)->count();
-        $task = Orden::where('id_user', $userId)->with('administrativo')->get();
+        $noLeidas = Orden::where('id_operador', $userId)->where('visto', false)->count();
+        $task = Orden::where('id_operador', $userId)->with('user')->get();
         return view('Operador.vistaNotificaciones', compact('usuario', 'task', 'noLeidas'));
     }
 }

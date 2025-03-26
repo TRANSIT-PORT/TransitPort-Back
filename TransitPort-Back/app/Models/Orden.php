@@ -7,6 +7,7 @@ use App\Models\Administrativo;
 use App\Models\Operador;
 use App\Models\Buque;
 use App\Models\Zona;
+use App\Models\User;
 
 class Orden extends Model
 {
@@ -30,7 +31,6 @@ class Orden extends Model
     {
         return $this->belongsToMany(zona::class);
     }
-
     public function buque()
     {
         return $this->belongsTo(Buque::class, 'id_buque', 'id');
@@ -47,8 +47,8 @@ class Orden extends Model
     {
         return $this->belongsTo(Zona::class, foreignKey: 'id_zona');
     }
-    public function administrativo()
+    public function user()
     {
-        return $this->belongsTo(Administrativo::class, 'id_administrativo');
+        return $this->hasOne(User::class, 'id', 'id_administrativo');
     }
 }

@@ -18,6 +18,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
 
 class OrdenController extends Controller {
+
     public function index(Request $request) {
         $task = Orden::all();
         return $task;
@@ -125,11 +126,22 @@ class OrdenController extends Controller {
         return view('Administrativo.crearOrden', ['zonas' => $zonas, 'buques' => $buques, 'operadores' => $operadores]);
     }
 
-    public function zonaActual(Request $request){
+    public function buscarParcela(Request $request) {
+        $valorSeleccionado = $request->input('valor'); // Accede al valor enviado en la solicitud
+    
+        $zonaActual = Zona::where('id', $valorSeleccionado)->first(); // Usa el valor para buscar la zona
+    
+        // Verifica si se encuentra la zona
+        if ($zonaActual) {
+            return response()->json(['mensaje' => 'Valor recibido', 'zona' => $zonaActual]);
+        } else {
+            return response()->json(['mensaje' => 'Zona no encontrada'], 404);
+        }
 
-        dump($request);
-
+        return view('Administrativo.crearOrden', compact($zonaActual));
     }
+    
+
 
     public function guardarOrden(Request $request) {
         $orden = $request -> validate([

@@ -9,7 +9,7 @@ use App\Models\Contenedor;
 class Tiene extends Model
 {
     protected $table = 'tiene';
-    protected $fillable = ['id_buque', 'id_contenedor', 'ubicacion', 'destino', 'tipo_dstino'];
+    protected $fillable = ['id_buque', 'id_contenedor', 'ubicacion', 'destino', 'tipo_destino'];
 
     public function tiene()
     {

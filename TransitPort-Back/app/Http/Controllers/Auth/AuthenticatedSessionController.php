@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
         } elseif ($user->cargo == 'administrativo') {
             return redirect()->route('crearOrden');
         } elseif ($user->cargo == 'operador') {
-            return redirect()->route('ordenes');
+            return redirect()->route('verNotificaciones');
         }
 
         return redirect()->intended(route('dashboard'));
