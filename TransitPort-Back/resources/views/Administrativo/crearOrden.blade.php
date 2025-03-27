@@ -180,13 +180,22 @@
                             @endforelse
                         </select>
 
-                    <p>Buque</p>
-                    <select name="id_buque">
-                        @forelse ($buques as $buque)
-                            <option value="{{$buque -> id}}">{{$buque -> nombre}}</option>
-                        @empty
-                            <p>No hay amarres actualmente</p>
-                        @endforelse
+                    <p>Tipo de transporte</p>
+
+                    <select name="tipo_transporte" id="tipo_transporte">
+                        
+                            <option value="">Selecciona un transporte</option>
+                            <option value="buque">Buque</option>
+                            <option value="train">Tren</option>
+                            <option value="truck">Camion</option>
+
+                    </select>
+
+                    <p>Transporte</p>
+
+
+                    <select name="id_transporte" id="id_transporte">
+                        <option value="">Selecciona un transporte</option>
                     </select>
                     
                 </div>
@@ -213,5 +222,44 @@
                 <button class="cancelar btn">Cancelar</button>
             </form>
         </body>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#tipo_transporte').change(function() {
+                    var tipo = $(this).val();
+                    console.log('Tipo del select: ' + tipo)
+                    $.ajax({
+                        url: "{{ route('getTransporte') }}", // Ruta en Laravel
+                        type: "GET",
+                        data: { tipo: tipo },
+                        success: function(response) {
+                            console.log('Respuesta del servidor:', response);
+                            $('#id_transporte').empty();
+                            if (response.length > 0) {
+
+                                if(tipo == 'buque' || tipo == 'train'){
+
+                                    response.forEach(function(transporte) {
+                                        $('#id_transporte').append('<option value="' + transporte.id + '">' + transporte.nombre + '</option>');
+                                    });
+
+                                } else {
+
+                                    response.forEach(function(transporte) {
+                                        $('#id_transporte').append('<option value="' + transporte.id + '">' + transporte.matricula + '</option>');
+                                    });
+
+                                }
+                            } else {
+                                $('#id_transporte').append('<option value="">No hay transportes disponibles</option>');
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+
+
     </html>
 </x-app-layout>

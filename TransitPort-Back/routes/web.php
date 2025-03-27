@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/guardarTurno', [TurnoController::class, 'guardarTurno'])->name('guardarTurno');
         Route::view('/calendario', 'Administrativo.calendario')->name('calendario');
         Route::post('/crearOrden', [OrdenController::class, 'buscarParcela'])->name('buscarParcela');
-
+        Route::get('/getTransporte', [OrdenController::class, 'getTransporte'])->name('getTransporte');
         Route::get('/asignarTurno', [TurnoController::class, 'crearOpciones'])->name('asignarTurno');
         Route::post('/actualziarTurno', [TurnoController::class, 'actualizarTurno']) -> name('actualizarTurno');
 

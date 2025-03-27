@@ -7,6 +7,8 @@ use App\Models\Operador;
 use App\Models\Orden;
 use App\Models\Tiene;
 use App\Models\Turno;
+use App\Models\Train;
+use App\Models\Truck;
 use App\Models\User;
 use App\Models\Zona;
 use Illuminate\Database\Schema\ColumnDefinition;
@@ -187,34 +189,81 @@ class OrdenController extends Controller {
             'tipo' => 'string',
             'operador' => 'int',
             'id_zona' => 'int',
-            'id_buque' => 'int',
+            'id_transporte' => 'int',
+            'tipo_transporte' => 'string',
         ]);
+
+        
 
         try {
             $operador = Operador::findOrFail($orden['operador']);
             $turno = Turno::findOrFail($operador['id_turno']);
 
             $tiene = DB::table('tiene')
-                -> where('id_buque', $orden['id_buque'])
+                -> where('id_buque', $orden['id_transporte'])
                 -> count();
-
-            $buque = Buque::findOrFail($orden['id_buque']);
+            
 
             $administrativo = Auth::user();
 
-            Orden::create([
-                "id" => null,
-                "tipo" => $orden['tipo'],
-                "cantidad_contenedores" => $tiene,
-                "fecha_inicio" => $turno['fecha_inicio'],
-                "visto" => '0',
-                "fecha_fin" => $turno['fecha_fin'],
-                "estado" => "Por empezar",
-                "id_administrativo" => $administrativo['id'],
-                "id_operador" => $orden['operador'],
-                "id_buque" => $orden['id_buque'],
-                "id_zona" => $orden['id_zona'],
-            ]);
+            if($orden['tipo_transporte'] == 'buque'){
+
+                $buque = Buque::findOrFail($orden['id_transporte']);
+
+                Orden::create([
+                    "id" => null,
+                    "tipo" => $orden['tipo'],
+                    "tipo_transporte" => $orden['tipo_transporte'],
+                    "fecha_inicio" => $turno['fecha_inicio'],
+                    "visto" => '0',
+                    "fecha_fin" => $turno['fecha_fin'],
+                    "estado" => "Por empezar",
+                    "id_administrativo" => $administrativo['id'],
+                    "id_operador" => $orden['operador'],
+                    "id_buque" => $buque->id,
+                    "id_train" => null,
+                    "id_truck" => null,
+                    "id_zona" => $orden['id_zona'],
+                ]);
+            } else if($orden['tipo_transporte'] == 'train'){
+
+                $train = Train::findOrFail($orden['id_transporte']);
+
+                Orden::create([
+                    "id" => null,
+                    "tipo" => $orden['tipo'],
+                    "tipo_transporte" => $orden['tipo_transporte'],
+                    "fecha_inicio" => $turno['fecha_inicio'],
+                    "visto" => '0',
+                    "fecha_fin" => $turno['fecha_fin'],
+                    "estado" => "Por empezar",
+                    "id_administrativo" => $administrativo['id'],
+                    "id_operador" => $orden['operador'],
+                    "id_buque" => null,
+                    "id_train" => $train->id,
+                    "id_truck" => null,
+                    "id_zona" => $orden['id_zona'],
+                ]);
+            } else if($orden['tipo_transporte'] == 'truck'){
+
+                $truck = Truck::findOrFail($orden['id_transporte']);
+
+                Orden::create([
+                    "id" => null,
+                    "tipo" => $orden['tipo'],
+                    "tipo_transporte" => $orden['tipo_transporte'],
+                    "fecha_inicio" => $turno['fecha_inicio'],
+                    "visto" => '0',
+                    "fecha_fin" => $turno['fecha_fin'],
+                    "estado" => "Por empezar",
+                    "id_administrativo" => $administrativo['id'],
+                    "id_operador" => $orden['operador'],
+                    "id_buque" => null,
+                    "id_train" => null,
+                    "id_truck" => $truck->id,
+                    "id_zona" => $orden['id_zona'],
+                ]);
+            }
 
             $mensaje = "¡Grua creada con éxito!";
         } catch (\Exception $e) {
@@ -265,6 +314,22 @@ class OrdenController extends Controller {
         -> get();
 
         return $task;
+    }
+
+    public function getTransporte(Request $request){
+
+        $tipo = $request->query('tipo');
+
+        if($tipo === 'buque'){
+            $task = Buque::all();
+        }else if($tipo === 'train'){
+            $task = Train::all();
+        } else if($tipo === 'truck'){
+            $task = Truck::all();
+        }
+
+        return response()->json($task);
+
     }
 
     /**
