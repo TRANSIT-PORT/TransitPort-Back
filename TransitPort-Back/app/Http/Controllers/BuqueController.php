@@ -9,6 +9,7 @@ class BuqueController extends Controller
 {
     public function show(Request $request)
     {
+
         $task = Buque::findOrFail($request->id);
         return $task;
     }

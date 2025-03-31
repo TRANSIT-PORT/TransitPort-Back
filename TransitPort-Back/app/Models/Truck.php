@@ -15,4 +15,10 @@ class Truck extends Model
     {
         return $this->belongsToMany(Administrativo::class);
     }
+
+    public function contenedores(){
+        return $this->belongsToMany(Contenedor::class, 'tiene_truck', 'id_contenedor', 'id_truck')
+                    ->withPivot('ubicacion', 'destino', 'tipo_destino')
+                    ->withTimestamps(); 
+    }
 }

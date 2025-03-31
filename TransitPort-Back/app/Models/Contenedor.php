@@ -15,4 +15,22 @@ class Contenedor extends Model
     {
         return $this->belongsToMany(Zona::class);
     }
+
+    public function buques(){
+        return $this->belongsToMany(Buque::class, 'tiene_buque', 'id_contenedor', 'id_buque')
+                    ->withPivot('ubicacion', 'destino', 'tipo_destino')
+                    ->withTimestamps(); 
+    }
+
+    public function trains(){
+        return $this->belongsToMany(Train::class, 'tiene_train', 'id_contenedor', 'id_train')
+                    ->withPivot('ubicacion', 'destino', 'tipo_destino')
+                    ->withTimestamps(); 
+    }
+
+    public function trucks(){
+        return $this->belongsToMany(Truck::class, 'tiene_truck', 'id_contenedor', 'id_truck')
+                    ->withPivot('ubicacion', 'destino', 'tipo_destino')
+                    ->withTimestamps(); 
+    }
 }

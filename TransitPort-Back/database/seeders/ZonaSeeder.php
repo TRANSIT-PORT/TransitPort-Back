@@ -12,8 +12,8 @@ class ZonaSeeder extends Seeder {
             [
                 'nombre' => 'Zona 1',
                 'ubicacion' => 'MSC',
-                'X' => '130',
-                'Y' => '300',
+                'X' => '25',
+                'Y' => '6',
                 'Z' => '3',
                 'capacidad' => '117000',
                 'id_gestor' => '1',
@@ -24,8 +24,8 @@ class ZonaSeeder extends Seeder {
             [
                 'nombre' => 'Zona 2',
                 'ubicacion' => 'Terminal Norte',
-                'X' => '90',
-                'Y' => '300',
+                'X' => '30',
+                'Y' => '7',
                 'Z' => '3',
                 'capacidad' => '81000',
                 'id_gestor' => '2',
@@ -36,8 +36,8 @@ class ZonaSeeder extends Seeder {
             [
                 'nombre' => 'Zona 4',
                 'ubicacion' => 'Muelle Este',
-                'X' => '90',
-                'Y' => '300',
+                'X' => '20',
+                'Y' => '4',
                 'Z' => '3',
                 'capacidad' => '81000',
                 'id_gestor' => '1',
@@ -48,8 +48,8 @@ class ZonaSeeder extends Seeder {
             [
                 'nombre' => 'Zona 3',
                 'ubicacion' => 'HAMBURG SÜD',
-                'X' => '90',
-                'Y' => '300',
+                'X' => '10',
+                'Y' => '3',
                 'Z' => '3',
                 'capacidad' => '81000',
                 'id_gestor' => '1',

@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Tiene;
+use App\Models\TieneBuque;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class TieneSeeder extends Seeder {
+class TieneBuqueSeeder extends Seeder {
     public function run(): void
     {
-        $tiene = [
+        $tiene_buque = [
             [
-                'id_buque' => '1',
+                'id_buque' => '2',
                 'id_contenedor' => '1',
                 'ubicacion' => '1',
                 'destino' => '1',
@@ -20,7 +20,7 @@ class TieneSeeder extends Seeder {
                 'updated_at' => now(),
             ],
             [
-                'id_buque' => '2',
+                'id_buque' => '1',
                 'id_contenedor' => '3',
                 'ubicacion' => '1',
                 'destino' => '2',
@@ -29,7 +29,7 @@ class TieneSeeder extends Seeder {
                 'updated_at' => now(),
             ],
             [
-                'id_buque' => '3',
+                'id_buque' => '1',
                 'id_contenedor' => '5',
                 'ubicacion' => '1',
                 'destino' => '2',
@@ -37,19 +37,10 @@ class TieneSeeder extends Seeder {
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'id_buque' => '4',
-                'id_contenedor' => '4',
-                'ubicacion' => '1',
-                'destino' => '2',
-                'tipo_destino' => 'Zona',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
         ];
 
-        foreach ($tiene as $relacion) {
-            Tiene::create($relacion);
+        foreach ($tiene_buque as $relacion) {
+            TieneBuque::create($relacion);
         }
     }
 }

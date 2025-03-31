@@ -8,7 +8,7 @@ use App\Http\Controllers\GestorController;
 use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\OperadorController;
 use App\Http\Controllers\OrdenController;
-use App\Http\Controllers\TieneController;
+use App\Http\Controllers\TieneBuqueController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OrdenesController;
 use App\Http\Controllers\AuthController;
@@ -72,16 +72,16 @@ Route::delete('/contenedor/borrar/{id}', [ContenedorController::class, 'destroy'
 Route::get('/contenedor/buscar/{id}', [ContenedorController::class, 'show']);
 
 
-//Tiene
-Route::get('/tiene', [TieneController::class, 'index']);
+//TieneBuque
+Route::get('/tiene-buque', [TieneBuqueController::class, 'index']);
 
-Route::put('/tiene/actualizar/{id}', [TieneController::class, 'update']);
+Route::put('/tiene-buque/actualizar/{id}', [TieneBuqueController::class, 'update']);
 
-Route::post('/tiene/guardar', [TieneController::class, 'store']);
+Route::post('/tiene-buque/guardar', [TieneBuqueController::class, 'store']);
 
-Route::delete('/tiene/borrar/{id}', [TieneController::class, 'destroy']);
+Route::delete('/tiene-buque/borrar/{id}', [TieneBuqueController::class, 'destroy']);
 
-Route::get('/tiene/buscar/{id}', [TieneController::class, 'show']);
+Route::get('/tiene-buque/buscar/{id}', [TieneBuqueController::class, 'show']);
 
 
 //Incidencia

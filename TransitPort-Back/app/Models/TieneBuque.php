@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Buque;
 use App\Models\Contenedor;
 
-class Tiene extends Model
+class TieneBuque extends Model
 {
-    protected $table = 'tiene';
+    protected $table = 'tiene_buque';
     protected $fillable = ['id_buque', 'id_contenedor', 'ubicacion', 'destino', 'tipo_destino'];
 
     public function tiene()

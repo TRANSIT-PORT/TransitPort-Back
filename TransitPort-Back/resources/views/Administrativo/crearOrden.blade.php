@@ -55,11 +55,8 @@
                     -webkit-appearance: none;
                     -moz-appearance: none;
                     background: url('assets/flecha.svg') no-repeat calc(100% - 3%) var(--Cinder-100, #E3E9FB) !important;
-
                     border: none;
-
                     font-size: 1.2rem;
-
                     display: flex;
                     width: 457px;
                     height: 49px;
@@ -67,6 +64,24 @@
                     justify-content: flex-end;
                     align-items: center;
                     flex-shrink: 0;
+                }
+
+                .input-orden{
+
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    background: var(--Cinder-100, #E3E9FB) !important;
+                    border: none;
+                    font-size: 1.2rem;
+                    display: flex;
+                    width: 457px;
+                    height: 49px;
+                    padding-left: 2%;
+                    justify-content: flex-end;
+                    align-items: center;
+                    flex-shrink: 0;
+
                 }
 
                 .div1 {
@@ -85,7 +100,7 @@
                     top: 10%;
                 }
 
-                .tabla_parcelas {
+                .tabla-parcelas {
                     position: absolute;
                     left: 52%;
                     top: 33%;
@@ -149,6 +164,15 @@
 
                     background: #FFCA2C;
                 }
+
+                .detalles-parcela{
+
+                    display: flex,
+                    flex-direction: row,
+
+                }
+
+                
             </style>
         </head>
 
@@ -161,7 +185,8 @@
                     <h2 class="num">1</h2>
                     <h2>Categoría</h2>
                     <p>Tipo de acción</p>
-                    <select name="tipo">
+                    <select name="tipo" id="tipo">
+                        <option value=""></option>
                         <option value="carga">Carga</option>
                         <option value="descarga">Descarga</option>
                     </select>
@@ -172,6 +197,7 @@
                     <h2>Ubicación</h2>
                     <p>Zona</p>
                         <select name="id_zona" id="id_zona">
+                        <option value=""></option>
                             @forelse ($zonas as $zona)
                                 <option id="zona_actual" value="{{$zona -> id}}">{{$zona -> ubicacion}}</option>
                                 
@@ -184,7 +210,7 @@
 
                     <select name="tipo_transporte" id="tipo_transporte">
                         
-                            <option value="">Selecciona un transporte</option>
+                            <option value=""></option>
                             <option value="buque">Buque</option>
                             <option value="train">Tren</option>
                             <option value="truck">Camion</option>
@@ -195,7 +221,7 @@
 
 
                     <select name="id_transporte" id="id_transporte">
-                        <option value="">Selecciona un transporte</option>
+                        <option value=""></option>
                     </select>
                     
                 </div>
@@ -211,10 +237,19 @@
                             <p>No hay turnos actualmente</p>
                         @endforelse
                     </select>
-                </div>  
-                </div>
-
+                </div> 
                 
+                <div class="tabla-parcelas">
+                    <h2 class="num">4</h2>
+                    <h2>Parcela</h2>
+                    <p>Busca parcela, max: <span id="maximo-zona"></span> </p>
+                    <input type="number" class="input-orden" name="parcela" id="buscar_parcela" min="1" max="0">
+                    <p id="parcela-mensaje" style="margin-top: 10px; font-weight: bold;"></p>
+                    <p>Altura, max: 2</p>
+                    <input type="number" class="input-orden" name="altura" id="altura" min="0" max="2">
+
+                </div> 
+                </div>
 
                 <button class="crear btn">Crear</button>
             </form>
@@ -224,6 +259,9 @@
         </body>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!--Esto sirve para sacar el valor de tipo de transporte que tiene el select-->
+
         <script>
             $(document).ready(function() {
                 $('#tipo_transporte').change(function() {
@@ -259,6 +297,125 @@
                 });
             });
         </script>
+
+        <!--Esto sirve para sacar el valor de zona que tiene el select-->
+
+        <script>
+           $('#id_zona').change(function() {
+            var zonaId = $(this).val(); // Obtenemos el ID de la zona seleccionada
+            console.log('Zona seleccionada: ' + zonaId);
+            
+            $.ajax({
+                url: "{{ route('getParcelasByZona') }}", // Ruta que procesará la solicitud
+                type: "GET",
+                data: { zona_id: zonaId }, // Enviamos el ID de la zona seleccionada
+                success: function(response) {
+                    // Accede a los valores X e Y de la zona directamente
+                    var zonaX = response.x; // Coordenada X
+                    var zonaY = response.y; // Coordenada Y
+                    var max = response.max; // El valor máximo calculado (X * Y)
+                    console.log('X de la zona:', zonaX);
+                    console.log('Y de la zona:', zonaY);
+                    console.log('Valor máximo (X * Y):', max);
+                    
+                    // Actualizar el texto con las coordenadas de la zona
+                    $('#zona-coordinates').text('X: ' + zonaX + ', Y: ' + zonaY);
+
+                    $('#maximo-zona').text(max);
+                    
+                    // Establecer el máximo permitido en el input
+                    $('#buscar_parcela').attr('max', max);
+
+                    // Limpiamos las opciones anteriores del select de parcelas
+                    $('#parcela').empty();
+
+                    // Verificamos si hay parcelas para la zona seleccionada
+                    if (response.parcelas && response.parcelas.length > 0) {
+                        response.parcelas.forEach(function(parcela) {
+                            $('#parcela').append('<option value="' + parcela.id + '">' + parcela.id + '</option>');
+                        });
+                    } else {
+                        // Si no hay parcelas disponibles
+                        $('#parcela').append('<option value="">No hay parcelas disponibles</option>');
+                    }
+                },
+                error: function() {
+                    alert('Error al obtener las coordenadas de la zona.');
+                }
+            });
+        });
+
+
+        </script>
+
+        <!--Esto sirve para comprobar si la parcela que se ha ingresado tiene algun hueco libre-->
+
+        <script>
+            $('#buscar_parcela').on('input', function() {
+                var parcela = $(this).val(); // Número ingresado
+                var mensaje = $('#parcela-mensaje'); // Elemento para mostrar mensajes
+                var id_zona = $('#id_zona').val();
+
+                console.log('Parcela ingresada ' + parcela + '\nZona: ' + id_zona);
+
+                if (parcela) {
+                    $.ajax({
+                        url: "{{ route('comprobarParcela') }}", // Ruta en Laravel
+                        type: "GET",
+                        data: { parcela: parcela , id_zona: id_zona}, // Enviamos la parcela al backend
+                        success: function(response) {
+
+                            console.log('max: ' + response.max + '\naltura cero: ' + response.altura_cero + '\naltura uno: ' + response.altura_uno + '\naltura uno: ' + response.altura_uno);
+
+                            if (response.ocupada ) {
+                                mensaje.text('X Esta parcela ya está completa.').css('color', 'orange');
+                            } else if(parcela > response.max){
+
+                                mensaje.text('X La parcela supera la cantidad posible.').css('color', 'orange');
+
+                            }else {
+                                mensaje.html('✔ Parcela disponible.').css('color', '#152D65');
+                            }
+                        },
+                        error: function() {
+                            mensaje.text('⚠ Error al comprobar la parcela.').css('color', 'red');
+                        }
+                    });
+                } else {
+                    mensaje.text(''); // Limpiar el mensaje si no hay input
+                }
+            });
+        </script>
+
+        <script>
+            $('#tipo').change(function() {
+                var tipo = $(this).val();
+
+                console.log('Tipo de orden: ' + tipo);
+
+                if (tipo === 'carga') {
+                    $('#parcela-mensaje').hide();
+                } else {
+                    $('#parcela-mensaje').show();
+                }
+
+                if (tipo) {
+                    $.ajax({
+                        url: "{{ route('comprobarTipo') }}", // Ruta en Laravel
+                        type: "GET",
+                        data: { tipo: tipo}, // Enviamos la parcela al backend
+                        success: function(response) {
+
+                            console.log('Tipo que has seleccionado: ' + response.tipo);
+                        },
+                            error: function() {
+                            console.log('Tipo incorrecto.');
+                            }
+                    });
+                }
+            });
+        </script>
+
 
 
     </html>

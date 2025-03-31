@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GruaController;
 use App\Http\Controllers\ZonaController;
 use App\Http\Controllers\PatioController;
+use App\Http\Controllers\ContenedorController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,10 +44,14 @@ Route::middleware('auth')->group(function () {
         Route::view('/exitoGestor', 'Gestor.exitoGestor') -> name('exitoGestor');
 
     });
+    
 
     Route::middleware(['administrativo'])->group(function () {
+        Route::get('/getParcelasByZona', [OrdenController::class, 'getParcelasByZona'])->name('getParcelasByZona');
         Route::get('/crearOrden', [OrdenController::class, 'crearOpciones'])->name('crearOrden');
         Route::post('/guardarOrden', [OrdenController::class, 'guardarOrden'])->name('guardarOrden');
+        Route::get('/comprobar-parcela', [ContenedorController::class, 'comprobarParcela'])->name('comprobarParcela');
+        Route::get('/comprobar-tipo', [OrdenController::class, 'comprobarTipo'])->name('comprobarTipo');
         Route::view('/crearTurno', 'Administrativo.crearTurno')->name('crearTurno');
         Route::post('/guardarTurno', [TurnoController::class, 'guardarTurno'])->name('guardarTurno');
         Route::view('/calendario', 'Administrativo.calendario')->name('calendario');

@@ -15,4 +15,13 @@ class Buque extends Model
     {
         return $this->belongsToMany(Administrativo::class);
     }
+
+    public function contenedores(){
+        return $this->belongsToMany(Contenedor::class, 'tiene_buque', 'id_contenedor', 'id_buque')
+                    ->withPivot('ubicacion', 'destino', 'tipo_destino')
+                    ->withTimestamps(); 
+    }
+
+    
+
 }

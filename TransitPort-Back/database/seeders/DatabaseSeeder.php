@@ -24,7 +24,9 @@ class DatabaseSeeder extends Seeder {
             BuqueSeeder::class,
             ContenedorSeeder::class,
             GestionaSeeder::class,
-            TieneSeeder::class,
+            TieneBuqueSeeder::class,
+            TieneTrainSeeder::class,
+            TieneTruckSeeder::class,
             OrdenSeeder::class,
             IncidenciaSeeder::class,
         ]);

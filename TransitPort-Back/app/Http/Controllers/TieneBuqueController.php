@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tiene;
+use App\Models\TieneBuque;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class TieneController extends Controller {
+class TieneBuqueController extends Controller {
     public function index(Request $request) {
-        $task = DB::table('tiene')
+        $task = DB::table('tiene_buque')
         //Join (tabla, id_tabla de la Select, =, id_tabla Original).
-        -> join('contenedor', 'tiene.id_contenedor', '=','contenedor.id')
-        -> join('buque', 'tiene.id_buque', '=', 'buque.id')
+        -> join('contenedor', 'tiene_buque.id_contenedor', '=','contenedor.id')
+        -> join('buque', 'tiene_buque.id_buque', '=', 'buque.id')
         -> join('zona', 'contenedor.id_zona', '=','zona.id')
-        -> select('id_contenedor', 'tiene.ubicacion', 'tiene.destino', 'contenedor.estado')
+        -> select('id_contenedor', 'tiene_buque.ubicacion', 'tiene_buque.destino', 'contenedor.estado')
         //Subconsultas que pillan el nombre de la Zona y del Buque, para mostrarlo bonito.
         -> selectSub(function ($query) {
             $query -> from('zona')
                 -> join('contenedor', 'contenedor.id_zona', '=', 'zona.id')
-                -> whereColumn('contenedor.id', 'tiene.id_contenedor')
+                -> whereColumn('contenedor.id', 'tiene_buque.id_contenedor')
                 -> select('zona.ubicacion')
                 -> limit(1);
         }, 'ubicacion')
         -> selectSub(function ($query) {
             $query -> from('buque')
                 -> select('buque.nombre')
-                -> whereColumn('buque.id', 'tiene.id_buque')
+                -> whereColumn('buque.id', 'tiene_buque.id_buque')
                 -> limit(1);
         }, 'destino')
         /**
@@ -36,17 +36,17 @@ class TieneController extends Controller {
         -> selectRaw('CASE
             WHEN contenedor.estado = "Completada" THEN
                 CASE
-                    WHEN tiene.tipo_destino = "Buque"
+                    WHEN tiene_buque.tipo_destino = "Buque"
                     THEN buque.nombre
                     ELSE zona.ubicacion
                 END
-            WHEN tiene.tipo_destino = "Buque"
+            WHEN tiene_buque.tipo_destino = "Buque"
             THEN zona.ubicacion
             ELSE buque.nombre
             END AS ubicacion
         ')
         -> selectRaw('CASE
-            WHEN tiene.tipo_destino = "Buque"
+            WHEN tiene_buque.tipo_destino = "Buque"
             THEN buque.nombre
             ELSE zona.ubicacion
             END AS destino
