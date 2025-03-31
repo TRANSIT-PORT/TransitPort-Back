@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/actualziarTurno', [TurnoController::class, 'actualizarTurno']) -> name('actualizarTurno');
 
         Route::view('/exito', 'Administrativo.exito') -> name('exito');
-
+        Route::get('/recogerOperadoresTurno/{id_turno}', [TurnoController::class, 'obtenerOperadores']);
         Route::view('/verAuditoria', 'Administrativo.Auditorias.verAuditoria') -> name('verAuditoria');
         Route::get('/recogerAuditoria', [OrdenController::class, 'visualizarAuditoria']) -> name('recogerAuditoria');
         Route::get('/verAuditoria/{id}', [OrdenController::class, 'mostrarUno']) -> name('mostrarAuditoria');

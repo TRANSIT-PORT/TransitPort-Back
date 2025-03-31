@@ -17,6 +17,12 @@ class TurnoController extends Controller {
         //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
     }
 
+    public function obtenerOperadores($id_turno) {
+        $operadores = Operador::where('id_turno', $id_turno)->get();
+        return response()->json($operadores);
+    }
+    
+
     public function store(Request $request) {
        $validatedData = $request->validate([
             'fecha_inicio' => 'date',

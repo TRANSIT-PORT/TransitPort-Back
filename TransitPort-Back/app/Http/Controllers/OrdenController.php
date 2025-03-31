@@ -269,6 +269,9 @@ class OrdenController extends Controller {
                                 'tipo_destino' => $orden['tipo_transporte'],
                             ]
                         ]);
+
+                        TieneTrain::where('id_contenedor', $contenedor->id)->delete();
+                        TieneTruck::where('id_contenedor', $contenedor->id)->delete();
                     }
 
                     Orden::create([
@@ -313,6 +316,9 @@ class OrdenController extends Controller {
                                 'tipo_destino' => $orden['tipo_transporte'],
                             ]
                         ]);
+
+                        TieneBuque::where('id_contenedor', $contenedor->id)->delete();
+                        TieneTruck::where('id_contenedor', $contenedor->id)->delete();
                     }
 
                     Orden::create([
@@ -357,6 +363,9 @@ class OrdenController extends Controller {
                                 'tipo_destino' => $orden['tipo_transporte'],
                             ]
                         ]);
+
+                        TieneTrain::where('id_contenedor', $contenedor->id)->delete();
+                        TieneBuque::where('id_contenedor', $contenedor->id)->delete();
                     }
 
                     Orden::create([

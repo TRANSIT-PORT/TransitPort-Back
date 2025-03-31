@@ -9,6 +9,8 @@ use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\OperadorController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\TieneBuqueController;
+use App\Http\Controllers\TieneTrainController;
+use App\Http\Controllers\TieneTruckController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OrdenesController;
 use App\Http\Controllers\AuthController;
@@ -82,6 +84,28 @@ Route::post('/tiene-buque/guardar', [TieneBuqueController::class, 'store']);
 Route::delete('/tiene-buque/borrar/{id}', [TieneBuqueController::class, 'destroy']);
 
 Route::get('/tiene-buque/buscar/{id}', [TieneBuqueController::class, 'show']);
+
+//TieneTrain
+Route::get('/tiene-train', [TieneTrainController::class, 'index']);
+
+Route::put('/tiene-train/actualizar/{id}', [TieneTrainController::class, 'update']);
+
+Route::post('/tiene-train/guardar', [TieneTrainController::class, 'store']);
+
+Route::delete('/tiene-train/borrar/{id}', [TieneTrainController::class, 'destroy']);
+
+Route::get('/tiene-train/buscar/{id}', [TieneTrainController::class, 'show']);
+
+//TieneTruck
+Route::get('/tiene-truck', [TieneTruckController::class, 'index']);
+
+Route::put('/tiene-truck/actualizar/{id}', [TieneTruckController::class, 'update']);
+
+Route::post('/tiene-truck/guardar', [TieneTruckController::class, 'store']);
+
+Route::delete('/tiene-truck/borrar/{id}', [TieneTruckController::class, 'destroy']);
+
+Route::get('/tiene-truck/buscar/{id}', [TieneTruckController::class, 'show']);
 
 
 //Incidencia

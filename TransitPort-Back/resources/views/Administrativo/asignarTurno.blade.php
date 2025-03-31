@@ -88,6 +88,13 @@
                     top: 10%;
                 }
 
+                .div4 {
+                    position: absolute;
+                    left: 50%;
+                    top: 10%;
+                    width: 40%;
+                }
+
                 .crear {
                     color: var(--Cinder-50, #F1F5FE);
 
@@ -141,9 +148,53 @@
                     right: 5%;
                     bottom: 5%;
                 }
+
+                th.sorting_disabled {
+
+                    background: var(--Cinder-900, #152D65) !important;
+                    color: var(--Cinder-50, #F1F5FE);
+                    width: 100px;
+                    height: 54px;
+                    padding-left: -70px;
+                    border: none;
+                    text-align: center;
+                    position: sticky;
+                    z-index: 10;
+
+                }
+
+                #operadoresTurno{
+
+                    width: 100%;
+
+                }
+
+                #operadoresTurno th {
+                    background: var(--Cinder-900, #152D65);
+                    color: white;
+                    text-align: center;
+                }
+                #operadoresTurno tbody {
+                    background: #F1F5FE;
+                    border: none;
+
+                }
+
+                #operadoresTurno tbody {
+                    background: #152D65;
+                    border: none;
+
+                }
+
+                #operadoresTurno td {
+                    background: #FFF;
+                    color: #000000;
+                    border: none;
+                    text-align: center;
+                }
+
                 .cancelar:hover {
                     color: black;
-
                     background: #FFCA2C;
                 }
             </style>
@@ -166,12 +217,14 @@
                         @endforelse
                     </select>
                 </div>
+                
 
                 <div class="div2">
                     <h2 class="num">2</h2>
                     <h2>Turno</h2>
                     <p>Seleccione el turno</p>
-                    <select name="id_turno">
+                    <select name="id_turno" id="id_turno">
+                        <option value=""></option>
                         @forelse ($turnos as $turno)
                             <option value="{{$turno -> id}}">{{$turno -> fecha_inicio}}</option>
                         @empty
@@ -180,11 +233,68 @@
                     </select>
                 </div>
 
+                <div class="div4">
+                    <h2 class="num"></h2>
+                    <h2>Listado del turno seleccionado</h2>
+                    <table id="operadoresTurno" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nombre del operador</th>
+                                <th>Tipo de grua</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+
                 <button class="crear btn">Asignar</button>
             </form>
             <form action="" method="get">
                 <button class="cancelar btn">Cancelar</button>
             </form>
         </body>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#id_turno').on('change', function () {
+                    let turnoId = $(this).val(); // Obtener el ID del turno seleccionado
+                    let url = '/recogerOperadoresTurno/' + turnoId; // Ruta para obtener operadores del turno
+
+                    if (turnoId) {
+                        $.ajax({
+                            url: url,
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function (data) {
+                                let tbody = $('#operadoresTurno tbody');
+                                tbody.empty(); // Limpiar la tabla antes de actualizar
+
+                                if (data.length > 0) {
+                                    data.forEach(operador => {
+                                        tbody.append(`
+                                            <tr>
+                                                <td>${operador.nombre}</td>
+                                                <td>${operador.tipo}</td>
+                                            </tr>
+                                        `);
+                                    });
+                                } else {
+                                    tbody.append('<tr><td colspan="2">No hay operadores en este turno</td></tr>');
+                                }
+                            },
+                            error: function () {
+                                alert('Error al cargar los operadores del turno.');
+                            }
+                        });
+                    } else {
+                        $('#operadoresTurno tbody').empty();
+                    }
+                });
+            });
+</script>
     </html>
 </x-app-layout>
