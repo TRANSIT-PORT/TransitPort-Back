@@ -8,6 +8,9 @@ use App\Models\Operador;
 use App\Models\Buque;
 use App\Models\Train;
 use App\Models\Truck;
+use App\Models\TieneBuque;
+use App\Models\TieneTrain;
+use App\Models\TieneTruck;
 use App\Models\Zona;
 use App\Models\User;
 
@@ -47,9 +50,17 @@ class Orden extends Model
     {
         return $this->belongsTo(Truck::class, 'id_truck', 'id');
     }
-    public function tiene()
+    public function tiene_buque()
     {
-        return $this->belongsTo(Tiene::class, 'id_buque', 'id_buque');
+        return $this->belongsTo(TieneBuque::class, 'id_buque', 'id_buque');
+    }
+    public function tiene_train()
+    {
+        return $this->belongsTo(TieneTrain::class, 'id_train', 'id_train');
+    }
+    public function tiene_truck()
+    {
+        return $this->belongsTo(TieneTruck::class, 'id_truck', 'id_truck');
     }
     public function contenedor()
     {

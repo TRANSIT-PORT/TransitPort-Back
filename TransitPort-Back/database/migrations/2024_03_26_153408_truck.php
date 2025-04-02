@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create(table: 'trucks', callback: function (Blueprint $table) {
             $table->id();
+            $table->text('nombre');
             $table->text('matricula');
             $table->integer('aparcamiento');
             $table->text(column: 'procedencia');

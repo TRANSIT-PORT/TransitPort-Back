@@ -10,194 +10,8 @@
             <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+            <link rel="stylesheet" href="{{ asset('css/Administrativo/asignarTurno.css') }}">
 
-            <style>
-                h1 {
-                    margin-top: 1%;
-                    margin-left: 8%;
-                }
-                h2 {
-                    color: var(--Cinder-950, #040813);
-
-                    font-weight: bold;
-                }
-                p {
-                    margin-top: 3%;
-                    margin-bottom: 2px;
-                }
-                .num {
-                    color: var(--Cinder-900, #152D65);
-                    background-image: url("assets/elipse.svg");
-                    background-size: contain;
-                    background-position: left;
-                    background-repeat: no-repeat;
-
-                    width: 40px;
-                    display: flex;
-                    justify-content: center;
-
-                    display: flex;
-                    position: relative;
-                    right: 10%;
-                    bottom: -45px;
-                }
-                .titulo {
-                    width: 340px;
-
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                }
-                img {
-                    width: 60px;
-                    height: 60px;
-                }
-
-                select {
-                    appearance: none;
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    background: url('assets/flecha.svg') no-repeat calc(100% - 3%) var(--Cinder-100, #E3E9FB) !important;
-
-                    border: none;
-
-                    font-size: 1.2rem;
-
-                    display: flex;
-                    width: 457px;
-                    height: 49px;
-                    padding-left: 2%;
-                    justify-content: flex-end;
-                    align-items: center;
-                    flex-shrink: 0;
-                }
-
-                .div1 {
-                    position: absolute;
-                    left: 12%;
-                    top: 10%;
-                }
-                .div2 {
-                    position: absolute;
-                    left: 12%;
-                    top: 40%;
-                }
-                .div3 {
-                    position: absolute;
-                    left: 52%;
-                    top: 10%;
-                }
-
-                .div4 {
-                    position: absolute;
-                    left: 50%;
-                    top: 10%;
-                    width: 40%;
-                }
-
-                .crear {
-                    color: var(--Cinder-50, #F1F5FE);
-
-                    font-size: 32px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: normal;
-
-                    border-radius: 4px;
-                    border: 2px solid var(--Cinder-900, #152D65);
-                    background: var(--Cinder-900, #152D65);
-                    box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-                    display: flex;
-                    width: 435px;
-                    padding: 10px 0px;
-                    justify-content: center;
-                    align-items: center;
-
-                    position: absolute;
-                    right: 22%;
-                    bottom: 5%;
-                }
-                .crear:hover {
-                    color: var(--Cinder-50, #F1F5FE);
-
-                    border: 2px solid #0B5ED7;
-                    background: #0B5ED7;
-                }
-
-                .cancelar {
-                    color: var(--Cinder-800, #133379);
-
-                    font-size: 32px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: normal;
-
-                    border-radius: 4px;
-                    border: 2px solid var(--Cinder-900, #152D65);
-                    background: var(--Amarillo, #E59506);
-                    box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-                    display: inline-flex;
-                    width: 15%;
-                    padding: 10px 0px;
-                    justify-content: center;
-                    align-items: center;
-
-                    position: absolute;
-                    right: 5%;
-                    bottom: 5%;
-                }
-
-                th.sorting_disabled {
-
-                    background: var(--Cinder-900, #152D65) !important;
-                    color: var(--Cinder-50, #F1F5FE);
-                    width: 100px;
-                    height: 54px;
-                    padding-left: -70px;
-                    border: none;
-                    text-align: center;
-                    position: sticky;
-                    z-index: 10;
-
-                }
-
-                #operadoresTurno{
-
-                    width: 100%;
-
-                }
-
-                #operadoresTurno th {
-                    background: var(--Cinder-900, #152D65);
-                    color: white;
-                    text-align: center;
-                }
-                #operadoresTurno tbody {
-                    background: #F1F5FE;
-                    border: none;
-
-                }
-
-                #operadoresTurno tbody {
-                    background: #152D65;
-                    border: none;
-
-                }
-
-                #operadoresTurno td {
-                    background: #FFF;
-                    color: #000000;
-                    border: none;
-                    text-align: center;
-                }
-
-                .cancelar:hover {
-                    color: black;
-                    background: #FFCA2C;
-                }
-            </style>
         </head>
 
         <body>
@@ -233,9 +47,19 @@
                     </select>
                 </div>
 
-                <div class="div4">
+                <div class="div4" name="div4" style="display: none">
                     <h2 class="num"></h2>
-                    <h2>Listado del turno seleccionado</h2>
+
+                    <div class="turno_seleccionado">
+                        <h5>Operadores del turno seleccionado</h5>
+                        <select class="filtro" name="tipo_grua" id="tipo_grua">
+
+                            <option value="">Filtrar</option>
+                            <option value="STS">STS</option>
+                            <option value="SC">SC</option>
+
+                        </select>
+                    </div>
                     <table id="operadoresTurno" class="table table-bordered">
                         <thead>
                             <tr>
@@ -259,42 +83,63 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function () {
-                $('#id_turno').on('change', function () {
-                    let turnoId = $(this).val(); // Obtener el ID del turno seleccionado
-                    let url = '/recogerOperadoresTurno/' + turnoId; // Ruta para obtener operadores del turno
+    $(document).ready(function () {
+        function cargarOperadores() {
+            
+            let turnoId = $('#id_turno').val();
+            let tipoGrua = $('#tipo_grua').val();
+            let url = '/recogerOperadoresTurno/' + turnoId + '?tipo_grua=' + tipoGrua;
 
-                    if (turnoId) {
-                        $.ajax({
-                            url: url,
-                            type: 'GET',
-                            dataType: 'json',
-                            success: function (data) {
-                                let tbody = $('#operadoresTurno tbody');
-                                tbody.empty(); // Limpiar la tabla antes de actualizar
+            console.log(url);
+            if (turnoId) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        let tbody = $('#operadoresTurno tbody');
+                        tbody.empty(); // Limpiar la tabla antes de actualizar
 
-                                if (data.length > 0) {
-                                    data.forEach(operador => {
-                                        tbody.append(`
-                                            <tr>
-                                                <td>${operador.nombre}</td>
-                                                <td>${operador.tipo}</td>
-                                            </tr>
-                                        `);
-                                    });
-                                } else {
-                                    tbody.append('<tr><td colspan="2">No hay operadores en este turno</td></tr>');
-                                }
-                            },
-                            error: function () {
-                                alert('Error al cargar los operadores del turno.');
-                            }
-                        });
-                    } else {
-                        $('#operadoresTurno tbody').empty();
+                        if (data.length > 0) {
+                            data.forEach(operador => {
+                                tbody.append(`
+                                    <tr>
+                                        <td>${operador.nombre}</td>
+                                        <td>${operador.tipo}</td>
+                                    </tr>
+                                `);
+                            });
+                        } else {
+                            tbody.append('<tr><td colspan="2">No hay operadores en este turno con este tipo de grúa</td></tr>');
+                        }
+                    },
+                    error: function () {
+                        alert('Error al cargar los operadores del turno.');
                     }
                 });
-            });
+            } else {
+                $('#operadoresTurno tbody').empty();
+            }
+        }
+
+        // Configurar los eventos de cambio
+        $('#id_turno').on('change', function () {
+
+            if($(this).val()){
+                $('.div4').fadeIn(); 
+                cargarOperadores();
+            } else {
+                $('.div4').fadeOut(); 
+                cargarOperadores();
+            }
+        });
+
+        $('#tipo_grua').on('change', function () {
+            cargarOperadores();
+        });
+
+    });
 </script>
+
     </html>
 </x-app-layout>

@@ -14,11 +14,18 @@ class TurnoController extends Controller {
     public function index(Request $request) {
         $task = Turno::all();
         return $task;
-        //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
     }
 
-    public function obtenerOperadores($id_turno) {
-        $operadores = Operador::where('id_turno', $id_turno)->get();
+    public function obtenerOperadores($turnoId, Request $request) {
+
+        $tipoGrua = $request->input('tipo_grua'); 
+
+        $operadores = Operador::where('id_turno', $turnoId)
+            ->when($tipoGrua, function ($query, $tipoGrua) {
+                return $query->where('tipo', $tipoGrua);
+            })
+            ->get();
+
         return response()->json($operadores);
     }
     

@@ -15,6 +15,7 @@ class TruckSeeder extends Seeder
     {
         $trucks = [
             [
+                'nombre' => 'Camion 1',
                 'matricula' => 'ABC1234',  // Matricula para el primer camión
                 'aparcamiento' => 1,  // Aparcamiento 1
                 'procedencia' => 'Madrid',
@@ -24,6 +25,7 @@ class TruckSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'nombre' => 'Camion 2',
                 'matricula' => 'XYZ5678',  // Matricula para el segundo camión
                 'aparcamiento' => 2,  // Aparcamiento 2
                 'procedencia' => 'Barcelona',
@@ -33,6 +35,7 @@ class TruckSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'nombre' => 'Camion 3',
                 'matricula' => 'LMN9876',  // Matricula para el tercer camión
                 'aparcamiento' => 3,  // Aparcamiento 3
                 'procedencia' => 'Bilbao',
@@ -42,6 +45,7 @@ class TruckSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'nombre' => 'Camion 4',
                 'matricula' => 'DEF2345',  // Matricula para el cuarto camión
                 'aparcamiento' => 1,  // Aparcamiento 1
                 'procedencia' => 'Sevilla',

@@ -11,7 +11,9 @@ class OrdenesController extends Controller
     public function index(Request $request)
     {
         $idUser = $request->input('id_operador');
-        $task = Orden::with(['buque', 'tiene', 'contenedor', 'zona', 'truck', 'train'])->where('id_operador', $idUser)->get();
+        $task = Orden::with(['buque', 'tiene_buque', 'contenedor', 'zona', 'truck', 'train', 'tiene_train', 'tiene_truck'])
+                        ->where('id_operador', $idUser)
+                        ->where('estado', '!=', 'Completada')->get();
         return $task;
     }
     

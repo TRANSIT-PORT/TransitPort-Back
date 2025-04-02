@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('parcela');
             $table->integer('altura');
+            $table->integer('dimensiones');
             $table->enum('estado', ['Por empezar', 'En curso', 'Completada']);
+            $table->enum('tipo_contenedor', ['Dry Van', 'High Cube', 'Reefer', 'Open Top', 'Flat Rack']);
             $table->foreignId('id_zona')->constrained('zona');
             $table->timestamps();
           });

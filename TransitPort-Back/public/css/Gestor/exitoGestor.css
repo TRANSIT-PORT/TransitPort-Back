@@ -1,0 +1,24 @@
+h3 {
+    margin-left:
+    8%;
+}
+
+.swal2-popup {
+    height: 300px;
+    width: 500px;
+
+    border: solid 2px black;
+    border-radius: 32px;
+}
+.swal2-title {
+    color: black;
+    border-bottom: solid 2px black;
+}
+.swal2-html-container {
+    color: black;
+    font-size: 24px;
+}
+.swal2-confirm {
+    width: 450px;
+    background: var(--Cinder-900, #152D65);
+}

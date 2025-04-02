@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/crearOrden', [OrdenController::class, 'crearOpciones'])->name('crearOrden');
         Route::post('/guardarOrden', [OrdenController::class, 'guardarOrden'])->name('guardarOrden');
         Route::get('/comprobar-parcela', [ContenedorController::class, 'comprobarParcela'])->name('comprobarParcela');
+        Route::get('/comprobar-disponibilidad', [ContenedorController::class, 'comprobarDisponibilidad'])->name('comprobarDisponibilidad');
         Route::get('/comprobar-tipo', [OrdenController::class, 'comprobarTipo'])->name('comprobarTipo');
         Route::view('/crearTurno', 'Administrativo.crearTurno')->name('crearTurno');
         Route::post('/guardarTurno', [TurnoController::class, 'guardarTurno'])->name('guardarTurno');
@@ -58,6 +59,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/crearOrden', [OrdenController::class, 'buscarParcela'])->name('buscarParcela');
         Route::get('/getTransporte', [OrdenController::class, 'getTransporte'])->name('getTransporte');
         Route::get('/asignarTurno', [TurnoController::class, 'crearOpciones'])->name('asignarTurno');
+        Route::get('/sacarDimensines', [OrdenController::class, 'sacarDimensiones'])->name('sacarDimensiones');
         Route::post('/actualziarTurno', [TurnoController::class, 'actualizarTurno']) -> name('actualizarTurno');
 
         Route::view('/exito', 'Administrativo.exito') -> name('exito');

@@ -113,19 +113,62 @@ class OrdenController extends Controller {
 
     public function actualizarEstado(Request $request) {
 
-        $validatedData = $request->validate([
-            'id' => 'required',
-            'tipo' => 'string',
-            'estado' => 'nullable|string|in:Por empezar,En curso,Completada',
-            'visto' => 'boolean',
-            'fecha_carga' => 'date',
-            'fecha_descarga' => 'date',
-            'id_grua' => 'int',
-            'id_administrativo' => 'int',
-            'id_buque' => 'int',
-            'id_contenedor' => 'int',
-            'id_zona' => 'int',
-        ]);
+        switch($request->tipo_transporte){
+
+            case 'buque':
+
+                $validatedData = $request->validate([
+                    'id' => 'required',
+                    'tipo' => 'string',
+                    'estado' => 'nullable|string|in:Por empezar,En curso,Completada',
+                    'visto' => 'boolean',
+                    'fecha_carga' => 'date',
+                    'fecha_descarga' => 'date',
+                    'id_grua' => 'int',
+                    'id_administrativo' => 'int',
+                    'id_buque' => 'int',
+                    'id_contenedor' => 'int',
+                    'id_zona' => 'int',
+                ]);
+
+            break;
+
+            case 'train':
+
+                $validatedData = $request->validate([
+                    'id' => 'required',
+                    'tipo' => 'string',
+                    'estado' => 'nullable|string|in:Por empezar,En curso,Completada',
+                    'visto' => 'boolean',
+                    'fecha_carga' => 'date',
+                    'fecha_descarga' => 'date',
+                    'id_grua' => 'int',
+                    'id_administrativo' => 'int',
+                    'id_train' => 'int',
+                    'id_contenedor' => 'int',
+                    'id_zona' => 'int',
+                ]);
+
+            break;
+
+            case 'truck':
+
+            $validatedData = $request->validate([
+                'id' => 'required',
+                'tipo' => 'string',
+                'estado' => 'nullable|string|in:Por empezar,En curso,Completada',
+                'visto' => 'boolean',
+                'fecha_carga' => 'date',
+                'fecha_descarga' => 'date',
+                'id_grua' => 'int',
+                'id_administrativo' => 'int',
+                'id_truck' => 'int',
+                'id_contenedor' => 'int',
+                'id_zona' => 'int',
+            ]);
+
+            break;
+        }
 
         try {
             $task = Orden::findOrFail($validatedData['id']);
@@ -467,74 +510,131 @@ class OrdenController extends Controller {
     }
 
     public function mostrarUno($id) {
+
+        $ordenSeleccionada = Orden::where('id', $id)->first();
+
+        $tipo_transporte = $ordenSeleccionada->tipo_transporte;
+
+        $datos = [
+
+            'buque' => ['tabla' => 'buque', 'tiene' => 'tiene_buque', 'id' => 'id_buque'],
+            'train' => ['tabla' => 'trains', 'tiene' => 'tiene_train', 'id' => 'id_train'],
+            'truck' => ['tabla' => 'trucks', 'tiene' => 'tiene_truck', 'id' => 'id_truck'],
+
+        ];
         $orden = DB::table('orden')
-            -> join ('operador', 'orden.id_operador', '=' , 'operador.id')
-            -> join ('buque', 'orden.id_buque', '=' , 'buque.id')
-            -> join ('tiene', 'buque.id', '=' , 'tiene.id_buque')
-            -> join('turno', 'operador.id_turno', '=', 'turno.id')
-            -> join('pertenece', 'orden.id_zona', '=', 'pertenece.id_zona')
-            -> where ('orden.id', $id)
-
-            -> select('pertenece.id_grua', 'orden.id_operador', 'orden.id_buque', 'orden.id', 'orden.tipo', 'orden.estado', 'turno.fecha_inicio')
-
-            //Subconsulta Grua.
-            -> selectSub(function ($query) {
-                $query -> from('grua')
-                    -> select('grua.nombre')
-                    -> whereColumn('pertenece.id_grua', 'grua.id')
-                    -> limit(1);
-            }, 'id_grua')
-            //Subconsulta Operador.
-            -> selectSub(function ($query) {
-                $query -> from('orden')
-                    -> select('operador.nombre')
-                    -> whereColumn('orden.id_operador', 'operador.id')
-                    -> limit(1);
-            }, 'id_operador')
-            //Subconsulta Buque.
-            -> selectSub(function ($query) {
-                $query -> from('orden')
-                    -> select('buque.nombre')
-                    -> whereColumn('orden.id_buque', 'buque.id')
-                    -> limit(1);
-            }, 'id_buque')
-            //Subconsulta Contenedor.
-            -> selectSub(function ($query) {
-                $query -> from('buque')
-                    -> select('tiene.id_contenedor')
-                    -> whereColumn('buque.id', 'tiene.id_buque')
-                    -> limit(1);
-            }, 'id_contenedor')
-
-            -> join('contenedor', 'tiene.id_contenedor', '=', 'contenedor.id')
-            -> join('zona', 'contenedor.id_zona', '=', 'zona.id')
-
-            //Ubicacion y destino.
-            -> selectRaw('CASE
+        ->join('operador', 'orden.id_operador', '=', 'operador.id')
+        ->join($datos[$tipo_transporte]['tabla'], 'orden.' . $datos[$tipo_transporte]['id'], '=', $datos[$tipo_transporte]['tabla'] . '.id')
+        ->join($datos[$tipo_transporte]['tiene'], $datos[$tipo_transporte]['tabla'] . '.id', '=', $datos[$tipo_transporte]['tiene'] . '.' . $datos[$tipo_transporte]['id'])
+        ->join('turno', 'operador.id_turno', '=', 'turno.id')
+        ->join('pertenece', 'orden.id_zona', '=', 'pertenece.id_zona')
+        ->join('contenedor', $datos[$tipo_transporte]['tiene'] . '.id_contenedor', '=', 'contenedor.id')
+        ->join('zona', 'contenedor.id_zona', '=', 'zona.id')
+        ->select(
+            'pertenece.id_grua', 
+            'orden.id_operador', 
+            'orden.' . $datos[$tipo_transporte]['id'], 
+            'orden.id', 
+            'orden.id_zona',
+            'orden.tipo', 
+            'orden.tipo_transporte', 
+            'orden.estado', 
+            'turno.fecha_inicio',
+            DB::raw('CASE
                 WHEN contenedor.estado = "Completada" THEN
                     CASE
-                        WHEN tiene.tipo_destino = "Buque"
-                        THEN buque.nombre
+                        WHEN ' . $datos[$tipo_transporte]['tiene'] . '.tipo_destino = "' . $tipo_transporte . '"
+                        THEN ' . $datos[$tipo_transporte]['tabla'] . '.nombre
                         ELSE zona.ubicacion
                     END
-                WHEN tiene.tipo_destino = "Buque"
+                WHEN ' . $datos[$tipo_transporte]['tiene'] . '.tipo_destino = "' . $tipo_transporte . '"
                 THEN zona.ubicacion
-                ELSE buque.nombre
-                END AS ubicacion
-            ')
-            -> selectRaw('CASE
-                WHEN tiene.tipo_destino = "Buque"
-                THEN buque.nombre
+                ELSE ' . $datos[$tipo_transporte]['tabla'] . '.nombre
+                END AS ubicacion'
+            ),
+            DB::raw('CASE
+                WHEN ' . $datos[$tipo_transporte]['tiene'] . '.tipo_destino = "' . $tipo_transporte . '"
+                THEN ' . $datos[$tipo_transporte]['tabla'] . '.nombre
                 ELSE zona.ubicacion
-                END AS destino
-            ')
+                END AS destino'
+            )
+        )
+        ->first();
 
-            -> first();
+        $relacion = null;
+
+        switch($tipo_transporte){
+
+            case 'buque':
+
+                $relacion = TieneBuque::where('id_buque', $orden->id_buque)
+                                        ->where('ubicacion', $orden->id_zona)->first();
+
+                break;
+
+            case 'train':
+
+                $relacion = TieneTrain::where('id_train', $orden->id_train)
+                                        ->where('ubicacion', $orden->id_zona)->first();
+
+                break;
+
+            case 'truck':
+
+                $relacion = TieneTruck::where('id_truck', $orden->id_truck)
+                                        ->where('ubicacion', $orden->id_zona)->first();
+
+                break;
+
+
+        }
 
         if ($orden) {
-            return view('Administrativo/Auditorias/realizarAuditorias', compact('orden'));
+            return view('Administrativo/Auditorias/realizarAuditorias', compact('orden', 'relacion'));
         } else {
             return redirect() -> route('Administrativo/Auditorias/verAuditoria');
         }
+    }
+
+    public function sacarDimensiones(Request $request){
+
+        $opciones = [];
+
+        switch($request->input('tipo_contenedor')){
+
+            case 'Dry Van':
+
+                $opciones = ['40', '20'];
+
+            break;
+
+            case 'High Cube':
+
+                $opciones = ['40'];
+
+            break;
+
+            case 'Reefer':
+
+                $opciones = ['40', '20'];
+
+            break;
+
+            case 'Open Top':
+
+                $opciones = ['40', '20'];
+
+            break;
+
+            case 'Flat Rack':
+
+                $opciones = ['40', '20'];
+
+            break;
+
+        }
+
+        return response()->json($opciones);
+
     }
 }

@@ -8,73 +8,38 @@
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
             <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
             <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('css/Administrativo/realizarAuditorias.css') }}">
 
             <style>
-                #detalles th, #orden th {
-                    background: var(--Cinder-900, #152D65);
-                    color: white;
-                }
-
-                input.form-control.form-control-sm {
-
-                    width: 70% !important;
-                    padding: 8px !important;
-                    border-radius: 4px !important;
-                    font-size: 20px !important;
-                    border: 2px solid #000 !important;
-                    height: 36px !important;
-                    font-weight: 700;
-                    color: #000 !important;
-                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
-                    background-image: url('assets/lupa.svg') !important;
-                    background-repeat: no-repeat !important;
-                    background-position: left 10px center !important;
-                    padding-left: 70px !important;
-
-                }
-
-                th.sorting_disabled {
-
-                    background: var(--Cinder-900, #152D65) !important;
-                    color: var(--Cinder-50, #F1F5FE);
-                    width: 100px;
-                    height: 54px;
-                    padding-left: -70px;
-                    border: none;
-                    text-align: center;
-                    position: sticky;
-                    z-index: 10;
-
-                }
-
-                #detalles tbody, #orden tbody {
-                    background: #F1F5FE;
-                    border: none;
-                }
-
-                #detalles td, #orden td {
-                    background: #FFF;
-                    color: #000000;
-                    border-top: 10px solid #F1F5FE;
-                    border-right: none;
-                    text-align: center;
-                }
-
-                #detalles {                    
-                    margin-bottom: 150px !important;
-                }
+                
             </style>
         </head>
         <body>
 
         <div class="container mt-5">
-            <h2 class="mb-4"><img src="assets/Administrativo/realizarAuditoriaVer.png">Visualizar Auditoria</h2>
+            <h2 class="mb-4"><img src="/assets/Administrativo/realizarAuditoriaVer.png">Visualizar Auditoria</h2>
             <table id="detalles" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Grúas</th>
                         <th>Operador</th>
-                        <th>Buque</th>
+                        <th>
+
+                            @if($orden->tipo_transporte == 'buque')
+
+                                Buque
+
+                            @elseif($orden->tipo_transporte == 'train')
+
+                                Tren
+
+                            @elseif($orden->tipo_transporte == 'truck')
+
+                                Camion
+
+                            @endif
+
+                        </th>
                         <th>Contenedor</th>
                     </tr>
                 </thead>
@@ -82,20 +47,34 @@
                     <tr>
                         <td> {{ $orden -> id_grua }} </td>
                         <td> {{ $orden -> id_operador }} </td>
-                        <td> {{ $orden -> id_buque }} </td>
-                        <td> ID: {{ $orden -> id_contenedor }} </td>
+                        <td> 
+                            @if($orden->tipo_transporte == 'buque')
+
+                                {{$orden->id_buque}}
+
+                            @elseif($orden->tipo_transporte == 'train')
+
+                                {{$orden->id_train}}
+
+                            @elseif($orden->tipo_transporte == 'truck')
+
+                                {{$orden->id_truck}}
+
+                            @endif
+                        </td>
+                        <td> ID: {{ $relacion -> id_contenedor }} </td>
                     </tr>
                     <tr>
                         <td>  </td>
                         <td>  </td>
                         <td>  </td>
-                        <td> Ubicacion: {{ $orden -> ubicacion }} </td>
+                        <td> Ubicacion: {{ $relacion -> ubicacion }} </td>
                     </tr>
                     <tr>
                         <td>  </td>
                         <td>  </td>
                         <td>  </td>
-                        <td> Destino: {{ $orden -> destino }} </td>
+                        <td> Destino: {{ $relacion -> destino }} </td>
                     </tr>
                 </tbody>
             </table>
