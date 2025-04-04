@@ -83,7 +83,7 @@
         </head>
 
         <body>
-            <h1 class="titulo"><img src="assets/Administrativo/crearTurnoVer.svg">  Crear Turno</h1>
+            <h1 class="titulo">  Crear Turno</h1>
             <form action="{{ route('guardarTurno') }}" method="post">
                 @csrf
 
@@ -93,7 +93,7 @@
                     <h2 class="num">1</h2>
                     <h2>Fecha</h2>
                     <p>Seleccionar fecha</p>
-                    <input class="date" type="date" name="fecha" id="fecha" readonly><img src="assets/Administrativo/calendario.svg" id="icono">
+                    <input class="date" type="date" name="fecha" id="fecha" readonly><img src="" id="icono">
                 </div>
                 
                 <div class="div2">
@@ -123,6 +123,10 @@
         </body>
 
         <script>
+
+        if (localStorage.getItem("modoOscuro") === "true") {
+            document.body.classList.add("dark-mode");
+        }
 
         </script>
     </html>

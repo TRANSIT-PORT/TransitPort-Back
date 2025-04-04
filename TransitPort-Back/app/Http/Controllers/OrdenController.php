@@ -266,7 +266,11 @@ class OrdenController extends Controller {
             'id_zona' => 'int',
             'id_transporte' => 'int',
             'tipo_transporte' => 'string',
+            'tipo_contenedor' => 'string|nullable',
+            'dimensiones_contenedor' => 'int|nullable',
         ]);
+
+        
 
         try {
             $operador = Operador::findOrFail($orden['operador']);
@@ -428,6 +432,130 @@ class OrdenController extends Controller {
                     ]);
                 }
                 $mensaje = "¡Orden creada con éxito!";
+            } else {
+
+                if($orden['tipo_transporte'] == 'buque'){
+
+                    $buque = Buque::findOrFail($orden['id_transporte']);
+
+                    $contenedor = Contenedor::create([
+
+                        "id" => null,
+                        "tipo_contenedor" => $orden['tipo_contenedor'],
+                        "dimensiones" => $orden['dimensiones_contenedor'],
+                        "parcela" => $orden['parcela'],
+                        "altura" => $orden['altura'],
+                        "estado" => "Por empezar",
+                        "id_zona" => $orden['id_zona'],
+
+                    ]);
+
+                    $ordenCrear = Orden::create([
+                        "id" => null,
+                        "tipo" => $orden['tipo'],
+                        "tipo_transporte" => $orden['tipo_transporte'],
+                        "fecha_inicio" => $turno['fecha_inicio'],
+                        "visto" => '0',
+                        "fecha_fin" => $turno['fecha_fin'],
+                        "estado" => "Por empezar",
+                        "id_administrativo" => $administrativo['id'],
+                        "id_operador" => $orden['operador'],
+                        "id_buque" => $buque->id,
+                        "id_train" => null,
+                        "id_truck" => null,
+                        "id_zona" => $orden['id_zona'],
+                    ]);
+
+                    $contenedor->buques()->syncWithoutDetaching([
+                        $buque->id => [
+                            'ubicacion' => $orden['id_zona'],
+                            'destino' => $orden['id_transporte'],
+                            'tipo_destino' => $orden['tipo_transporte'],
+                        ]
+                    ]);
+
+                } else if($orden['tipo_transporte'] == 'train'){
+
+                    $train = Train::findOrFail($orden['id_transporte']);
+
+                    $contenedor = Contenedor::create([
+
+                        "id" => null,
+                        "tipo_contenedor" => $orden['tipo_contenedor'],
+                        "dimensiones" => $orden['dimensiones_contenedor'],
+                        "parcela" => $orden['parcela'],
+                        "altura" => $orden['altura'],
+                        "estado" => "Por empezar",
+                        "id_zona" => $orden['id_zona'],
+
+                    ]);
+
+                    $ordenCrear = Orden::create([
+                        "id" => null,
+                        "tipo" => $orden['tipo'],
+                        "tipo_transporte" => $orden['tipo_transporte'],
+                        "fecha_inicio" => $turno['fecha_inicio'],
+                        "visto" => '0',
+                        "fecha_fin" => $turno['fecha_fin'],
+                        "estado" => "Por empezar",
+                        "id_administrativo" => $administrativo['id'],
+                        "id_operador" => $orden['operador'],
+                        "id_train" => null,
+                        "id_train" => $train->id,
+                        "id_truck" => null,
+                        "id_zona" => $orden['id_zona'],
+                    ]);
+
+                    $contenedor->trains()->syncWithoutDetaching([
+                        $train->id => [
+                            'ubicacion' => $orden['id_zona'],
+                            'destino' => $orden['id_transporte'],
+                            'tipo_destino' => $orden['tipo_transporte'],
+                        ]
+                    ]);
+
+                } else{
+
+                    $truck = Truck::findOrFail($orden['id_transporte']);
+
+                    $contenedor = Contenedor::create([
+
+                        "id" => null,
+                        "tipo_contenedor" => $orden['tipo_contenedor'],
+                        "dimensiones" => $orden['dimensiones_contenedor'],
+                        "parcela" => $orden['parcela'],
+                        "altura" => $orden['altura'],
+                        "estado" => "Por empezar",
+                        "id_zona" => $orden['id_zona'],
+
+                    ]);
+
+                    $ordenCrear = Orden::create([
+                        "id" => null,
+                        "tipo" => $orden['tipo'],
+                        "tipo_transporte" => $orden['tipo_transporte'],
+                        "fecha_inicio" => $turno['fecha_inicio'],
+                        "visto" => '0',
+                        "fecha_fin" => $turno['fecha_fin'],
+                        "estado" => "Por empezar",
+                        "id_administrativo" => $administrativo['id'],
+                        "id_operador" => $orden['operador'],
+                        "id_buque" => null,
+                        "id_train" => null,
+                        "id_truck" => $truck->id,
+                        "id_zona" => $orden['id_zona'],
+                    ]);
+
+                    $contenedor->trucks()->syncWithoutDetaching([
+                        $truck->id => [
+                            'ubicacion' => $orden['id_zona'],
+                            'destino' => $orden['id_transporte'],
+                            'tipo_destino' => $orden['tipo_transporte'],
+                        ]
+                    ]);
+
+                }
+
             }
 
             
@@ -570,12 +698,16 @@ class OrdenController extends Controller {
                 $relacion = TieneBuque::where('id_buque', $orden->id_buque)
                                         ->where('ubicacion', $orden->id_zona)->first();
 
+                $contenedor = Contenedor::where('id', $relacion->id_contenedor)->first();
+
                 break;
 
             case 'train':
 
                 $relacion = TieneTrain::where('id_train', $orden->id_train)
                                         ->where('ubicacion', $orden->id_zona)->first();
+
+                $contenedor = Contenedor::where('id', $relacion->id_contenedor)->first();
 
                 break;
 
@@ -584,13 +716,15 @@ class OrdenController extends Controller {
                 $relacion = TieneTruck::where('id_truck', $orden->id_truck)
                                         ->where('ubicacion', $orden->id_zona)->first();
 
+                $contenedor = Contenedor::where('id', $relacion->id_contenedor)->first();
+
                 break;
 
 
         }
 
         if ($orden) {
-            return view('Administrativo/Auditorias/realizarAuditorias', compact('orden', 'relacion'));
+            return view('Administrativo/Auditorias/realizarAuditorias', compact('orden', 'relacion', 'contenedor'));
         } else {
             return redirect() -> route('Administrativo/Auditorias/verAuditoria');
         }

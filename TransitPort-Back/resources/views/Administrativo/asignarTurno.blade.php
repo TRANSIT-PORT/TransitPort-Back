@@ -15,7 +15,7 @@
         </head>
 
         <body>
-            <h1 class="titulo"><img src="assets/Administrativo/asignarTurnoVer.png">  Asignar Turno</h1>
+            <h1 class="titulo"> Asignar Turno</h1>
             <form action="{{ route('actualizarTurno') }}" method="post">
                 @csrf
 
@@ -81,6 +81,14 @@
         </body>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+
+if (localStorage.getItem("modoOscuro") === "true") {
+    document.body.classList.add("dark-mode");
+}
+
+</script>
 
         <script type="text/javascript">
     $(document).ready(function () {

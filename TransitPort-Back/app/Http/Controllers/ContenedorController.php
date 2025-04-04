@@ -6,6 +6,7 @@ use App\Models\Contenedor;
 use App\Models\Zona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 class ContenedorController extends Controller {
     public function index(Request $request) {
@@ -129,6 +130,39 @@ class ContenedorController extends Controller {
                         if (!$ocupada_altura_dos) {
                             $opcionesAlturas[] = '2';
                         }
+
+                        $primeraAltura = Arr::first($opcionesAlturas);
+
+                        if($altura != 0 || $primeraAltura == 1 || $primeraAltura == 1){
+
+                            $contenedor_abajo_40_no_apilable = Contenedor::where('parcela', $parcela)
+                                                            ->where('id_zona', $id_zona)
+                                                            ->where('altura', $primeraAltura - 1)
+                                                            ->where('dimensiones', '40')
+                                                            ->whereIn('tipo_contenedor', ['Open Top', 'Flat Rack'])
+                                                            ->exists();
+    
+                            $contenedor_abajo_20_no_apilable = Contenedor::where('parcela', $parcela)
+                                                            ->where('id_zona', $id_zona)
+                                                            ->where('altura', $primeraAltura - 1)
+                                                            ->where('dimensiones', '20')
+                                                            ->whereIn('tipo_contenedor', ['Open Top', 'Flat Rack'])
+                                                            ->exists();
+                            
+                            $contenedor_abajo_20 = Contenedor::where('parcela', $parcela)
+                                                            ->where('id_zona', $id_zona)
+                                                            ->where('altura', $primeraAltura - 1)
+                                                            ->where('dimensiones', '20')
+                                                            ->exists();
+
+                            if($contenedor_abajo_20_no_apilable || $contenedor_abajo_40_no_apilable || $contenedor_abajo_20){
+
+                                $ocupada = true;
+
+                            }
+                          
+                        }
+
                     } else{
 
                         $opcionesAlturas = ['0', '1', '2'];
@@ -137,6 +171,7 @@ class ContenedorController extends Controller {
 
                     return response()->json([   
                         'ocupada' => $ocupada,
+                        'altura' => $altura,
                         'altura_cero' => $ocupada_altura_cero, 
                         'altura_uno' => $ocupada_altura_uno, 
                         'altura_dos' => $ocupada_altura_dos, 
@@ -180,38 +215,49 @@ class ContenedorController extends Controller {
                                         ->where('dimensiones', '40')
                                         ->exists()
                     ];
-                    
-
-                    if($altura != 0){
-
-                        $contenedor_abajo_40 = Contenedor::where('parcela', $parcela)
-                                                        ->where('id_zona', $id_zona)
-                                                        ->where('altura', $altura - 1)
-                                                        ->where('dimensiones', '40')
-                                                        ->whereIn('tipo_contenedor', ['Open Top', 'Flat Rack'])
-                                                        ->exists();
-
-                        $contenedor_abajo_20 = Contenedor::where('parcela', $parcela)
-                                                        ->where('id_zona', $id_zona)
-                                                        ->where('altura', $altura - 1)
-                                                        ->where('dimensiones', '20')
-                                                        ->whereIn('tipo_contenedor', ['Open Top', 'Flat Rack'])
-                                                        ->exists();
-                        
-                    }
             
                     $opcionesAlturas = [];
+                    
             
                     foreach ($ocupacion_alturas as $altura_key => $cantidad) {
-                        if (!$altura_ocupada_por_40[$altura_key] && $cantidad < 2 && (!$contenedor_abajo_20 || !$contenedor_abajo_40)) {
+                        if (!$altura_ocupada_por_40[$altura_key] && $cantidad < 2) {
                             $opcionesAlturas[] = $altura_key;
                         }
                     }
-            
-                    $ocupado = empty($opcionesAlturas);
+
+
+                    $primeraAltura = Arr::first($opcionesAlturas);
+
+                    
+                    if($altura != 0 || $primeraAltura == 1 || $primeraAltura == 1){
+
+                        $contenedor_abajo_40_no_apilable = Contenedor::where('parcela', $parcela)
+                                                           ->where('id_zona', $id_zona)
+                                                           ->where('altura', $primeraAltura - 1)
+                                                           ->where('dimensiones', '40')
+                                                           ->whereIn('tipo_contenedor', ['Open Top', 'Flat Rack'])
+                                                           ->exists();
+   
+                        $contenedor_abajo_20_no_apilable = Contenedor::where('parcela', $parcela)
+                                                           ->where('id_zona', $id_zona)
+                                                           ->where('altura', $primeraAltura - 1)
+                                                           ->where('dimensiones', '20')
+                                                           ->whereIn('tipo_contenedor', ['Open Top', 'Flat Rack'])
+                                                           ->exists();
+
+                        
+
+                        if($contenedor_abajo_20_no_apilable || $contenedor_abajo_40_no_apilable){
+
+                               $ocupado = true;
+
+                        }
+                     
+                   }
             
                     return response()->json([
                         'ocupado' => $ocupado,
+                        'altura' => $altura,
                         'ocupacion_alturas' => $ocupacion_alturas,
                         'opcionesAlturas' => $opcionesAlturas,
                         'tipo_abajo_20' => $contenedor_abajo_20,
@@ -220,5 +266,35 @@ class ContenedorController extends Controller {
                 }
                 
             }
+    }
+
+    public function comprobarContenedor(Request $request){
+        $parcela = $request->query('parcela');
+        $tipo_orden = $request->query('tipo_orden');
+        $tipo_contenedor = $request->query('tipo_contenedor');
+        $dimensiones_contenedor = $request->query('dimensiones_contenedor');
+        $altura = $request->query('altura');
+        $id_zona = $request->query('id_zona');
+        $opcionesAlturas = [];
+
+        for($i = 0; $i <= 2; $i++){
+
+            $contenedor = Contenedor::where('parcela', $parcela)
+                                    ->where('altura', $i)
+                                    ->where('id_zona', $id_zona)
+                                    ->exists();
+
+            if($contenedor){
+
+                $opcionesAlturas[] = $i;
+
+            }
+
+        }
+
+        return response()->json([
+            'opcionesAlturas' => $opcionesAlturas,
+        ]);
+
     }
 }

@@ -76,6 +76,18 @@
                         <td>  </td>
                         <td> Destino: {{ $relacion -> destino }} </td>
                     </tr>
+                    <tr>
+                        <td>  </td>
+                        <td>  </td>
+                        <td>  </td>
+                        <td> Tipo: {{ $contenedor -> tipo_contenedor }} </td>
+                    </tr>
+                    <tr>
+                        <td>  </td>
+                        <td>  </td>
+                        <td>  </td>
+                        <td> Dimensiones: {{ $contenedor -> dimensiones }} </td>
+                    </tr>
                 </tbody>
             </table>
 

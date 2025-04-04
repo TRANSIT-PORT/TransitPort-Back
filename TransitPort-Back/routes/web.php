@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/crearOrden', [OrdenController::class, 'crearOpciones'])->name('crearOrden');
         Route::post('/guardarOrden', [OrdenController::class, 'guardarOrden'])->name('guardarOrden');
         Route::get('/comprobar-parcela', [ContenedorController::class, 'comprobarParcela'])->name('comprobarParcela');
+        Route::get('/comprobar-contenedor', [ContenedorController::class, 'comprobarContenedor'])->name('comprobarContenedor');
         Route::get('/comprobar-disponibilidad', [ContenedorController::class, 'comprobarDisponibilidad'])->name('comprobarDisponibilidad');
         Route::get('/comprobar-tipo', [OrdenController::class, 'comprobarTipo'])->name('comprobarTipo');
         Route::view('/crearTurno', 'Administrativo.crearTurno')->name('crearTurno');

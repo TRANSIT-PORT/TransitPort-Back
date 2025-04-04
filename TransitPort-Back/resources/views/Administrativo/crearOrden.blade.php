@@ -14,7 +14,7 @@
         </head>
 
         <body>
-            <h1 class="titulo"><img src="assets/Administrativo/crearOrdenVer.svg">  Crear Orden</h1>
+            <h1 class="titulo"> Crear Orden</h1>
             <form action="{{ route('guardarOrden') }}" method="post">
                 @csrf
 
@@ -112,7 +112,7 @@
                 
                 </div>
 
-                <button class="crear btn">Crear</button>
+                <button id="botonCrearOrden"class="crear btn">Crear</button>
             </form>
             <form action="" method="get">
                 <button class="cancelar btn">Cancelar</button>
@@ -120,6 +120,14 @@
         </body>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+
+        if (localStorage.getItem("modoOscuro") === "true") {
+            document.body.classList.add("dark-mode");
+        }
+
+        </script>
 
         <!--Esto sirve para sacar el valor de tipo de transporte que tiene el select-->
 
@@ -243,7 +251,7 @@
                 var dimensiones_contenedor = $('#dimensiones_contenedor').val();
                 var altura = $('#altura').val();
 
-                console.log('Parcela ingresada ' + parcela + '\nZona: ' + id_zona);
+                console.log('Parcela ingresada ' + parcela + '\nZona: ' + id_zona + '\naltura: ' + altura + '\nTipo_contenedor: ' + tipo_contenedor + '\ndimensiones_contenedor: ' + dimensiones_contenedor);
 
                 if (tipo_orden) {
                     $.ajax({
@@ -252,31 +260,26 @@
                         data: { parcela: parcela , id_zona: id_zona, tipo_orden: tipo_orden, tipo_contenedor: tipo_contenedor, dimensiones_contenedor: dimensiones_contenedor, altura: altura}, 
                         success: function(response) {
 
-                            console.log('Hola' + response)
+                            console.log(response);
 
-                            if(dimensiones_contenedor == '40'){
+                            if(tipo_orden == 'descarga'){
 
-                            console.log('altura cero: ' + response.altura_cero + '\naltura uno: ' + response.altura_uno + '\naltura uno: ' + response.altura_uno + '\nAlturas libres: ' + response.opcionesAlturas);
-                            
-                            } else{
+                                $('#altura').empty();
 
-                                console.log('ocupado' + response.ocupado, 'alturas disponibles', response.opcionesAlturas)
+                                if (response.ocupada==true || response.ocupado == true) {
+                                    $('#altura').append('<option value="">La parcela está completa</option>')
+                                    $('#botonCrearOrden').prop('disabled', true)
+                                } else {
 
-                            }
+                                    $('#botonCrearOrden').prop('disabled', false)
 
+                                    response.opcionesAlturas.forEach(function(opcionesAlturas){
 
-                            $('#altura').empty();
+                                        $('#altura').append('<option value="' + opcionesAlturas + '">' + opcionesAlturas + '</option>')
 
-                            if (!response.opcionesAlturas || response.opcionesAlturas.length === 0) {
-                                $('#altura').append('<option value="">La parcela está completa</option>')
-                            } else {
-
-                                response.opcionesAlturas.forEach(function(opcionesAlturas){
-
-                                    $('#altura').append('<option value="' + opcionesAlturas + '">' + opcionesAlturas + '</option>')
-
-                                });
-                                
+                                    });
+                                    
+                                }
                             }
                             
                         },
@@ -290,7 +293,58 @@
                 }
             }
 
+            function comprobarContenedor() {
+                var parcela = $('#buscar_parcela').val();
+                var id_zona = $('#id_zona').val();
+                var tipo_orden = $('#tipo').val();
+                var altura = $('#altura').val();
+
+                if (parcela) {
+                    $.ajax({
+                        url: "{{ route('comprobarContenedor') }}", 
+                        type: "GET",
+                        data: { parcela: parcela , id_zona: id_zona, tipo_orden: tipo_orden}, 
+                        success: function(response) {
+                            
+
+                            console.log(response)
+
+                            if(tipo_orden == 'carga'){
+
+                                $('#altura').empty();
+
+                                if(response.opcionesAlturas.length > 0){
+
+                                    $('#botonCrearOrden').prop('disabled', false)
+                                    
+                                    response.opcionesAlturas.forEach(function(opcionesAlturas){
+
+                                            $('#altura').append('<option value="' + opcionesAlturas + '">' + opcionesAlturas + '</option>')
+
+                                    }); 
+                                } else {
+
+                                    $('#altura').append('<option value="">En esta parcela no hay contenedores</option>')
+
+                                    $('#botonCrearOrden').prop('disabled', false)
+
+                                }
+                            }
+
+                        },
+                        error: function() {
+                            console.log('Error al buscar la parcela', error)
+                        }
+                        
+                    });
+                } else {
+                    altura.empty();
+                }
+            }
+
             $('#buscar_parcela, #id_zona, #tipo, #dimensiones_contenedor').on('input change change change change', buscarParcela);
+
+            $('#buscar_parcela').on('input', comprobarContenedor);
             
         </script>
 
