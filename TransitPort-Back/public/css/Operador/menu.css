@@ -5,15 +5,59 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
+
+:root {
+    --texto: #000000;
+    --azul-negro: #040813;
+    --azul: #152D65;
+    --selects: #E3E9FB;
+    --fondo: #ffffff;
+    --texto-crear: #F1F5FE;
+    --texto-tabla: #F1F5FE;
+    --azul-cancelar: #133379;
+    --crear: #152D65;
+    --azul-menu: #133379;
+    --crear-hover: #0B5ED7;
+    --amarillo: #E59506;
+    --texto-calendario: #333; 
+    --amarillo-hover: #FFCA2C;
+    --borde-calendario: #EBEBEB;
+    --flecha-select: url("../../assets/flecha.png");
+    --logo-titulo: url("../../assets/Gestor/crearGruaVer.svg") no-repeat;
+    --logo-lupa: url("../../assets/lupa.svg") no-repeat;
+}
+
+body.dark-mode {
+    --texto: #FFFFFF;
+    --azul-negro: #99B2EA;
+    --azul: #99B2EA;
+    --selects: #0e1936;
+    --fondo: #01050E;
+    --azul-menu: #0e2453;
+    --texto-tabla: #F1F5FE;
+    --texto-crear: #F1F5FE;
+    --azul-cancelar: #000000;
+    --crear: #465a86;
+    --crear-hover: #8f97b3;
+    --amarillo: #E59506;
+    --texto-calendario: #dadada; 
+    --amarillo-hover: #D19D00;
+    --borde-calendario: #0b1429;
+    --flecha-select: url("../../assets/flecha-dark.png");
+    --logo-titulo: url("../../assets/Gestor/crearGrua.svg") no-repeat;
+    --logo-lupa: url("../../assets/lupaBlanca.svg") no-repeat;
+}
 #menu {
     padding: 0;
     margin: 0;
     height: 100%;
-    background: var(--Cinder-800, #133379);
+    background: var(--azul-menu);
+    transition: background 0.3s ease-in-out !important;
 }
 
 #menu > #superior > a, #menu > a{
-    color: #f1f5fe;
+    color: var(--texto-crear);
+    transition: color 0.3s ease-in-out ;
     text-decoration: none;
     font-weight: bolder;
     font-size: 24px;
@@ -23,13 +67,15 @@
     align-items: center;
     width: 95%;
     border-radius: 0px 20px 20px 0px;
-    background: #133379;
+    background: var(--azul-menu);
+    transition: background 0.3s ease-in-out !important;
     margin: 0;
 }
 
 #menu > #superior > a > #enlace-menu{
 
-    color: #f1f5fe;
+    color: var(--texto-crear);
+    transition: color 0.3s ease-in-out !important;
     text-decoration: none;
     font-size: 24px;
     justify-content: left;
@@ -39,7 +85,8 @@
 }
 
 #menu > a:hover {
-    color: #f1f5fe;
+    color: var(--texto-crear);
+    transition: color 0.3s ease-in-out !important;
     text-decoration: none;
     font-weight: bolder;
     font-size: 24px;
@@ -49,12 +96,14 @@
     align-items: center;
     width: 95%;
     border-radius: 0px 20px 20px 0px;
-    background: #133379;
+    background: var(--azul-menu);
+    transition: background 0.3s ease-in-out !important;
     margin: 0;
 }
 
 #menu > a:active {
-    color: #f1f5fe;
+    color: var(--texto-crear);
+    transition: color 0.3s ease-in-out !important;
     text-decoration: none;
     font-weight: bolder;
     font-size: 24px;
@@ -65,6 +114,7 @@
     width: 95%;
     border-radius: 0px 20px 20px 0px;
     background: #808faf;
+    transition: background 0.3s ease-in-out !important;
     margin: 0;
 }
 
@@ -72,7 +122,8 @@
 #cantidadNotificaciones{
 
     display: flex;
-    background-color: #E59506;
+    background-color: var(--amarillo);
+    transition: background 0.3s ease-in-out !important;
     align-items: center;
     padding: 5px;
     width: 30px;
@@ -97,14 +148,16 @@
     gap: 16px;
     width: 95%;
     border-radius: 0px 20px 20px 0px;
-    background: #133379;
+    background: var(--azul-menu);
+    transition: background 0.3s ease-in-out !important;
     margin: 0;
     border: none;
 
 }
 
 #perfil > a {
-    color: var(--Cinder-50, #f1f5fe);
+    color: var(--texto-crear);
+    transition: color 0.3s ease-in-out !important;
     font-size: 28px;
     font-style: normal;
     font-weight: 600;
@@ -124,4 +177,38 @@
     margin: auto;
     margin-top: 20px;
     margin-bottom: 15px;
+}
+
+.modo-oscuro-btn > svg{
+
+    margin-bottom: 4px;
+
+}
+
+.modo-oscuro-btn {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 20px;
+    margin-right: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: #f1c40f; 
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.5s, transform 0.5s;
+}
+
+.modo-oscuro-btn:active {
+    transform: scale(0.9);
+}
+
+.dark-mode .modo-oscuro-btn {
+    background-color: #2c3e50; 
+    color: #f1c40f;
 }

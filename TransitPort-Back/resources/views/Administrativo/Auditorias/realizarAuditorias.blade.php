@@ -17,7 +17,7 @@
         <body>
 
         <div class="container mt-5">
-            <h2 class="mb-4"><img src="/assets/Administrativo/realizarAuditoriaVer.png">Visualizar Auditoria</h2>
+            <h2 class="mb-4">Visualizar Auditoria</h2>
             <table id="detalles" class="table table-bordered">
                 <thead>
                     <tr>
@@ -45,36 +45,40 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td> {{ $orden -> id_grua }} </td>
-                        <td> {{ $orden -> id_operador }} </td>
+                        <td> {{$grua->nombre}} </td>
+                        <td> {{ $operador -> nombre }} </td>
+                        <td> {{$transporte -> nombre}}</td>
+                        <td> ID: {{ $gestiona -> id_contenedor }} </td>
+                    </tr>
+                    <tr>
+                        <td> Marca: {{$grua->marca}}</td>
+                        <td>  Tipo: {{ $operador -> tipo }}</td>
+                        <td>  </td>
                         <td> 
-                            @if($orden->tipo_transporte == 'buque')
+                        @if($relacion -> tipo_destino == 'Zona')
+                        
+                        Ubicacion: {{ $transporte -> nombre }}
+                    
+                        @else 
+                        
+                        Ubicacion: {{ $zona -> nombre }}
 
-                                {{$orden->id_buque}}
-
-                            @elseif($orden->tipo_transporte == 'train')
-
-                                {{$orden->id_train}}
-
-                            @elseif($orden->tipo_transporte == 'truck')
-
-                                {{$orden->id_truck}}
-
-                            @endif
-                        </td>
-                        <td> ID: {{ $relacion -> id_contenedor }} </td>
+                        @endif</td>
                     </tr>
                     <tr>
                         <td>  </td>
                         <td>  </td>
                         <td>  </td>
-                        <td> Ubicacion: {{ $relacion -> ubicacion }} </td>
-                    </tr>
-                    <tr>
-                        <td>  </td>
-                        <td>  </td>
-                        <td>  </td>
-                        <td> Destino: {{ $relacion -> destino }} </td>
+                        <td> 
+                        @if($relacion -> tipo_destino == 'Zona')
+                        
+                        Destino: {{ $zona -> nombre }}
+                    
+                        @else 
+                        
+                        Destino: {{ $transporte -> nombre }}
+
+                        @endif</td>
                     </tr>
                     <tr>
                         <td>  </td>

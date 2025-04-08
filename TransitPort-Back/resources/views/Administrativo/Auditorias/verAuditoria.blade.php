@@ -10,9 +10,6 @@
             <link rel="stylesheet" href="{{ asset('css/Administrativo/verAuditoria.css') }}">
             <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-            <style>
-                
-            </style>
         </head>
         <body>
             

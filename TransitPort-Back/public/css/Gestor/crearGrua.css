@@ -1,9 +1,66 @@
+
+
+:root {
+    --texto: #000000;
+    --azul-negro: #040813;
+    --azul: #152D65;
+    --selects: #E3E9FB;
+    --fondo: #ffffff;
+    --texto-crear: #F1F5FE;
+    --texto-tabla: #F1F5FE;
+    --azul-cancelar: #133379;
+    --crear: #152D65;
+    --crear-hover: #0B5ED7;
+    --amarillo: #E59506;
+    --texto-calendario: #333; 
+    --amarillo-hover: #FFCA2C;
+    --borde-calendario: #EBEBEB;
+    --flecha-select: url("../../assets/flecha.png");
+    --logo-titulo: url("../../assets/Gestor/crearGruaVer.svg") no-repeat;
+}
+
+body.dark-mode {
+    --texto: #FFFFFF;
+    --azul-negro: #040813;
+    --azul: #99B2EA;
+    --selects: #0e1936;
+    --fondo: #01050E;
+    --texto-tabla: #F1F5FE;
+    --texto-crear: #F1F5FE;
+    --azul-cancelar: #000000;
+    --crear: #465a86;
+    --crear-hover: #8f97b3;
+    --amarillo: #E59506;
+    --texto-calendario: #dadada; 
+    --amarillo-hover: #D19D00;
+    --borde-calendario: #0b1429;
+    --flecha-select: url("../../assets/flecha-dark.png");
+    --logo-titulo: url("../../assets/Gestor/crearGrua.svg") no-repeat;
+}
+
+body{
+
+    background-color: var(--fondo);
+    transition: background 0.3s ease-in-out !important;
+    color: var(--texto);
+
+}
+
 h1 {
     margin-top: 1%;
     margin-left: 8%;
+    width: 320px;
+    height: 58px;
+    background: var(--logo-titulo);
+    transition: background 0.3s ease-in-out !important;
+    padding-left: 65px;
+    display: flex;
+    align-items: right;
+    align-content: center;
+    justify-content: space-between;
 }
 h2 {
-color: var(--Cinder-950, #040813);
+color: var(--texto);
 
 font-weight: bold;
 }
@@ -17,8 +74,10 @@ margin-bottom: 2px;
 
 }
 .num {
-color: var(--Cinder-900, #152D65);
-background-image: url("../../assets/elipse.svg");
+color: var(--azul);
+background-color: var(--selects);
+transition: background 0.3s ease-in-out !important;
+border-radius: 20px;
 background-size: contain;
 background-position: left;
 background-repeat: no-repeat;
@@ -37,8 +96,9 @@ select {
 appearance: none;
 -webkit-appearance: none;
 -moz-appearance: none;
-background: url('../../assets/flecha.svg') no-repeat calc(100% - 3%) var(--Cinder-100, #E3E9FB) !important;
-
+background: var(--flecha-select) no-repeat calc(100% - 3%) var(--selects) !important;
+transition: background 0.3s ease-in-out !important;
+color: var(--texto);
 border: none;
 
 font-size: 1.2rem;
@@ -57,8 +117,8 @@ input{
 appearance: none;
 -webkit-appearance: none;
 -moz-appearance: none;
-background: var(--Cinder-100, #E3E9FB) !important;
-
+background: var(--selects) !important;
+transition: background 0.3s ease-in-out !important;
 border: none;
 
 font-size: 1.2rem;
@@ -92,14 +152,15 @@ top: 10%;
 }
 
 .crear {
-color: var(--Cinder-50, #F1F5FE);
+color: var(--texto-crear);
 font-size: 32px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
 border-radius: 4px;
-border: 2px solid var(--Cinder-900, #152D65);
-background: var(--Cinder-900, #152D65);
+border: 2px solid var(--crear);
+background: var(--crear);
+transition: background 0.3s ease-in-out !important;
 box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.25);
 display: flex;
 width: 498px;
@@ -110,8 +171,17 @@ position: absolute;
 right: 22%;
 bottom: 5%;
 }
+
+.crear:hover {
+    color: var(--texto-crear);
+transition: background 0.3s ease-in-out !important;
+transition: color 0.3s ease-in-out ;
+    border: 2px solid var(--crear-hover);
+    background: var(--crear-hover);
+}
+
 .cancelar {
-color: var(--Cinder-800, #133379);
+color: var(--azul-cancelar);
 
 font-size: 32px;
 font-style: normal;
@@ -119,8 +189,9 @@ font-weight: 700;
 line-height: normal;
 
 border-radius: 4px;
-border: 2px solid var(--Cinder-900, #152D65);
-background: var(--Amarillo, #E59506);
+border: 2px solid var(--azul-cancelar);
+background: var(--amarillo);
+transition: background 0.3s ease-in-out !important;
 box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
 display: inline-flex;
@@ -132,4 +203,11 @@ align-items: center;
 position: absolute;
 right: 5%;
 bottom: 5%;
+}
+
+.cancelar:hover {
+    color: var(--texto);
+    transition: color 0.3s ease-in-out !important;
+    background: var(--amarillo-hover);
+    transition: background 0.3s ease-in-out;
 }

@@ -1,32 +1,80 @@
 
+:root {
+    --texto: #000000;
+    --azul-negro: #040813;
+    --azul: #152D65;
+    --selects: #E3E9FB;
+    --fondo: #ffffff;
+    --texto-crear: #F1F5FE;
+    --texto-tabla: #F1F5FE;
+    --azul-cancelar: #133379;
+    --crear: #152D65;
+    --azul-menu: #133379;
+    --crear-hover: #0B5ED7;
+    --amarillo: #E59506;
+    --texto-calendario: #333; 
+    --amarillo-hover: #FFCA2C;
+    --borde-calendario: #EBEBEB;
+    --flecha-select: url("../../assets/flecha.png");
+    --logo-titulo: url("../../assets/Operador/verPerfilVer.svg") no-repeat;
+    --logo-lupa: url("../../assets/lupa.svg") no-repeat;
+    --descarga: #89ADF0;
+    --carga: #040813;
+}
+
+body.dark-mode {
+    --texto: #FFFFFF;
+    --azul-negro: #465a86;
+    --azul: #99B2EA;
+    --selects: #0e1936;
+    --fondo: #01050E;
+    --azul-menu: #0e2453;
+    --texto-tabla: #F1F5FE;
+    --texto-crear: #F1F5FE;
+    --azul-cancelar: #000000;
+    --crear: #465a86;
+    --crear-hover: #8f97b3;
+    --amarillo: #E59506;
+    --texto-calendario: #dadada; 
+    --amarillo-hover: #D19D00;
+    --borde-calendario: #0b1429;
+    --flecha-select: url("../../assets/flecha-dark.png");
+    --logo-titulo: url("../../assets/Operador/verPerfil.svg") no-repeat;
+    --logo-lupa: url("../../assets/lupaBlanca.svg") no-repeat;
+    --descarga: #0F3375;
+    --carga: #EAEEFB;
+}
+
 #cuerpo{
 
     height: 100%;
     padding: 30px;
+    background-color: var(--fondo);
+    transition: background 0.3s ease-in-out !important;
 
 }
-
 #titulo
 {
-
-  padding-left: 60px;
-  gap: 1px;
-  margin-top: 20px;
+        margin-top: 1%;
+        margin-left: 5%;
+        width: 400px;
+        height: 58px;
+        background: var(--logo-titulo);
+        transition: background 0.3s ease-in-out !important;
+        padding-left: 65px;
+        display: flex;
+        align-items: right;
+        align-content: center;
+        justify-content: space-between;
 }
 
 #titulo > h2 {
-    color: #000;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out !important;
     font-size: 40px;
-    margin-left: 20px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-}
-
-#titulo > svg {
-    width: 50px;
-    height: 50px;
-    padding: 0;
 }
 
 #info-perfil{
@@ -46,8 +94,9 @@
 }
 
 #input-perfil > label {
-    color: var(--Cinder-950, #040813);
-    font-size: 28px;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out !important;
+    font-size: 24px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -57,11 +106,14 @@
 }
 
 #input-perfil > input {
-    padding: 20px;
+    padding: 15px;
     border-radius: 4px;
-    background: var(--Cinder-100, #e3e9fb);
+    background: var(--selects);
+    transition: background 0.3s ease-in-out !important;
     border: none;
-    font-size: 28px;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out ;
+    font-size: 24px;
     padding: 10px;
     width: 100%;
 }
@@ -96,14 +148,16 @@
 }
 
 #boton-perfil {
-    padding: 20px 40px 20px 40px;
+    padding: 10px 30px 10px 30px;
     justify-content: center;
     align-items: center;
     text-align: center;
     text-decoration: none;
     border-radius: 40px;
-    background: var(--Cinder-950, #040813);
-    color: var(--Cinder-100, #e3e9fb);
+    background: var(--azul-negro);
+    transition: background 0.3s ease-in-out !important;
+    color: var(--texto-crear);
+    transition: color 0.3s ease-in-out;
     font-weight: 600;
     margin-left: auto;
     margin-top: 30px;

@@ -1,9 +1,129 @@
+
+
+:root {
+    --texto: #000000;
+    --azul-negro: #040813;
+    --azul: #152D65;
+    --selects: #E3E9FB;
+    --fondo: #ffffff;
+    --texto-crear: #F1F5FE;
+    --azul-cancelar: #133379;
+    --crear: #152D65;
+    --crear-hover: #0B5ED7;
+    --amarillo: #E59506;
+    --texto-calendario: #333; 
+    --amarillo-hover: #FFCA2C;
+    --borde-calendario: #EBEBEB;
+    --flecha-select: url("../../assets/flecha.png");
+    --logo-titulo: url("../../assets/Administrativo/crearTurnoVer.png") no-repeat;
+    --logo-calendario: url("../../assets/Administrativo/calendario.svg") no-repeat;
+    --logo-lupa: url("../../assets/lupa.svg") no-repeat;
+    --boton-paginacion-activo: #152D65;
+    --boton-paginacion-disabled: #F1F5FE;
+}
+
+body.dark-mode {
+    --texto: #FFFFFF;
+    --azul-negro: #040813;
+    --azul: #99B2EA;
+    --selects: #0e1936;
+    --fondo: #01050E;
+    --texto-crear: #F1F5FE;
+    --azul-cancelar: #000000;
+    --crear: #465a86;
+    --crear-hover: #8f97b3;
+    --amarillo: #E59506;
+    --texto-calendario: #dadada; 
+    --amarillo-hover: #D19D00;
+    --borde-calendario: #0b1429;
+    --flecha-select: url("../../assets/flecha-dark.png");
+    --logo-titulo: url("../../assets/Administrativo/crearTurno.png") no-repeat;
+    --logo-calendario: url("../../assets/Administrativo/calendarioBlanco.svg") no-repeat;
+    --logo-lupa: url("../../assets/lupaBlanca.svg") no-repeat;
+    --boton-paginacion-activo: #E59506;
+    --boton-paginacion-disabled: #465a86;
+}
+
+body{
+
+    background-color: var(--fondo);
+    color: var(--texto);
+    transition: background 0.3s ease-in-out !important;
+    transition: color 0.3s ease-in-out;
+
+}
+
+.pagination > li > a{
+
+    background-color: var(--selects);
+    border-radius: 20px;
+    border: none;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out !important;
+
+}
+
+.page-item.active .page-link{
+
+    background-color: var(--boton-paginacion-activo);
+    transition: background 0.3s ease-in-out !important;
+    border-radius: 20px;
+    border: none;
+    color: var(--fondo);
+    transition: color 0.3s ease-in-out;
+
+}
+
+.page-item.disabled .page-link{
+
+    background-color: var(--boton-paginacion-disabled);
+    transition: background 0.3s ease-in-out !important;
+    border-radius: 20px;
+    border: none;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out ;
+
+}
+
+.dataTables_info{
+
+    color: var(--texto);
+    transition: color 0.3s ease-in-out !important;
+
+}
+
+.dataTables_filter > label {
+
+    color: var(--texto);
+    transition: color 0.3s ease-in-out !important;
+
+}
+
+.dataTables_length > label {
+
+    color: var(--texto);
+    transition: color 0.3s ease-in-out !important;
+
+}
+
+.custom-select{
+
+    background-color: var(--fondo);
+    transition: background 0.3s ease-in-out !important;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out;
+
+}
+
 #auditoria th {
-    background: var(--Cinder-900, #152D65);
-    color: white;
+    background: var(--crear);
+    transition: background 0.3s ease-in-out !important;
+    color: var(--texto-crear);
+    transition: color 0.3s ease-in-out;
 }
 #auditoria tbody tr {
     cursor: pointer;
+    color: var(--texto);
 }
 
 input.form-control.form-control-sm {
@@ -12,22 +132,27 @@ input.form-control.form-control-sm {
     padding: 8px !important;
     border-radius: 4px !important;
     font-size: 20px !important;
-    border: 2px solid #000 !important;
+    border: 2px solid var(--texto) !important;
     height: 36px !important;
     font-weight: 700;
-    color: #000 !important;
+    color: var(--texto) !important;
+    transition: color 0.3s ease-in-out;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
-    background-image: url('assets/lupa.svg') !important;
+    background: var(--logo-lupa);
+    transition: background 0.3s ease-in-out !important;
     background-repeat: no-repeat !important;
     background-position: left 10px center !important;
     padding-left: 70px !important;
+    color: var(--texto);
 
 }
 
 th.sorting_disabled {
 
-    background: var(--Cinder-900, #152D65) !important;
-    color: var(--Cinder-50, #F1F5FE);
+    background: var(--crear) !important;
+    transition: background 0.3s ease-in-out !important;
+    color: var(--texto-crear);
+    transition: color 0.3s ease-in-out ;
     width: 100px;
     height: 54px;
     padding-left: -70px;
@@ -39,15 +164,34 @@ th.sorting_disabled {
 }
 
 #auditoria tbody {
-    background: #F1F5FE;
+    background: var(--borde-calendario);
+    transition: background 0.3s ease-in-out !important;
+    border: none;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out ;
+
+}
+
+.dataTables_wrapper:hover .dataTables_paginate:hover .paginate_button:hover{
+
+    background: none;
     border: none;
 
 }
 
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate{
+
+    color: var(--texto);
+
+}
+
 #auditoria td {
-    background: #FFF;
-    color: #000000;
-    border-top: 10px solid #F1F5FE;
+    background: var(--fondo);
+    transition: background 0.3s ease-in-out !important;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out;
+    border-top: 10px solid var(--borde-calendario);
+    transition: border 0.3s ease-in-out;
     border-right: none;
     text-align: center;
 }

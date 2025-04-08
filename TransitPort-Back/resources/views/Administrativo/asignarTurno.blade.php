@@ -23,7 +23,8 @@
                     <h2 class="num">1</h2>
                     <h2>Operador</h2>
                     <p>Seleccione al operador</p>
-                    <select name="id_operador">
+                    <select name="id_operador" id="id_operador"> 
+                        <option value=""></option>
                         @forelse ($operadores as $operador)
                             <option value="{{$operador -> id}}">{{$operador -> nombre}}</option>
                         @empty
@@ -45,6 +46,13 @@
                             <p>No hay zonas actualmente</p>
                         @endforelse
                     </select>
+                </div>
+
+                <div class="div3">
+                    <h2 class="num">2</h2>
+                    <h2>Grúa</h2>
+                    <p>Seleccione la grúa</p>
+                    <select name="id_grua" id="id_grua"></select>
                 </div>
 
                 <div class="div4" name="div4" style="display: none">
@@ -84,11 +92,46 @@
 
         <script>
 
-if (localStorage.getItem("modoOscuro") === "true") {
-    document.body.classList.add("dark-mode");
-}
+            if (localStorage.getItem("modoOscuro") === "true") {
+                document.body.classList.add("dark-mode");
+            }
 
-</script>
+        </script>
+
+        <script>
+
+        $(document).ready(function(){
+
+            $('#id_operador').change(function(){
+                
+                var operador = $('#id_operador').val();
+
+                if(operador){
+
+                    $.ajax({
+                        
+                        url: "{{ route('getGruas') }}",
+                        type: "GET",
+                        data: { operador: operador },
+                        success: function (response) {
+
+                            $('#id_grua').empty();
+                            console.log(response)
+                            response.forEach(function(gruas) {
+                                $('#id_grua').append('<option value="' + gruas.id + '">' + gruas.nombre + '</option>');
+                            });
+
+                        }
+
+                    })
+
+                }
+
+            });    
+
+        })
+
+        </script>
 
         <script type="text/javascript">
     $(document).ready(function () {

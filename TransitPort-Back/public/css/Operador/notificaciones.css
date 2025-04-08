@@ -1,23 +1,78 @@
 
+:root {
+    --texto: #000000;
+    --azul-negro: #040813;
+    --azul: #152D65;
+    --selects: #E3E9FB;
+    --fondo: #ffffff;
+    --texto-crear: #F1F5FE;
+    --texto-tabla: #F1F5FE;
+    --azul-cancelar: #133379;
+    --crear: #152D65;
+    --azul-menu: #133379;
+    --crear-hover: #0B5ED7;
+    --amarillo: #E59506;
+    --texto-calendario: #333; 
+    --amarillo-hover: #FFCA2C;
+    --borde-calendario: #EBEBEB;
+    --flecha-select: url("../../assets/flecha.png");
+    --logo-titulo: url("../../assets/Operador/notificacionesVer.svg") no-repeat;
+    --logo-lupa: url("../../assets/lupa.svg") no-repeat;
+    --descarga: #89ADF0;
+    --carga: #040813;
+}
+
+body.dark-mode {
+    --texto: #FFFFFF;
+    --azul-negro: #99B2EA;
+    --azul: #99B2EA;
+    --selects: #0e1936;
+    --fondo: #01050E;
+    --azul-menu: #0e2453;
+    --texto-tabla: #F1F5FE;
+    --texto-crear: #F1F5FE;
+    --azul-cancelar: #000000;
+    --crear: #465a86;
+    --crear-hover: #8f97b3;
+    --amarillo: #E59506;
+    --texto-calendario: #dadada; 
+    --amarillo-hover: #D19D00;
+    --borde-calendario: #0b1429;
+    --flecha-select: url("../../assets/flecha-dark.png");
+    --logo-titulo: url("../../assets/Operador/notificaciones.svg") no-repeat;
+    --logo-lupa: url("../../assets/lupaBlanca.svg") no-repeat;
+    --descarga: #0F3375;
+    --carga: #EAEEFB;
+}
+
 #cuerpo{
 
     height: 100%;
     padding: 30px;
+    background-color: var(--fondo);
+    transition: background 0.3s ease-in-out !important;
 
 }
 
 #titulo
 {
-
-  padding-left: 60px;
-  gap: 1px;
-  margin-top: 20px;
+        margin-top: 1%;
+        margin-left: 5%;
+        width: 400px;
+        height: 58px;
+        background: var(--logo-titulo);
+        transition: background 0.3s ease-in-out !important;
+        padding-left: 65px;
+        display: flex;
+        align-items: right;
+        align-content: center;
+        justify-content: space-between;
 }
 
 #titulo > h2 {
-    color: #000;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out !important;
     font-size: 40px;
-    margin-left: 20px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -47,8 +102,12 @@
 #body-notificaciones > ul > li{
 
     border-radius: 4px 0px 0px 4px;
-    background: var(--Cinder-50, #F1F5FE);
+    transition: border 0.3s ease-in-out ;
+    background: var(--selects);
+    transition: background 0.3s ease-in-out !important;
     padding: 25px;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out;
     text-decoration: none;
     list-style: none;
     margin: 10px;
@@ -59,13 +118,16 @@
 
 .descarga{
 
-    border-left: 12px solid #89ADF0;
+    border-left: 12px solid var(--descarga);
+    
+    transition: border 0.3s ease-in-out ;
 
 }
 
 .carga{
 
-    border-left: 12px solid #040813;
+    border-left: 12px solid var(--carga);
+    transition: border 0.3s ease-in-out ;
 
 }
 

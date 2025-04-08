@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Gestor;
+use App\Models\Grua;
 use App\Models\Turno;
 
 class Operador extends Model
@@ -20,4 +21,11 @@ class Operador extends Model
     {
         return $this->belongsToMany(Turno::class);
     }
+
+    public function gruas(){
+        return $this->belongsToMany(Grua::class, 'utiliza', 'id_operador', 'id_grua')
+                    ->withPivot('hora_inicio', 'hora_fin')
+                    ->withTimestamps(); 
+    }
+    
 }

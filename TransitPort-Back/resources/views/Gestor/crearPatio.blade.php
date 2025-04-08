@@ -24,7 +24,7 @@
         </head>
 
         <body>
-            <h1><img src="assets/Gestor/crearPatioVer.png">  Crear Patio | Zona</h1>
+            <h1>Crear Patio | Zona</h1>
              <form action="{{ route('guardarPatio') }}" method="post">
                 @csrf
 
@@ -44,7 +44,7 @@
                     <label for="valorY">Valor Y:</label>
                     <input type="number" name="y" id="valorY">
                     <label for="valorZ">Valor Z:</label>
-                    <input type="number" name="z" id="valorZ" value="1" min="1" max="1">
+                    <input type="number" name="z" id="valorZ" value="0" min="0" max="2">
                 </div>
 
                 {{-- es un input invisible que recoge el id del gestor, para asignarlo al patio --}}

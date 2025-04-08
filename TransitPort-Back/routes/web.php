@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/crearOrden', [OrdenController::class, 'buscarParcela'])->name('buscarParcela');
         Route::get('/getTransporte', [OrdenController::class, 'getTransporte'])->name('getTransporte');
         Route::get('/asignarTurno', [TurnoController::class, 'crearOpciones'])->name('asignarTurno');
+        Route::get('/getGruas', [TurnoController::class, 'getGruas'])->name('getGruas');
         Route::get('/sacarDimensines', [OrdenController::class, 'sacarDimensiones'])->name('sacarDimensiones');
         Route::post('/actualziarTurno', [TurnoController::class, 'actualizarTurno']) -> name('actualizarTurno');
 

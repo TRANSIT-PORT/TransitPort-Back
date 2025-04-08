@@ -50,7 +50,7 @@ class GruaController extends Controller
 
             if($validatedData['tipo'] == 'SC'){
 
-                $task = SC::create([
+                $grua = SC::create([
                     "id" => null,
                     "nombre" => $validatedData['nombre'],
                     "modelo" => $validatedData['modelo'],
@@ -59,11 +59,12 @@ class GruaController extends Controller
                     "tipo" => $validatedData['tipo'],
                     "capacidad_carga" => $validatedData['capacidad_carga'],
                     "id_gestor" => $usuario->id,
+                    "id_grua" => $task->id,
                 ]);
 
             } else {
 
-                $task = STS::create([
+                $grua = STS::create([
                     "id" => null,
                     "nombre" => $validatedData['nombre'],
                     "modelo" => $validatedData['modelo'],
@@ -72,6 +73,7 @@ class GruaController extends Controller
                     "tipo" => $validatedData['tipo'],
                     "capacidad_carga" => $validatedData['capacidad_carga'],
                     "id_gestor" => $usuario->id,
+                    "id_grua" => $task->id,
                 ]);
             }
 

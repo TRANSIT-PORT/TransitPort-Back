@@ -19,7 +19,7 @@
     </head>
 
     <body>
-        <h1><img src="assets/Gestor/usuariosCrear.svg">  Crear Usuario</h1>
+        <h1> Crear Usuario</h1>
         <form action="{{ route('guardarUsuario') }}" method="post">
             @csrf
 

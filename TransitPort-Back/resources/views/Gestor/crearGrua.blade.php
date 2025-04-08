@@ -17,7 +17,7 @@
 
         <body>
 
-            <h1 id="titulo"><img src="assets/Gestor/gruaVer.png">  Crear Grúa</h1>
+            <h1 id="titulo">Crear Grúa</h1>
 
                 <form method="POST" action="{{route('guardarGrua')}}">
                 @csrf

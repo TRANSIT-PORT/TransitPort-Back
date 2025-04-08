@@ -11,6 +11,8 @@ use App\Models\TieneTruck;
 use App\Models\Turno;
 use App\Models\Train;
 use App\Models\Truck;
+use App\Models\Gestiona;
+use App\Models\Grua;
 use App\Models\Contenedor;
 use App\Models\User;
 use App\Models\Zona;
@@ -659,7 +661,6 @@ class OrdenController extends Controller {
         ->join('contenedor', $datos[$tipo_transporte]['tiene'] . '.id_contenedor', '=', 'contenedor.id')
         ->join('zona', 'contenedor.id_zona', '=', 'zona.id')
         ->select(
-            'pertenece.id_grua', 
             'orden.id_operador', 
             'orden.' . $datos[$tipo_transporte]['id'], 
             'orden.id', 
@@ -696,35 +697,45 @@ class OrdenController extends Controller {
             case 'buque':
 
                 $relacion = TieneBuque::where('id_buque', $orden->id_buque)
-                                        ->where('ubicacion', $orden->id_zona)->first();
-
-                $contenedor = Contenedor::where('id', $relacion->id_contenedor)->first();
+                                        ->where('ubicacion', $orden->id_zona)
+                                        ->first();
+                
+                $transporte = Buque::where('id', $orden->id_buque)->first();
 
                 break;
 
             case 'train':
 
                 $relacion = TieneTrain::where('id_train', $orden->id_train)
-                                        ->where('ubicacion', $orden->id_zona)->first();
+                                        ->where('ubicacion', $orden->id_zona)
+                                        ->first();
 
-                $contenedor = Contenedor::where('id', $relacion->id_contenedor)->first();
+                $transporte = Train::where('id', $orden->id_train)->first();
 
                 break;
 
             case 'truck':
 
                 $relacion = TieneTruck::where('id_truck', $orden->id_truck)
-                                        ->where('ubicacion', $orden->id_zona)->first();
+                                        ->where('ubicacion', $orden->id_zona)
+                                        ->first();
 
-                $contenedor = Contenedor::where('id', $relacion->id_contenedor)->first();
+                $transporte = Truck::where('id', $orden->id_truck)->first();
 
                 break;
 
 
         }
 
+        $contenedor = Contenedor::where('id', $relacion->id_contenedor)->first();
+        $zona = Zona::where('id', $orden->id_zona)->first();
+        $operador = Operador::where('id', $orden->id_operador)->first();
+        $gestiona = Gestiona::where('id_contenedor', $contenedor->id)->first();
+        $grua = Grua::where('id', $gestiona->id_grua)->first();
+
+
         if ($orden) {
-            return view('Administrativo/Auditorias/realizarAuditorias', compact('orden', 'relacion', 'contenedor'));
+            return view('Administrativo/Auditorias/realizarAuditorias', compact('orden', 'relacion', 'contenedor', 'operador', 'grua', 'transporte', 'gestiona', 'zona'));
         } else {
             return redirect() -> route('Administrativo/Auditorias/verAuditoria');
         }

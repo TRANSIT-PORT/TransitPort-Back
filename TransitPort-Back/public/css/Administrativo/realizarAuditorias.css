@@ -1,7 +1,79 @@
-#detalles th, #orden th {
-    background: var(--Cinder-900, #152D65);
-    color: white;
+
+
+:root {
+    --texto: #000000;
+    --azul-negro: #040813;
+    --azul: #152D65;
+    --selects: #E3E9FB;
+    --fondo: #ffffff;
+    --texto-crear: #F1F5FE;
+    --azul-cancelar: #133379;
+    --crear: #152D65;
+    --crear-hover: #0B5ED7;
+    --amarillo: #E59506;
+    --texto-calendario: #333; 
+    --amarillo-hover: #FFCA2C;
+    --borde-calendario: #EBEBEB;
+    --flecha-select: url("../../assets/flecha.png");
+    --logo-titulo: url("../../assets/Administrativo/realizarAuditoriaVer.svg") no-repeat;
+    --logo-calendario: url("../../assets/Administrativo/calendario.svg") no-repeat;
+    --logo-lupa: url("../../assets/lupa.svg") no-repeat;
+    --boton-paginacion-activo: #152D65;
+    --boton-paginacion-disabled: #F1F5FE;
 }
+
+body.dark-mode {
+    --texto: #FFFFFF;
+    --azul-negro: #040813;
+    --azul: #99B2EA;
+    --selects: #0e1936;
+    --fondo: #01050E;
+    --texto-crear: #F1F5FE;
+    --azul-cancelar: #000000;
+    --crear: #465a86;
+    --crear-hover: #8f97b3;
+    --amarillo: #E59506;
+    --texto-calendario: #dadada; 
+    --amarillo-hover: #D19D00;
+    --borde-calendario: #0b1429;
+    --flecha-select: url("../../assets/flecha-dark.png");
+    --logo-titulo: url("../../assets/Administrativo/realizarAuditoria.svg") no-repeat;
+    --logo-calendario: url("../../assets/Administrativo/calendarioBlanco.svg") no-repeat;
+    --logo-lupa: url("../../assets/lupaBlanca.svg") no-repeat;
+    --boton-paginacion-activo: #E59506;
+    --boton-paginacion-disabled: #465a86;
+}
+
+body{
+
+    background-color: var(--fondo);
+    transition: background 0.3s ease-in-out !important;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out;
+
+}
+
+#detalles th, #orden th {
+    background: var(--crear);
+    
+    transition: background 0.3s ease-in-out !important;
+    color: white;
+    
+    transition: color 0.3s ease-in-out;
+}
+
+h2{
+        width: 350px;
+        height: 53px;
+        background: var(--logo-titulo);
+        transition: background 0.3s ease-in-out !important;
+        padding-left: 65px;
+        display: flex;
+        align-items: right;
+        align-content: center;
+        justify-content: space-between;
+}
+
 
 input.form-control.form-control-sm {
 
@@ -10,11 +82,14 @@ input.form-control.form-control-sm {
     border-radius: 4px !important;
     font-size: 20px !important;
     border: 2px solid #000 !important;
+    transition: border 0.3s ease-in-out;
     height: 36px !important;
     font-weight: 700;
-    color: #000 !important;
+    color: var(--texto) !important;
+    transition: color 0.3s ease-in-out;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
-    background-image: url('assets/lupa.svg') !important;
+    background: var(--logo-lupa) !important;
+    transition: background 0.3s ease-in-out !important;
     background-repeat: no-repeat !important;
     background-position: left 10px center !important;
     padding-left: 70px !important;
@@ -23,8 +98,10 @@ input.form-control.form-control-sm {
 
 th.sorting_disabled {
 
-    background: var(--Cinder-900, #152D65) !important;
-    color: var(--Cinder-50, #F1F5FE);
+    background: var(--crear) !important;
+    transition: background 0.3s ease-in-out !important;
+    color: var(--texto-crear);
+    transition: color 0.3s ease-in-out;
     width: 100px;
     height: 54px;
     padding-left: -70px;
@@ -36,14 +113,18 @@ th.sorting_disabled {
 }
 
 #detalles tbody, #orden tbody {
-    background: #F1F5FE;
+    background: var(--texto-crear);
+    transition: background 0.3s ease-in-out !important;
     border: none;
 }
 
 #detalles td, #orden td {
-    background: #FFF;
-    color: #000000;
-    border-top: 10px solid #F1F5FE;
+    background: var(--fondo);
+    transition: background 0.3s ease-in-out !important;
+    color: var(--texto);
+    transition: color 0.3s ease-in-out;
+    border-top: 10px solid var(--borde-calendario);
+    transition: border 0.3s ease-in-out;
     border-right: none;
     text-align: center;
 }

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Operador;
 use App\Models\Turno;
+use App\Models\Grua;
+use App\Models\STS;
+use App\Models\SC;
+use App\Models\Utiliza;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
@@ -14,6 +18,24 @@ class TurnoController extends Controller {
     public function index(Request $request) {
         $task = Turno::all();
         return $task;
+    }
+
+    public function getGruas(Request $request){
+
+        $operador = Operador::findOrFail($request->operador);
+
+        if($operador->tipo == 'STS'){
+
+            $gruas = STS::all();
+
+        } else {
+
+            $gruas = SC::all();
+
+        }
+
+        return $gruas;
+
     }
 
     public function obtenerOperadores($turnoId, Request $request) {
@@ -109,6 +131,7 @@ class TurnoController extends Controller {
             'horas' => 'int',
         ]);
 
+
         try {
             $fecha = $turno['fecha'];
             $hora = $turno['hora_inicio'];
@@ -122,6 +145,7 @@ class TurnoController extends Controller {
                 'fecha_inicio' => $fecha_inicial,
                 'fecha_fin' => $fecha_fin,
             ]);
+
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error al guardar el turno.',
@@ -145,12 +169,26 @@ class TurnoController extends Controller {
     public function actualizarTurno(Request $request) {
         $turno = $request -> validate([
             'id_operador' => 'int',
-            'id_turno' => 'int'
+            'id_turno' => 'int',
+            'id_grua' => 'int',
         ]);
 
         try {
+
+            $grua = Grua::findOrFail($turno['id_grua']);
             $operador = Operador::findOrFail($turno['id_operador']);
             $operador -> update($turno);
+            $turnoFecha = Turno::findOrFail($turno['id_turno']);
+            $fecha_inicio = $turnoFecha->fecha_inicio;
+            $fecha_fin = $turnoFecha->fecha_fin;
+
+            $grua->operadores()->syncWithoutDetaching([
+                $operador->id => [
+                    'hora_inicio' => $fecha_inicio,
+                    'hora_fin' => $fecha_fin,
+                ]
+            ]);
+            
 
         } catch (\Exception $e) {
             return response()->json([
