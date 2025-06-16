@@ -12,6 +12,7 @@ use App\Http\Controllers\GruaController;
 use App\Http\Controllers\ZonaController;
 use App\Http\Controllers\PatioController;
 use App\Http\Controllers\ContenedorController;
+use App\Http\Controllers\TransporteController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,7 +34,11 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['gestor'])->group(function () {
 
         Route::get('/crearUsuario', [GestorController::class, 'crearUsuario'])->name('crearUsuario');
+        Route::get('/crearTransporte', [TransporteController::class, 'crearTransporte'])->name('crearTransporte');
+        Route::get('/buscarTransportes/{tipo}', [TransporteController::class, 'buscarTransportes'])->name('buscarTransportes');
         Route::post('/guardarUsuario', [GestorController::class, 'guardarUsuario'])->name('guardarUsuario');
+        Route::post('/guardarTransporte', [TransporteController::class, 'guardarTransporte'])->name('guardarTransporte');
+        Route::post('/borrarTransporte', [TransporteController::class, 'borrarTransporte'])->name('borrarTransporte');
         Route::get('/crearPatio', [PatioController::class, 'crearPatio'])->name('crearPatio');
         Route::get('/crearGrua', [GruaController::class, 'crearGrua'])->name('crearGrua');
         Route::post('/guardarGrua', [GruaController::class, 'guardarGrua'])->name('guardarGrua');
@@ -44,7 +49,7 @@ Route::middleware('auth')->group(function () {
         Route::view('/exitoGestor', 'Gestor.exitoGestor') -> name('exitoGestor');
 
     });
-    
+
 
     Route::middleware(['administrativo'])->group(function () {
         Route::get('/getParcelasByZona', [OrdenController::class, 'getParcelasByZona'])->name('getParcelasByZona');

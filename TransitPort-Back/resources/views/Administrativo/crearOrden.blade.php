@@ -37,7 +37,7 @@
                         <option value=""></option>
                             @forelse ($zonas as $zona)
                                 <option id="zona_actual" value="{{$zona -> id}}">{{$zona -> ubicacion}}</option>
-                                
+
                             @empty
                                 <p>No hay zonas actualmente</p>
                             @endforelse
@@ -46,7 +46,7 @@
                     <p>Tipo de transporte</p>
 
                     <select name="tipo_transporte" id="tipo_transporte">
-                        
+
                             <option value=""></option>
                             <option value="buque">Buque</option>
                             <option value="train">Tren</option>
@@ -60,7 +60,7 @@
                     <select name="id_transporte" id="id_transporte">
                         <option value=""></option>
                     </select>
-                    
+
                 </div>
 
                 <div class="div3">
@@ -74,7 +74,7 @@
                             <p>No hay turnos actualmente</p>
                         @endforelse
                     </select>
-                </div> 
+                </div>
 
                 <div class="contenedor">
 
@@ -96,7 +96,7 @@
                         <select name="dimensiones_contenedor" id="dimensiones_contenedor"></select>
 
                     </div>
-                
+
                     <div class="div5">
                         <h2 class="num" id="num_div5">4</h2>
                         <h2>Parcela</h2>
@@ -108,8 +108,8 @@
 
                     </div>
                     </div>
-                
-                
+
+
                 </div>
 
                 <button id="botonCrearOrden"class="crear btn">Crear</button>
@@ -177,7 +177,7 @@
                 if(tipo_contenedor){
 
                     $.ajax({
-                        url: "{{ route('sacarDimensiones') }}", // Ruta en Laravel
+                        url: "{{ route('sacarDimensiones') }}",
                         type: "GET",
                         data: { tipo_contenedor: tipo_contenedor}, // Enviamos la parcela al backend
                         success: function(response) {
@@ -195,7 +195,7 @@
                                 });
 
                             }
-                            
+
                         }
                     });
 
@@ -209,7 +209,7 @@
            $('#id_zona').change(function() {
             var zonaId = $(this).val(); // Obtenemos el ID de la zona seleccionada
             console.log('Zona seleccionada: ' + zonaId);
-            
+
             $.ajax({
                 url: "{{ route('getParcelasByZona') }}", // Ruta que procesará la solicitud
                 type: "GET",
@@ -222,12 +222,12 @@
                     console.log('X de la zona:', zonaX);
                     console.log('Y de la zona:', zonaY);
                     console.log('Valor máximo (X * Y):', max);
-                    
+
                     // Actualizar el texto con las coordenadas de la zona
                     $('#zona-coordinates').text('X: ' + zonaX + ', Y: ' + zonaY);
 
                     $('#maximo-zona').text(max);
-                    
+
                     // Establecer el máximo permitido en el input
                     $('#buscar_parcela').attr('max', max);
                 },
@@ -255,9 +255,9 @@
 
                 if (tipo_orden) {
                     $.ajax({
-                        url: "{{ route('comprobarParcela') }}", 
+                        url: "{{ route('comprobarParcela') }}",
                         type: "GET",
-                        data: { parcela: parcela , id_zona: id_zona, tipo_orden: tipo_orden, tipo_contenedor: tipo_contenedor, dimensiones_contenedor: dimensiones_contenedor, altura: altura}, 
+                        data: { parcela: parcela , id_zona: id_zona, tipo_orden: tipo_orden, tipo_contenedor: tipo_contenedor, dimensiones_contenedor: dimensiones_contenedor, altura: altura},
                         success: function(response) {
 
                             console.log(response);
@@ -278,15 +278,15 @@
                                         $('#altura').append('<option value="' + opcionesAlturas + '">' + opcionesAlturas + '</option>')
 
                                     });
-                                    
+
                                 }
                             }
-                            
+
                         },
                         error: function() {
                             console.log('Error al buscar la parcela', error)
                         }
-                        
+
                     });
                 } else {
                     altura.empty();
@@ -301,11 +301,11 @@
 
                 if (parcela) {
                     $.ajax({
-                        url: "{{ route('comprobarContenedor') }}", 
+                        url: "{{ route('comprobarContenedor') }}",
                         type: "GET",
-                        data: { parcela: parcela , id_zona: id_zona, tipo_orden: tipo_orden}, 
+                        data: { parcela: parcela , id_zona: id_zona, tipo_orden: tipo_orden},
                         success: function(response) {
-                            
+
 
                             console.log(response)
 
@@ -316,12 +316,12 @@
                                 if(response.opcionesAlturas.length > 0){
 
                                     $('#botonCrearOrden').prop('disabled', false)
-                                    
+
                                     response.opcionesAlturas.forEach(function(opcionesAlturas){
 
                                             $('#altura').append('<option value="' + opcionesAlturas + '">' + opcionesAlturas + '</option>')
 
-                                    }); 
+                                    });
                                 } else {
 
                                     $('#altura').append('<option value="">En esta parcela no hay contenedores</option>')
@@ -335,7 +335,7 @@
                         error: function() {
                             console.log('Error al buscar la parcela', error)
                         }
-                        
+
                     });
                 } else {
                     altura.empty();
@@ -345,7 +345,7 @@
             $('#buscar_parcela, #id_zona, #tipo, #dimensiones_contenedor').on('input change change change change', buscarParcela);
 
             $('#buscar_parcela').on('input', comprobarContenedor);
-            
+
         </script>
 
         <script>

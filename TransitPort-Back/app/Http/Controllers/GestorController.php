@@ -9,9 +9,9 @@ use App\Models\User;
 class GestorController extends Controller {
 
     public function index(Request $request) {
-        $task = User::all(); 
+        $task = User::all();
         return $task;
-       
+
     }
 
     public function show(Request $request)
@@ -101,11 +101,11 @@ class GestorController extends Controller {
         ]);
 
     }
-    
 
-    
 
-    
+
+
+
 
     }
 
